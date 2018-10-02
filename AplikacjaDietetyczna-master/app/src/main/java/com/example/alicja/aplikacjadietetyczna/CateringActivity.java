@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -21,8 +22,11 @@ import com.example.alicja.aplikacjadietetyczna.Model.Results;
 import com.example.alicja.aplikacjadietetyczna.Remote.IGoogleAPIService;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -37,14 +41,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CateringActivity extends FragmentActivity implements OnMapReadyCallback,
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+public class CateringActivity extends FragmentActivity implements OnMapReadyCallback{
 
     private static final int MY_PERMISSION_CODE = 1000;
     private GoogleMap mMap;
-    private GoogleApiClient mGoogleApiClient;
+
 
     private double latitude, longitude;
     private Location mLastLocation;
@@ -53,7 +54,8 @@ public class CateringActivity extends FragmentActivity implements OnMapReadyCall
 
     MyPlaces currentPlace;
     IGoogleAPIService mService;
-
+FusedLocationProviderClient fusedLocationProviderClient;
+LocationCallback locationCallback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +90,46 @@ public class CateringActivity extends FragmentActivity implements OnMapReadyCall
                 return true;
             }
         });
+
+
+    }
+
+  /*  @Override
+    protected void onStop() {
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+        super.onStop();
+    }*/
+
+    private void buildLocationRequest() {
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(1000);
+        mLocationRequest.setFastestInterval(1000);
+      //  mLocationRequest.setSmallestDisplacement(10f);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+    }
+
+    private void buildLocationCallback() {
+        locationCallback=new LocationCallback(){
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+                mLastLocation=locationResult.getLastLocation();
+                if (mMarker != null)
+                    mMarker.remove();
+
+                latitude = mLastLocation.getLatitude();
+                longitude = mLastLocation.getLongitude();
+
+                LatLng latLng = new LatLng(latitude, longitude);
+                MarkerOptions markerOptions = new MarkerOptions()
+                        .position(latLng)
+                        .title("Twoja pozycja")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                mMarker = mMap.addMarker(markerOptions);
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+            }
+        };
     }
 
     private void nearByPlace(final String placeType) {
@@ -170,13 +212,14 @@ public class CateringActivity extends FragmentActivity implements OnMapReadyCall
             case MY_PERMISSION_CODE: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                        if (mGoogleApiClient == null)
 
-                            buildGoogleApiClient();
                         mMap.setMyLocationEnabled(true);
+                        buildLocationCallback();
+                        buildLocationRequest();
+                        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+                        fusedLocationProviderClient.requestLocationUpdates(mLocationRequest,locationCallback, Looper.myLooper());
                     }
-                } else
-                    Toast.makeText(this, "Odmowa dostępu", Toast.LENGTH_SHORT).show();
+                }
             }
             break;
         }
@@ -188,75 +231,26 @@ public class CateringActivity extends FragmentActivity implements OnMapReadyCall
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                buildGoogleApiClient();
+
                 mMap.setMyLocationEnabled(true);
             }
         } else {
-            buildGoogleApiClient();
+
             mMap.setMyLocationEnabled(true);
         }
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                Common.currentResult=currentPlace.getResults()[Integer.parseInt(marker.getSnippet())];
-                startActivity(new Intent(CateringActivity.this,ViewPlace.class));
+                if( marker.getSnippet() != null) {
+                    Common.currentResult = currentPlace.getResults()[Integer.parseInt(marker.getSnippet())];
+                    startActivity(new Intent(CateringActivity.this, ViewPlace.class));
+                }
                 return true;
             }
         });
     }
 
-    private synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-        mGoogleApiClient.connect();
-    }
 
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(1000);
-        mLocationRequest.setFastestInterval(1000);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-        }
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        mGoogleApiClient.connect();
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        mLastLocation = location;
-        if (mMarker != null) {
-            mMarker.remove();
-        }
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
-
-        LatLng latLng = new LatLng(latitude, longitude);
-        MarkerOptions markerOptions = new MarkerOptions()
-                .position(latLng)
-                .title("Twoja pozycja")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-        mMarker = mMap.addMarker(markerOptions);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
-
-        if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-        }
-    }
 }
 
 

@@ -24,12 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BmiActivity" />
-        <activity android:name=".CpmActivity" />
-        <activity android:name=".DietInfoActivity" />
-        <activity
-            android:name=".DietPlanActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".FoodListActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
