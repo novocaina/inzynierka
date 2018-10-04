@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
     <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-        <group >
+
             <item
-                android:id="@+id/nav_mon"
-                android:title="@string/mon" />
+                android:id="@+id/nav_param"
+                android:title="@string/param"
+                android:icon="@drawable/ic_developer_board_black_24dp"/>
             <item
-                android:id="@+id/nav_tue"
-                android:title="@string/tue" />
+                android:id="@+id/nav_data"
+                android:title="@string/data"
+                android:icon="@drawable/ic_account_box_black_24dp"/>
             <item
-                android:id="@+id/nav_wed"
-                android:title="@string/wed" />
+                android:id="@+id/nav_diet"
+                android:title="@string/diet"
+                android:icon="@drawable/ic_local_cafe_black_24dp"/>
             <item
-                android:id="@+id/nav_thu"
-                android:title="@string/thu" />
+                android:id="@+id/nav_add"
+                android:title="@string/add_food"
+                android:icon="@drawable/ic_add_circle_black_24dp"/>
             <item
-                android:id="@+id/nav_fri"
-                android:title="@string/fri" />
+                android:id="@+id/nav_list"
+                android:title="@string/list"
+                android:icon="@drawable/ic_assignment_black_24dp"/>
             <item
-                android:id="@+id/nav_sat"
-                android:title="@string/sat" />
+                android:id="@+id/nav_map"
+                android:title="@string/maps"
+                android:icon="@drawable/ic_map_black_24dp"/>
             <item
-                android:id="@+id/nav_sun"
-                android:title="@string/sun" />
-        </group>
+                android:id="@+id/nav_stat"
+                android:title="@string/stat"
+                android:icon="@drawable/ic_trending_up_black_24dp"/>
     </menu>

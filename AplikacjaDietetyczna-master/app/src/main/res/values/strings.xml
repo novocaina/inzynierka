@@ -66,4 +66,16 @@
     <string name="supper">kolacja</string>
     <string name="foodmenu">twój jadłospis</string>
     <string name="base_alert">Baza jest pusta - uzupełnij swoje dane!</string>
+    <string name="param">Oblicz parametry</string>
+    <string name="data">Twoje dane</string>
+    <string name="diet">Twój jadłospis</string>
+    <string name="list">Lista zakupów</string>
+    <string name="add_food">Dodaj posiłek</string>
+    <string name="maps">Mapa</string>
+    <string name="stat">Dziennik postepów</string>
+    <string name="drawer_open">Otwórz</string>
+    <string name="drawer_close">Zamknij</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
