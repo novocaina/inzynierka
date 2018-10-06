@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">AplikacjaDietetyczna</string>
+    <string name="app_name">Aplikacja Dietetyczna</string>
     <string name="title_activity_catering">Map</string>
     <string name="show_map">Pokaż na mapie</string>
-    <string name="give_height">Podaj wzrost w centymetrach</string>
-    <string name="give_weight">Podaj wagę w kilogramach</string>
+    <string name="give_height">Podaj wzrost</string>
+    <string name="give_weight">Podaj wagę</string>
     <string name="calc_bmi">Oblicz BMI</string>
     <string name="give_age">Podaj wiek</string>
     <string name="select_sex">Wybierz płeć</string>
