@@ -7,6 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
@@ -50,7 +57,101 @@ public class BMIFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+    @BindView(R.id.weight_txt)
 
+    EditText weight_txt;
+
+    @BindView(R.id.height_txt)
+
+    EditText height_txt;
+
+    @BindView(R.id.bmi_txt)
+
+    TextView bmi_txt;
+
+    @BindView(R.id.your_bmi_txt)
+
+    TextView your_bmi_txt;
+
+    @BindView(R.id.bmi_info_txt)
+
+    TextView bmi_info_txt;
+
+
+
+    @OnClick(R.id.bmi_btn)
+    void OnClick() {
+
+        String weightStr = weight_txt.getText().toString();
+
+        String heightStr = height_txt.getText().toString();
+
+
+
+        if (weightStr.isEmpty() || heightStr.isEmpty()) {
+
+            Toast.makeText(getActivity(), this.getString(R.string.warning_data), Toast.LENGTH_LONG).show();
+
+        } else if (Double.parseDouble(weightStr) <= 0 || Double.parseDouble(weightStr) <= 0) {
+
+            Toast.makeText(getActivity(), this.getString(R.string.value_str), Toast.LENGTH_LONG).show();
+
+        } else {
+
+            double weight = Double.parseDouble(weightStr);
+
+            double height = Double.parseDouble(heightStr);
+
+            BMI newBMI = new BMI();
+
+            double bmi = newBMI.BMI_Count(weight, height);
+
+            your_bmi_txt.setVisibility(View.VISIBLE);
+
+            String bmiStr = String.format("%.2f", bmi);
+
+            bmi_txt.setText(bmiStr);
+
+            String bmi_text = BMI_text(bmi);
+
+            bmi_info_txt.setText(bmi_text);
+
+        }
+
+    }
+    public String BMI_text(double bmi) {
+
+        if (bmi < 16) {
+
+            return this.getString(R.string.starvation);
+
+        } else if (bmi >= 16 && bmi <= 16.99) {
+
+            return this.getString(R.string.emaciaton);
+
+        } else if (bmi >= 17 && bmi <= 18.49) {
+
+            return this.getString(R.string.low_weight);
+
+        } else if (bmi >= 18.5 && bmi <= 24.99) {
+
+            return this.getString(R.string.normal_weight);
+
+        } else if (bmi >= 25 && bmi <= 29.99) {
+
+            return this.getString(R.string.obeseI);
+
+        } else if (bmi >= 30 && bmi <= 39.99) {
+
+            return this.getString(R.string.obeseII);
+
+        } else {
+
+            return this.getString(R.string.obeseIII);
+
+        }
+
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,13 +159,16 @@ public class BMIFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bmi, container, false);
+        View view=inflater.inflate(R.layout.fragment_bmi, container, false);
+        ButterKnife.bind(this,view);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

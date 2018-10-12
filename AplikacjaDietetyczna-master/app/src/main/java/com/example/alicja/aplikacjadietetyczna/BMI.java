@@ -27,4 +27,5 @@ public class BMI {
         double BMI=weight/((height/100)*(height/100));
         return BMI;
     }
+
 }

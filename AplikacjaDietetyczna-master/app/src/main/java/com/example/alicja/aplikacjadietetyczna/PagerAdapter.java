@@ -12,16 +12,16 @@ public class PagerAdapter extends FragmentStatePagerAdapter{
     }
     @Override
     public Fragment getItem(int position) {
-switch (position){
+switch (position) {
     case 0:
-        BMIFragment bmiFragment=new BMIFragment();
-        return  bmiFragment;
+        BMIFragment bmiFragment = new BMIFragment();
+        return bmiFragment;
     case 1:
-        CPMFragment cpmFragment=new CPMFragment();
-        return  cpmFragment;
-}
-
+        CPMFragment cpmFragment = new CPMFragment();
+        return cpmFragment;
+    default:
         return null;
+}
     }
 
     @Override

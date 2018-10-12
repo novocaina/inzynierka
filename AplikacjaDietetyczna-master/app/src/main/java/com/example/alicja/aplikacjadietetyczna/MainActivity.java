@@ -36,7 +36,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    if(finall==0)
+                    {
+                        Intent intent=new Intent(MainActivity.this,Statistics.class);
+                        startActivity(intent);
+                    }
+                    if(finall==1)
+                    {
+                        Intent intent=new Intent(MainActivity.this,Parameters.class);
+                        startActivity(intent);
+                    }
                     if(finall==4)
                     {
                         Intent intent=new Intent(MainActivity.this,FoodListActivity.class);

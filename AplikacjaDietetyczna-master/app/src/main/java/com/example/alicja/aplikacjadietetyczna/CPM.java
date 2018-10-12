@@ -5,15 +5,15 @@ package com.example.alicja.aplikacjadietetyczna;
  */
 
 public class CPM {
-float weight;
-float height;
+double weight;
+double height;
 int age;
 
     public double getWeight() {
         return weight;
     }
 
-    public void setWeight(float weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
@@ -21,7 +21,7 @@ int age;
         return height;
     }
 
-    public void setHeight(float height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
