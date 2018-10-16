@@ -17,7 +17,9 @@ public class ListItemHelper extends SQLiteOpenHelper {
     private final static int DB_VER = 1;
     private final static String DB_TABLE1 = "ShopList";
     private final static String DB_COLUMN_ITEM = "ItemName";
-
+    private final static String DB_TABLE3 = "series";
+    private final static String DB_COLUMN_XVALUES = "xValues";
+    private final static String DB_COLUMN_YVALUES = "yValues";
     public ListItemHelper(Context context) {
         super(context, DB_NAME, null, DB_VER);
     }
@@ -27,13 +29,17 @@ public class ListItemHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = String.format("CREATE TABLE %s (ID INTEGER PRIMARY KEY AUTOINCREMENT,%s TEXT NOT NULL);", DB_TABLE1, DB_COLUMN_ITEM);
         db.execSQL(query);
+        String query2 = String.format("CREATE TABLE %s (%s NUMBER, %s NUMBER);", DB_TABLE3,DB_COLUMN_XVALUES,DB_COLUMN_YVALUES);
+        db.execSQL(query2);
         db.execSQL(User.CREATE_TABLE);
         db.execSQL(DailyMeal.CREATE_TABLE);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE1);
+        db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE3);
         db.execSQL("DROP TABLE IF EXISTS " + User.TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + DailyMeal.TABLE2);
         onCreate(db);
@@ -153,6 +159,16 @@ public class ListItemHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return meal;
+
+    }
+    public void insertPoints(long x, double y) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DB_COLUMN_XVALUES, x);
+        values.put(DB_COLUMN_YVALUES, y);
+        db.insert(DB_TABLE3, null, values);
 
     }
 }

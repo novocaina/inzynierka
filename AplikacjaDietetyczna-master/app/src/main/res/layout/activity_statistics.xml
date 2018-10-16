@@ -76,7 +76,15 @@
 
         android:id="@+id/numY"/>
 
-
+    <Button
+        android:text="@string/date_picker"
+        android:layout_marginRight="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnDatePick"
+        android:layout_below="@+id/numY"/>
 
 
 
