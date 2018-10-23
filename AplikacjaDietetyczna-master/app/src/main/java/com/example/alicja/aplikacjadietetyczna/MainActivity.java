@@ -10,54 +10,68 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.GridLayout;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    LinearLayout linearLayout;
-    private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
+    @BindView(R.id.drawer_main)
+    DrawerLayout drawerLayout;
+    @BindView(R.id.linear_layout)
+    LinearLayout linearLayout;
+    @BindView(R.id.navigationView)
+    NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    drawerLayout=(DrawerLayout)findViewById(R.id.drawer_main);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
+        ButterKnife.bind(this);
         navigationView.setNavigationItemSelectedListener(this);
-        toggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.drawer_open,R.string.drawer_close);
-    drawerLayout.addDrawerListener(toggle);
-    toggle.syncState();
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-     linearLayout=findViewById(R.id.linear_layout);
-      setSingleEvent(linearLayout);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setSingleEvent(linearLayout);
     }
 
     private void setSingleEvent(LinearLayout linearLayout) {
-        for(int i=0;i<linearLayout.getChildCount();i++) {
-            CardView cardView=(CardView)linearLayout.getChildAt(i);
-            final int finall=i;
+        for (int i = 0; i < linearLayout.getChildCount(); i++) {
+            CardView cardView = (CardView) linearLayout.getChildAt(i);
+            final int finall = i;
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    if(finall==0)
-                    {
-                        Intent intent=new Intent(MainActivity.this,Parameters.class);
+                    if (finall == 0) {
+                        Intent intent = new Intent(MainActivity.this, ParametersActivity.class);
                         startActivity(intent);
                     }
-                    if(finall==1)
-                    {
-                        Intent intent=new Intent(MainActivity.this,DietInfo.class);
+                    if (finall == 1) {
+                        Intent intent = new Intent(MainActivity.this, DietInfoActivity.class);
                         startActivity(intent);
                     }
-                    if(finall==4)
-                    {
-                        Intent intent=new Intent(MainActivity.this,FoodListActivity.class);
+                    if (finall == 2) {
+                        Intent intent = new Intent(MainActivity.this, DietPlanActivity.class);
                         startActivity(intent);
                     }
-                    if(finall==5)
-                    {
-                        Intent intent=new Intent(MainActivity.this,CateringActivity.class);
+                    if (finall == 3) {
+                        Intent intent = new Intent(MainActivity.this, AddMealActivity.class);
+                        startActivity(intent);
+                    }
+                    if (finall == 4) {
+                        Intent intent = new Intent(MainActivity.this, FoodListActivity.class);
+                        startActivity(intent);
+                    }
+                    if (finall == 5) {
+                        Intent intent = new Intent(MainActivity.this, CateringActivity.class);
+                        startActivity(intent);
+                    }
+                    if (finall == 6) {
+                        Intent intent = new Intent(MainActivity.this, StatisticsActivity.class);
                         startActivity(intent);
                     }
                 }
@@ -75,23 +89,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id=item.getItemId();
-        switch(id){
+        int id = item.getItemId();
+        switch (id) {
             case R.id.nav_stat:
-                startActivity(new Intent(MainActivity.this,Statistics.class));
+                startActivity(new Intent(MainActivity.this, StatisticsActivity.class));
                 drawerLayout.closeDrawers();
                 return true;
             case R.id.nav_param:
-                startActivity(new Intent(MainActivity.this,Parameters.class));
+                startActivity(new Intent(MainActivity.this, ParametersActivity.class));
                 drawerLayout.closeDrawers();
                 return true;
-                case R.id.nav_list:
-                 startActivity(new Intent(MainActivity.this,FoodListActivity.class));
-                 drawerLayout.closeDrawers();
-             return true;
+            case R.id.nav_list:
+                startActivity(new Intent(MainActivity.this, FoodListActivity.class));
+                drawerLayout.closeDrawers();
+                return true;
             case R.id.nav_map:
-                startActivity(new Intent(MainActivity.this,CateringActivity.class));
-                return true;}
-return false;
-}
+                startActivity(new Intent(MainActivity.this, CateringActivity.class));
+                drawerLayout.closeDrawers();
+                return true;
+            case R.id.nav_add:
+                startActivity(new Intent(MainActivity.this, AddMealActivity.class));
+                drawerLayout.closeDrawers();
+                return true;
+            case R.id.nav_data:
+                startActivity(new Intent(MainActivity.this, DietInfoActivity.class));
+                drawerLayout.closeDrawers();
+                return true;
+            case R.id.nav_diet:
+                startActivity(new Intent(MainActivity.this, DietPlanActivity.class));
+                drawerLayout.closeDrawers();
+                return true;
+        }
+        return false;
+    }
 }

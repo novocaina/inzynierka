@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 import butterknife.BindView;
 
-public class Parameters extends AppCompatActivity implements BMIFragment.OnFragmentInteractionListener,CPMFragment.OnFragmentInteractionListener {
+public class ParametersActivity extends AppCompatActivity implements BMIFragment.OnFragmentInteractionListener,CPMFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

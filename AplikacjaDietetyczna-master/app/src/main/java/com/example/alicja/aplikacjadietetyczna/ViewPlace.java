@@ -44,8 +44,8 @@ public class ViewPlace extends AppCompatActivity {
         setContentView(R.layout.activity_view_place);
         ButterKnife.bind(this);
 
-        mService=Common.getGoogleAPIService();
-        showOnMap=(Button)findViewById(R.id.btn_show_map);
+        mService = Common.getGoogleAPIService();
+        showOnMap = (Button) findViewById(R.id.btn_show_map);
         place_address.setText("");
         place_name.setText("");
         opening_hours.setText("");
@@ -54,62 +54,67 @@ public class ViewPlace extends AppCompatActivity {
         showOnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse(myPlace.getResult().getUrl()));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(myPlace.getResult().getUrl()));
                 startActivity(intent);
             }
         });
-        if(Common.currentResult.getPhotos()!=null && Common.currentResult.getPhotos().length>0) {
+        if (Common.currentResult.getPhotos() != null && Common.currentResult.getPhotos().length > 0) {
             Picasso.with(this)
-                    .load(getPhotoOfPlace(Common.currentResult.getPhotos()[0].getPhoto_reference(),1000))
+                    .load(getPhotoOfPlace(Common.currentResult.getPhotos()[0].getPhoto_reference(), 1000))
                     .placeholder(R.drawable.ic_store_mall_directory_black_24dp)
                     .error(R.drawable.ic_error_black_24dp)
                     .into(photo);
         }
-        if(Common.currentResult.getRating()!=null && !TextUtils.isEmpty(Common.currentResult.getRating())){
-        ratingBar.setRating(Float.parseFloat(Common.currentResult.getRating()));
-        }
-        else{
+        if (Common.currentResult.getRating() != null && !TextUtils.isEmpty(Common.currentResult.getRating())) {
+            ratingBar.setRating(Float.parseFloat(Common.currentResult.getRating()));
+        } else {
             ratingBar.setVisibility(View.GONE);
         }
-        if(Common.currentResult.getOpening_hours()!=null){
-            if(Common.currentResult.getOpening_hours().getOpen_now()=="true"){
-            opening_hours.setText(getString(R.string.open));
-            }
-            else
+        if (Common.currentResult.getOpening_hours() != null) {
+            if (Common.currentResult.getOpening_hours().getOpen_now() == "true") {
+                opening_hours.setText(getString(R.string.open));
+            } else
                 opening_hours.setText(getString(R.string.close));
-        }
-        else{
+        } else {
             opening_hours.setVisibility(View.GONE);
         }
 
         mService.getDetailPlace(getPlaceDetailUrl(Common.currentResult.getPlace_id()))
-        .enqueue(new Callback<PlaceDetails>() {
-            @Override
-            public void onResponse(Call<PlaceDetails> call, Response<PlaceDetails> response) {
-            myPlace=response.body();
-            place_address.setText(myPlace.getResult().getFormatted_address());
-            place_name.setText(myPlace.getResult().getName());
-            }
+                .enqueue(new Callback<PlaceDetails>() {
+                    @Override
+                    public void onResponse(Call<PlaceDetails> call, Response<PlaceDetails> response) {
+                        try {
+                            myPlace = response.body();
+                            place_address.setText(myPlace.getResult().getVicinity());
+                            place_name.setText(myPlace.getResult().getName());
+                        } catch (NullPointerException ex) {
+                            place_address.setText("");
+                            opening_hours.setText("");
+                            ratingBar.setVisibility(View.INVISIBLE);
+                            showOnMap.setVisibility(View.INVISIBLE);
+                            place_name.setText(R.string.maps_alert);
+                        }
+                    }
 
-            @Override
-            public void onFailure(Call<PlaceDetails> call, Throwable t) {
+                    @Override
+                    public void onFailure(Call<PlaceDetails> call, Throwable t) {
 
-            }
-        });
+                    }
+                });
     }
 
     private String getPlaceDetailUrl(String place_id) {
-        StringBuilder url=new StringBuilder("https://maps.googleapis.com/maps/api/place/details/json");
-        url.append("?placeid="+place_id);
-        url.append("&key="+getResources().getString(R.string.browser_key));
+        StringBuilder url = new StringBuilder("https://maps.googleapis.com/maps/api/place/details/json");
+        url.append("?placeid=" + place_id);
+        url.append("&key=" + getResources().getString(R.string.browser_key));
         return url.toString();
     }
 
-    private String getPhotoOfPlace(String photo_reference,int maxWidth) {
-        StringBuilder url=new StringBuilder("https://maps.googleapis.com/maps/api/place/photo");
-        url.append("?maxwidth="+maxWidth);
-        url.append("&photoreference="+photo_reference);
-        url.append("&key="+getResources().getString(R.string.browser_key));
+    private String getPhotoOfPlace(String photo_reference, int maxWidth) {
+        StringBuilder url = new StringBuilder("https://maps.googleapis.com/maps/api/place/photo");
+        url.append("?maxwidth=" + maxWidth);
+        url.append("&photoreference=" + photo_reference);
+        url.append("&key=" + getResources().getString(R.string.browser_key));
         return url.toString();
     }
 }

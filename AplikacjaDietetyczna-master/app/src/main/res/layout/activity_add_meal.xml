@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddMealActivity">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/write_name"
+    android:textSize="15sp"
+    android:textColor="@color/darkgrey"
+    />
+    <EditText
+        android:id="@+id/name_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/write_ingredients"
+        android:textSize="15sp"
+        android:textColor="@color/darkgrey"
+        />
+    <EditText
+        android:id="@+id/ingredients_edit"
+        android:minLines="3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/write_recipe"
+    android:textSize="15sp"
+    android:textColor="@color/darkgrey"
+    />
+    <EditText
+        android:minLines="3"
+        android:id="@+id/recipe_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/select_type"
+    android:textSize="15sp"
+    android:textColor="@color/darkgrey"
+    />
+    <Spinner
+        android:id="@+id/type_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/darkgrey"
+         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_preferences"
+        android:textSize="15sp"
+        android:textColor="@color/darkgrey"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/write_values"
+        android:textSize="15sp"
+        android:textColor="@color/darkgrey"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/calories"
+        android:textSize="15sp"
+        android:textColor="@color/darkgrey"
+        />
+        <EditText
+            android:id="@+id/calories_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/proteins"
+        android:textSize="15sp"
+        android:textColor="@color/darkgrey"
+        />
+        <EditText
+            android:id="@+id/proteins_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/carbohydrates"
+        android:textSize="15sp"
+        android:textColor="@color/darkgrey"
+        />
+        <EditText
+            android:id="@+id/carbohydrates_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fat"
+        android:textSize="15sp"
+        android:textColor="@color/darkgrey"
+        />
+        <EditText
+            android:id="@+id/fat_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/portions"
+        android:textSize="15sp"
+        android:textColor="@color/darkgrey"
+        />
+        <EditText
+            android:id="@+id/portions_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

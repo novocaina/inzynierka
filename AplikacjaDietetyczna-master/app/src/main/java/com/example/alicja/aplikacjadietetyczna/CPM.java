@@ -5,9 +5,9 @@ package com.example.alicja.aplikacjadietetyczna;
  */
 
 public class CPM {
-double weight;
-double height;
-int age;
+    double weight;
+    double height;
+    int age;
 
     public double getWeight() {
         return weight;
@@ -50,19 +50,17 @@ int age;
     }
 
     String sex;
-double pal;
-    public double Count_CPM(double weight, double height, int age, String sex,double pal){
-    double CPM;
-        if(sex.equals("k"))
-        {
-            double PPM = 665.09+(9.56*weight)+(1.85*height)-(4.67*age);
-            CPM=PPM*pal;
+    double pal;
 
-        }
-        else
-        {
-            double PPM = 66.47 + (13.75*weight) + (5*height)-(6.75*age);
-            CPM=PPM*pal;
+    public double Count_CPM(double weight, double height, int age, String sex, double pal) {
+        double CPM;
+        if (sex.equals("k")) {
+            double PPM = 665.09 + (9.56 * weight) + (1.85 * height) - (4.67 * age);
+            CPM = PPM * pal;
+
+        } else {
+            double PPM = 66.47 + (13.75 * weight) + (5 * height) - (6.75 * age);
+            CPM = PPM * pal;
 
         }
         return CPM;

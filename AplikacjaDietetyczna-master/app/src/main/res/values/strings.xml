@@ -77,5 +77,19 @@
     <string name="drawer_close">Zamknij</string>
     <string name="parameters_title">Oblicz swoje parametry</string>
     <string name="date_picker">Wybierz datę</string>
-
+    <string name="maps_alert">Wykorzystano limit użycia darmowego API - spróbuj ponownie jutro!</string>
+    <string name="list_info">Naciśnij ikonę w prawym górnym rogu, aby dodać produkty do listy</string>
+    <string name="see_recipe">Zobacz przepis</string>
+    <string name="change_recipe">Zmień jadłospis</string>
+    <string name="write_name">Wpisz nazwe posiłku</string>
+    <string name="write_ingredients">Wpisz składniki</string>
+    <string name="write_recipe">Podaj przepis</string>
+    <string name="select_type">Wybierz typ posiłku</string>
+    <string name="select_preferences">Zaznacz rodzaj posiłku</string>
+    <string name="write_values">Wpisz odpowiednie wartości:</string>
+    <string name="calories">Kalorie</string>
+    <string name="proteins">Białko</string>
+    <string name="fat">Tłuszcz</string>
+    <string name="carbohydrates">Węglowodany</string>
+    <string name="portions">Liczba porcji</string>
 </resources>

@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true"
-    tools:context=".DietInfo">
+    tools:context=".DietInfoActivity">
     <LinearLayout
         android:layout_width="match_parent"
 
@@ -322,7 +322,7 @@
 
             android:layout_marginTop="25dp"
 
-            android:backgroundTint="#FFB74D"
+            android:backgroundTint="#008000"
 
             android:ems="8"
 

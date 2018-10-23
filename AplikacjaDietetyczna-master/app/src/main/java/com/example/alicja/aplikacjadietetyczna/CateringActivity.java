@@ -90,21 +90,25 @@ LocationCallback locationCallback;
                 return true;
             }
         });
+        buildLocationCallback();
 
+        buildLocationRequest();
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
+        fusedLocationProviderClient.requestLocationUpdates(mLocationRequest, locationCallback, Looper.myLooper());
     }
 
-  /*  @Override
+    @Override
     protected void onStop() {
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
         super.onStop();
-    }*/
+    }
 
     private void buildLocationRequest() {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1000);
         mLocationRequest.setFastestInterval(1000);
-      //  mLocationRequest.setSmallestDisplacement(10f);
+       mLocationRequest.setSmallestDisplacement(10f);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
     }
 

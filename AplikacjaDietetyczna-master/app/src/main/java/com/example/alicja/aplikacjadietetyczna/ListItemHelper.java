@@ -79,7 +79,13 @@ public class ListItemHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(User.CPM, user.getCpm());
+        values.put(User.WEIGHT, user.getWeight());
+        values.put(User.HEIGHT, user.getHeight());
         values.put(User.GOAL, user.getGoal());
+        values.put(User.PREFERENCE, user.getPrefer());
+        values.put(User.SEX, user.getSex());
+        values.put(User.ACTIVITY, user.getActivity());
+        values.put(User.AGE, user.getAge());
         values.put(User.PREFERENCE, user.getPrefer());
         db.insert(User.TABLE, null, values);
         db.close();
@@ -91,7 +97,13 @@ public class ListItemHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(User.CPM, user.getCpm());
+        values.put(User.WEIGHT, user.getWeight());
+        values.put(User.HEIGHT, user.getHeight());
         values.put(User.GOAL, user.getGoal());
+        values.put(User.PREFERENCE, user.getPrefer());
+        values.put(User.SEX, user.getSex());
+        values.put(User.ACTIVITY, user.getActivity());
+        values.put(User.AGE, user.getAge());
         values.put(User.PREFERENCE, user.getPrefer());
         db.insert(User.TABLE, null, values);
 

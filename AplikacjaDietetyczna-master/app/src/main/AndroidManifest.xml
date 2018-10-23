@@ -41,9 +41,11 @@
             android:name=".CateringActivity"
             android:label="@string/title_activity_catering" />
         <activity android:name=".ViewPlace" />
-        <activity android:name=".Parameters" />
-        <activity android:name=".Statistics" />
-        <activity android:name=".DietInfo"></activity>
+        <activity android:name=".ParametersActivity" />
+        <activity android:name=".StatisticsActivity" />
+        <activity android:name=".DietInfoActivity" />
+        <activity android:name=".DietPlanActivity" />
+        <activity android:name=".AddMealActivity"></activity>
     </application>
 
 </manifest>

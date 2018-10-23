@@ -71,9 +71,7 @@ public class CPMFragment extends Fragment {
     double pal;
 
 
-
     @OnClick(R.id.cpm_btn)
-
     void OnClick() {
 
         String weightStr = weightCPM_txt.getText().toString();
@@ -83,9 +81,7 @@ public class CPMFragment extends Fragment {
         String ageStr = age_txt.getText().toString();
 
 
-
         if (weightStr.isEmpty() || heightStr.isEmpty() || ageStr.isEmpty()) {
-
 
 
             Toast.makeText(getActivity(), this.getString(R.string.warning_data), Toast.LENGTH_LONG).show();
@@ -115,8 +111,8 @@ public class CPMFragment extends Fragment {
         }
 
 
-
     }
+
     public CPMFragment() {
         // Required empty public constructor
     }
@@ -151,8 +147,8 @@ public class CPMFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       View view=inflater.inflate(R.layout.fragment_cpm, container, false);
-               ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_cpm, container, false);
+        ButterKnife.bind(this, view);
 
         String[] sex_table = {this.getString(R.string.woman), this.getString(R.string.man)};
 
@@ -169,17 +165,12 @@ public class CPMFragment extends Fragment {
         activity_list.setAdapter(adapter_act);
 
 
-
         sex_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
 
 
             @Override
 
             public void onItemSelected(AdapterView<?> arg0, View arg1, int id, long position) {
-
-
-
 
 
                 switch ((int) position) {
@@ -197,11 +188,9 @@ public class CPMFragment extends Fragment {
                         break;
 
 
-
                 }
 
             }
-
 
 
             @Override
@@ -209,9 +198,7 @@ public class CPMFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
 
-
             }
-
 
 
         });
@@ -219,13 +206,9 @@ public class CPMFragment extends Fragment {
         activity_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
 
-
             @Override
 
             public void onItemSelected(AdapterView<?> arg0, View arg1, int id, long position) {
-
-
-
 
 
                 switch ((int) position) {
@@ -261,11 +244,9 @@ public class CPMFragment extends Fragment {
                         break;
 
 
-
                 }
 
             }
-
 
 
             @Override
@@ -273,9 +254,7 @@ public class CPMFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
 
-
             }
-
 
 
         });
