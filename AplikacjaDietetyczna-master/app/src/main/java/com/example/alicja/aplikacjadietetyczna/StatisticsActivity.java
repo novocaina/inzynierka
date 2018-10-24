@@ -100,7 +100,7 @@ public class StatisticsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 long xValues = new Date().getTime();
-                double yValues = Double.parseDouble(mY.getText().toString());
+                double yValues = Double.parseDouble(mX.getText().toString());
 
                 myHelper.insertPoints(xValues, yValues);
                 xySeries.resetData(getDataPoint());

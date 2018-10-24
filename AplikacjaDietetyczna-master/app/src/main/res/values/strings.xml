@@ -92,4 +92,5 @@
     <string name="fat">Tłuszcz</string>
     <string name="carbohydrates">Węglowodany</string>
     <string name="portions">Liczba porcji</string>
+    <string name="edit_data">Edytuj dane</string>
 </resources>

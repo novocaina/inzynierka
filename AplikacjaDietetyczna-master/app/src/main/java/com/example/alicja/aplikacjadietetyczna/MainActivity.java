@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setSingleEvent(linearLayout);
+
+
     }
 
     private void setSingleEvent(LinearLayout linearLayout) {

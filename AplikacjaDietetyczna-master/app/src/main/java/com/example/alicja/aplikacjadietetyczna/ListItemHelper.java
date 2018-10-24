@@ -29,7 +29,7 @@ public class ListItemHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = String.format("CREATE TABLE %s (ID INTEGER PRIMARY KEY AUTOINCREMENT,%s TEXT NOT NULL);", DB_TABLE1, DB_COLUMN_ITEM);
         db.execSQL(query);
-        String query2 = String.format("CREATE TABLE %s (%s NUMBER, %s NUMBER);", DB_TABLE3,DB_COLUMN_XVALUES,DB_COLUMN_YVALUES);
+        String query2 = String.format("CREATE TABLE %s (%s NUMBER,%s NUMBER);", DB_TABLE3,DB_COLUMN_XVALUES,DB_COLUMN_YVALUES);
         db.execSQL(query2);
         db.execSQL(User.CREATE_TABLE);
         db.execSQL(DailyMeal.CREATE_TABLE);
@@ -131,7 +131,11 @@ public class ListItemHelper extends SQLiteOpenHelper {
         user.setCpm(cursor.getDouble(cursor.getColumnIndex(User.CPM)));
         user.setGoal(cursor.getString(cursor.getColumnIndex(User.GOAL)));
         user.setPrefer(cursor.getString(cursor.getColumnIndex(User.PREFERENCE)));
-
+        user.setSex(cursor.getString(cursor.getColumnIndex(User.SEX)));
+        user.setAge(cursor.getInt(cursor.getColumnIndex(User.AGE)));
+        user.setHeight(cursor.getDouble(cursor.getColumnIndex(User.HEIGHT)));
+        user.setWeight(cursor.getDouble(cursor.getColumnIndex(User.WEIGHT)));
+        user.setActivity(cursor.getDouble(cursor.getColumnIndex(User.ACTIVITY)));
         cursor.close();
         db.close();
         return user;

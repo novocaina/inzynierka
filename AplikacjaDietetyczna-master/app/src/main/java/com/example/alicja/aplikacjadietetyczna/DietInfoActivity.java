@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -28,6 +29,8 @@ public class DietInfoActivity extends AppCompatActivity {
     Spinner target_list;
     @BindView(R.id.pref_list)
     Spinner pref_list;
+    @BindView(R.id.save_btn)
+    Button save_btn;
     ListItemHelper db;
     String sex, target, preference;
     double weight, height, cpm, pal;
@@ -50,7 +53,7 @@ public class DietInfoActivity extends AppCompatActivity {
             height = Double.parseDouble(heightStr);
             age = Integer.parseInt(ageStr);
             CPM newCPM = new CPM();
-            cpm = (newCPM.Count_CPM(weight, height, age, sex, pal));
+            cpm = newCPM.Count_CPM(weight, height, age, sex, pal);
             User user = new User(cpm, weight, height, target, preference, sex, pal, age);
             SaveDataInDataBase(user);
             Toast.makeText(DietInfoActivity.this, this.getString(R.string.success), Toast.LENGTH_LONG).show();
@@ -174,6 +177,7 @@ public class DietInfoActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+
         db = new ListItemHelper(this);
         if (db.getUserCount() != 0) {
             setValues();
@@ -184,9 +188,10 @@ public class DietInfoActivity extends AppCompatActivity {
         height_txt.setText(String.valueOf(db.getUser().getHeight()));
         age_txt.setText(String.valueOf(db.getUser().getAge()));
         String[] sex_table = {getResources().getString(R.string.woman), getResources().getString(R.string.man)};
-        String[] target_table = {getResources().getString(R.string.reduction),getResources().getString(R.string.cons_weight), this.getString(R.string.mass)};
-        String[] pref_table = {this.getString(R.string.none), this.getString(R.string.veget)};
-        String dbSex=db.getUser().getSex();
+        String[] target_table = {getResources().getString(R.string.reduction),getResources().getString(R.string.cons_weight), getResources().getString(R.string.mass)};
+        String[] pref_table = {getResources().getString(R.string.none), getResources().getString(R.string.veget)};
+        User user=db.getUser();
+        String dbSex=user.getSex();
         setSpinner(sex_table,dbSex,sex_list);
         String dbTarget=db.getUser().getGoal();
         setSpinner(target_table,dbTarget,target_list);
@@ -198,6 +203,7 @@ public class DietInfoActivity extends AppCompatActivity {
                 activity_list.setSelection(i);
             }
         }
+        save_btn.setText(getResources().getString(R.string.edit_data));
     }
     private void setSpinner(String[]tab, String name,Spinner spinner){
         for(int i=0;i<tab.length;i++) {
