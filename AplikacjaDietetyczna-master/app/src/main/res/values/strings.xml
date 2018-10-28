@@ -78,7 +78,7 @@
     <string name="parameters_title">Oblicz swoje parametry</string>
     <string name="date_picker">Wybierz datę</string>
     <string name="maps_alert">Wykorzystano limit użycia darmowego API - spróbuj ponownie jutro!</string>
-    <string name="list_info">Naciśnij ikonę w prawym górnym rogu, aby dodać produkty do listy</string>
+    <string name="list_info">Naciśnij przycisk na dole, aby dodać produkty do listy</string>
     <string name="see_recipe">Zobacz przepis</string>
     <string name="change_recipe">Zmień jadłospis</string>
     <string name="write_name">Wpisz nazwe posiłku</string>
@@ -93,4 +93,15 @@
     <string name="carbohydrates">Węglowodany</string>
     <string name="portions">Liczba porcji</string>
     <string name="edit_data">Edytuj dane</string>
+    <string name="elimination">Zaznacz składniki, które chcesz wykluczyć z jadłospisu (opcjonalne)</string>
+    <string name="milk">mleko</string>
+    <string name="eggs">jajka</string>
+    <string name="nuts">orzechy</string>
+    <string name="tomatoes">pomidory</string>
+    <string name="potatoes">ziemniaki</string>
+    <string name="chocolate">czekolada</string>
+    <string name="wheat">pszenica</string>
+    <string name="soy">soja</string>
+
+
 </resources>

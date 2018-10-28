@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -29,10 +30,26 @@ public class DietInfoActivity extends AppCompatActivity {
     Spinner target_list;
     @BindView(R.id.pref_list)
     Spinner pref_list;
+    @BindView(R.id.milk_check)
+    CheckBox milk_check;
+    @BindView(R.id.eggs_check)
+    CheckBox eggs_check;
+    @BindView(R.id.tomato_check)
+    CheckBox tomato_check;
+    @BindView(R.id.potato_check)
+    CheckBox potato_check;
+    @BindView(R.id.soy_check)
+    CheckBox soy_check;
+    @BindView(R.id.wheat_check)
+    CheckBox wheat_check;
+    @BindView(R.id.nuts_check)
+    CheckBox nuts_check;
+    @BindView(R.id.chocolate_check)
+    CheckBox chocolate_check;
     @BindView(R.id.save_btn)
     Button save_btn;
     ListItemHelper db;
-    String sex, target, preference;
+    String sex, target, preference,elimination;
     double weight, height, cpm, pal;
     int age;
 
@@ -54,12 +71,42 @@ public class DietInfoActivity extends AppCompatActivity {
             age = Integer.parseInt(ageStr);
             CPM newCPM = new CPM();
             cpm = newCPM.Count_CPM(weight, height, age, sex, pal);
-            User user = new User(cpm, weight, height, target, preference, sex, pal, age);
+            elimination=eliminateIngredients();
+            User user = new User(cpm, weight, height, target, preference, sex, pal, age,elimination);
             SaveDataInDataBase(user);
             Toast.makeText(DietInfoActivity.this, this.getString(R.string.success), Toast.LENGTH_LONG).show();
         }
 
 
+    }
+
+    private String eliminateIngredients() {
+        String eliminate="";
+        if(milk_check.isChecked()){
+            eliminate+="mlek,";
+        }
+        if(eggs_check.isChecked()){
+            eliminate+="jaj,";
+        }
+        if(nuts_check.isChecked()){
+            eliminate+="orze,";
+        }
+        if(wheat_check.isChecked()){
+            eliminate+="pszen,";
+        }
+        if(potato_check.isChecked()){
+            eliminate+="ziemniak,";
+        }
+        if(tomato_check.isChecked()){
+            eliminate+="pomidor,";
+        }
+        if(chocolate_check.isChecked()){
+            eliminate+="czekolad,";
+        }
+        if(soy_check.isChecked()){
+            eliminate+="soi,soj,";
+        }
+        return eliminate;
     }
 
 

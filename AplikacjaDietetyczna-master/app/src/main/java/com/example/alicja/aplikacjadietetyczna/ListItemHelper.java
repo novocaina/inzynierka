@@ -87,6 +87,7 @@ public class ListItemHelper extends SQLiteOpenHelper {
         values.put(User.ACTIVITY, user.getActivity());
         values.put(User.AGE, user.getAge());
         values.put(User.PREFERENCE, user.getPrefer());
+        values.put(User.ELIMINATION, user.getElimination());
         db.insert(User.TABLE, null, values);
         db.close();
     }
@@ -105,6 +106,7 @@ public class ListItemHelper extends SQLiteOpenHelper {
         values.put(User.ACTIVITY, user.getActivity());
         values.put(User.AGE, user.getAge());
         values.put(User.PREFERENCE, user.getPrefer());
+        values.put(User.ELIMINATION, user.getElimination());
         db.insert(User.TABLE, null, values);
 
 
@@ -136,6 +138,7 @@ public class ListItemHelper extends SQLiteOpenHelper {
         user.setHeight(cursor.getDouble(cursor.getColumnIndex(User.HEIGHT)));
         user.setWeight(cursor.getDouble(cursor.getColumnIndex(User.WEIGHT)));
         user.setActivity(cursor.getDouble(cursor.getColumnIndex(User.ACTIVITY)));
+        user.setElimination(cursor.getString(cursor.getColumnIndex(User.ELIMINATION)));
         cursor.close();
         db.close();
         return user;

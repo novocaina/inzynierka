@@ -9,6 +9,15 @@ public class User {
     String goal;
     String prefer;
 
+    public String getElimination() {
+        return elimination;
+    }
+
+    public void setElimination(String elimination) {
+        this.elimination = elimination;
+    }
+
+    String elimination;
     public double getWeight() {
         return weight;
     }
@@ -54,7 +63,7 @@ public class User {
 
     int age;
 
-    public User(double cpm, double weight, double height, String goal, String prefer, String sex, double activity, int age) {
+    public User(double cpm, double weight, double height, String goal, String prefer, String sex, double activity, int age, String elimination) {
         this.cpm = cpm;
         this.weight = weight;
         this.height = height;
@@ -63,6 +72,7 @@ public class User {
         this.sex = sex;
         this.activity = activity;
         this.age = age;
+        this.elimination=elimination;
     }
 
     User() {
@@ -103,6 +113,7 @@ public class User {
     public static final String CPM = "cpm";
     public static final String GOAL = "goal";
     public static final String PREFERENCE = "preference";
+    public static final String ELIMINATION = "elimination";
     public static final String CREATE_TABLE =
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
                     ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -113,7 +124,8 @@ public class User {
                     CPM + " NUMBER, " +
                     GOAL + " TEXT, " +
                     ACTIVITY + " NUMBER, " +
-                    PREFERENCE + " TEXT "
+                    PREFERENCE + " TEXT, " +
+                    ELIMINATION + " TEXT "
                     + "); ";
 
 }
