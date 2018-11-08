@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Created by Alicja on 2018-06-10.
  */
 
-public class ListItemHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
     private final static String DB_NAME = "DataList";
     private final static int DB_VER = 1;
     private final static String DB_TABLE1 = "ShopList";
@@ -20,7 +20,7 @@ public class ListItemHelper extends SQLiteOpenHelper {
     private final static String DB_TABLE3 = "series";
     private final static String DB_COLUMN_XVALUES = "xValues";
     private final static String DB_COLUMN_YVALUES = "yValues";
-    public ListItemHelper(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VER);
     }
 
@@ -152,6 +152,13 @@ public class ListItemHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(DailyMeal.NAME, meal.getName());
         values.put(DailyMeal.CALORIES, meal.getCalories());
+        values.put(DailyMeal.PROTEINS, meal.getProteins());
+        values.put(DailyMeal.CARBOHYDRATES, meal.getCarbohydrates());
+        values.put(DailyMeal.FAT, meal.getFat());
+        values.put(DailyMeal.PREPARE, meal.getPrepare());
+        values.put(DailyMeal.INGREDIENTS, meal.getIngredients());
+        values.put(DailyMeal.PORTIONS, meal.getPortions());
+        values.put(DailyMeal.URL, meal.getUrl());
         db.insert(DailyMeal.TABLE2, null, values);
         db.close();
     }
@@ -173,7 +180,13 @@ public class ListItemHelper extends SQLiteOpenHelper {
         DailyMeal meal=new DailyMeal();
         meal.setName(cursor.getString(cursor.getColumnIndex(DailyMeal.NAME)));
         meal.setCalories(cursor.getDouble(cursor.getColumnIndex(DailyMeal.CALORIES)));
-
+        meal.setProteins(cursor.getDouble(cursor.getColumnIndex(DailyMeal.PROTEINS)));
+        meal.setCarbohydrates(cursor.getDouble(cursor.getColumnIndex(DailyMeal.CARBOHYDRATES)));
+        meal.setFat(cursor.getDouble(cursor.getColumnIndex(DailyMeal.FAT)));
+        meal.setPrepare(cursor.getString(cursor.getColumnIndex(DailyMeal.PREPARE)));
+        meal.setIngredients(cursor.getString(cursor.getColumnIndex(DailyMeal.INGREDIENTS)));
+        meal.setPortions(cursor.getString(cursor.getColumnIndex(DailyMeal.PORTIONS)));
+        meal.setUrl(cursor.getString(cursor.getColumnIndex(DailyMeal.URL)));
 
         cursor.close();
         db.close();

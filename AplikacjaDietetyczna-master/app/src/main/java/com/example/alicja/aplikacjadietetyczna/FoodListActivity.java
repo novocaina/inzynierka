@@ -1,15 +1,10 @@
 package com.example.alicja.aplikacjadietetyczna;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -23,7 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class FoodListActivity extends AppCompatActivity {
-    ListItemHelper listHelper;
+    DatabaseHelper listHelper;
     ArrayAdapter<String> adapter;
     @BindView(R.id.shop_list)
     ListView listItemView;
@@ -35,7 +30,7 @@ public class FoodListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_foodlist);
         ButterKnife.bind(this);
 
-        listHelper =new ListItemHelper(this);
+        listHelper =new DatabaseHelper(this);
         loadItemList();
     }
 

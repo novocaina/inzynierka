@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
 public class StatisticsActivity extends AppCompatActivity {
     private static final String TAG = "StatisticsActivity";
     LineGraphSeries<DataPoint> xySeries = new LineGraphSeries<>(new DataPoint[0]);
-    ListItemHelper myHelper;
+    DatabaseHelper myHelper;
     SQLiteDatabase sqLiteDatabase;
     DatePickerDialog.OnDateSetListener datePicker;
     SimpleDateFormat simpleDate = new SimpleDateFormat("hh:mm:ss a");
@@ -48,7 +48,7 @@ public class StatisticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
         ButterKnife.bind(this);
-        myHelper = new ListItemHelper(this);
+        myHelper = new DatabaseHelper(this);
         sqLiteDatabase = myHelper.getWritableDatabase();
 
         graphView.addSeries(xySeries);

@@ -91,7 +91,7 @@
     <string name="proteins">Białko</string>
     <string name="fat">Tłuszcz</string>
     <string name="carbohydrates">Węglowodany</string>
-    <string name="portions">Liczba porcji</string>
+    <string name="portions">Ilość porcji</string>
     <string name="edit_data">Edytuj dane</string>
     <string name="elimination">Zaznacz składniki, które chcesz wykluczyć z jadłospisu (opcjonalne)</string>
     <string name="milk">mleko</string>
@@ -102,6 +102,9 @@
     <string name="chocolate">czekolada</string>
     <string name="wheat">pszenica</string>
     <string name="soy">soja</string>
+    <string name="ingredients">Składniki</string>
+    <string name="recipe">Przepis</string>
+    <string name="day">Dzień</string>
 
 
 </resources>

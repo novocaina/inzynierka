@@ -48,7 +48,7 @@ public class DietInfoActivity extends AppCompatActivity {
     CheckBox chocolate_check;
     @BindView(R.id.save_btn)
     Button save_btn;
-    ListItemHelper db;
+    DatabaseHelper db;
     String sex, target, preference,elimination;
     double weight, height, cpm, pal;
     int age;
@@ -225,7 +225,7 @@ public class DietInfoActivity extends AppCompatActivity {
             }
         });
 
-        db = new ListItemHelper(this);
+        db = new DatabaseHelper(this);
         if (db.getUserCount() != 0) {
             setValues();
         }

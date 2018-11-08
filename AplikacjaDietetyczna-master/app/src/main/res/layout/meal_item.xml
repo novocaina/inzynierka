@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="5dp">
+    android:padding="10dp">
 
     <ImageView
         android:layout_width="match_parent"
@@ -18,20 +18,38 @@
     <TextView
         android:id="@+id/meal_portion"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/portions"/>
 
     <TextView
-        android:id="@+id/meal_ingredients"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btn_see"
+        android:id="@+id/calories_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:ems="8"
-        android:text="@string/see_recipe" />
+        android:text="@string/calories"/>
+
+    <TextView
+        android:id="@+id/proteins_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/proteins"/>
+    <TextView
+        android:id="@+id/carbohydrates_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/carbohydrates"/>
+    <TextView
+        android:id="@+id/fat_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fat"/>
+    <TextView
+        android:id="@+id/ingredients_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ingredients"/>
+    <TextView
+        android:id="@+id/recipe_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recipe"/>
 </LinearLayout>
