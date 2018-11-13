@@ -5,10 +5,33 @@ package com.example.alicja.aplikacjadietetyczna;
  */
 
 public class DailyMeal {
-    private String name,ingredients,portions,prepare,url;
+    private String name;
+    private String ingredients;
+    private String portions;
+    private String prepare;
+    private String url;
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    private String kind;
+    private String type;
     private double calories,proteins, carbohydrates,fat;
 
-    public DailyMeal(String name, String ingredients, String portions, String prepare, String url, double calories, double proteins, double carbohydrates, double fat) {
+    public DailyMeal(String name, String ingredients,String type, String kind, String portions, String prepare, String url, double calories, double proteins, double carbohydrates, double fat) {
         this.name = name;
         this.ingredients = ingredients;
         this.portions = portions;
@@ -18,6 +41,8 @@ public class DailyMeal {
         this.proteins = proteins;
         this.carbohydrates = carbohydrates;
         this.fat = fat;
+        this.type=type;
+        this.kind=kind;
     }
 
 

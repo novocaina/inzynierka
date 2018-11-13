@@ -42,10 +42,10 @@
             android:label="@string/title_activity_catering" />
         <activity android:name=".ViewPlace" />
         <activity android:name=".ParametersActivity" />
-        <activity android:name=".StatisticsActivity" />
         <activity android:name=".DietInfoActivity" />
         <activity android:name=".DietPlanActivity" />
-        <activity android:name=".AddMealActivity"></activity>
+        <activity android:name=".AddMealActivity" />
+        <activity android:name=".StatisticsActivity"></activity>
     </application>
 
 </manifest>

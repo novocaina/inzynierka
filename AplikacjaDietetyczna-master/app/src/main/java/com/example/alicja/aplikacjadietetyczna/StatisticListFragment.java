@@ -1,32 +1,36 @@
 package com.example.alicja.aplikacjadietetyczna;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link BMIFragment.OnFragmentInteractionListener} interface
+ * {@link StatisticListFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link BMIFragment#newInstance} factory method to
+ * Use the {@link StatisticListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BMIFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+public class StatisticListFragment extends Fragment {
+    ArrayAdapter<String> adapter;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -36,7 +40,7 @@ public class BMIFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public BMIFragment() {
+    public StatisticListFragment() {
         // Required empty public constructor
     }
 
@@ -46,72 +50,16 @@ public class BMIFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BMIFragment.
+     * @return A new instance of fragment StatisticListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static BMIFragment newInstance(String param1, String param2) {
-        BMIFragment fragment = new BMIFragment();
+    public static StatisticListFragment newInstance(String param1, String param2) {
+        StatisticListFragment fragment = new StatisticListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @BindView(R.id.weight_txt)
-    EditText weight_txt;
-    @BindView(R.id.height_txt)
-    EditText height_txt;
-    @BindView(R.id.bmi_txt)
-    TextView bmi_txt;
-    @BindView(R.id.your_bmi_txt)
-    TextView your_bmi_txt;
-    @BindView(R.id.bmi_info_txt)
-    TextView bmi_info_txt;
-
-    @OnClick(R.id.bmi_btn)
-    void OnClick() {
-
-        String weightStr = weight_txt.getText().toString();
-        String heightStr = height_txt.getText().toString();
-
-        if (weightStr.isEmpty() || heightStr.isEmpty()) {
-            Toast.makeText(getActivity(), this.getString(R.string.warning_data), Toast.LENGTH_LONG).show();
-        } else if (Double.parseDouble(weightStr) <= 0 || Double.parseDouble(weightStr) <= 0) {
-            Toast.makeText(getActivity(), this.getString(R.string.value_str), Toast.LENGTH_LONG).show();
-        } else {
-            double weight = Double.parseDouble(weightStr);
-            double height = Double.parseDouble(heightStr);
-            BMI newBMI = new BMI();
-            double bmi = newBMI.BMI_Count(weight, height);
-            your_bmi_txt.setVisibility(View.VISIBLE);
-            String bmiStr = String.format("%.2f", bmi);
-            bmi_txt.setText(bmiStr);
-            String bmi_text = BMI_text(bmi);
-            bmi_info_txt.setText(bmi_text);
-
-        }
-
-    }
-
-    public String BMI_text(double bmi) {
-
-        if (bmi < 16) {
-            return this.getString(R.string.starvation);
-        } else if (bmi >= 16 && bmi <= 16.99) {
-            return this.getString(R.string.emaciaton);
-        } else if (bmi >= 17 && bmi <= 18.49) {
-            return this.getString(R.string.low_weight);
-        } else if (bmi >= 18.5 && bmi <= 24.99) {
-            return this.getString(R.string.normal_weight);
-        } else if (bmi >= 25 && bmi <= 29.99) {
-            return this.getString(R.string.obeseI);
-        } else if (bmi >= 30 && bmi <= 39.99) {
-            return this.getString(R.string.obeseII);
-        } else {
-            return this.getString(R.string.obeseIII);
-        }
-
     }
 
     @Override
@@ -121,18 +69,33 @@ public class BMIFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_bmi, container, false);
-        ButterKnife.bind(this, view);
+        View view= inflater.inflate(R.layout.fragment_statistic_list, container, false);
+        ButterKnife.bind(this,view);
+        loadItemList();
         return view;
     }
 
+    private void loadItemList() {
+       /* ArrayList<String> itemList=getItemsList();
+        if(adapter==null){
+            adapter=new ArrayAdapter<String>(getContext(),R.layout.xyitem,itemList);
+           // listItemView.setAdapter(adapter);
+        }
+        else {
+            adapter.clear();
+            adapter.addAll(itemList);
+            adapter.notifyDataSetChanged();
+        }*/
+    }
+/*private ArrayList<String> getItemsList(){
+return ArrayList<String>;
+}*/
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
