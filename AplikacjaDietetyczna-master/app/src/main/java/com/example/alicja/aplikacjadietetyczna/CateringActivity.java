@@ -248,8 +248,13 @@ LocationCallback locationCallback;
                 if( marker.getSnippet() != null) {
                     Common.currentResult = currentPlace.getResults()[Integer.parseInt(marker.getSnippet())];
                     startActivity(new Intent(CateringActivity.this, ViewPlace.class));
+                    return true;
+
+                } else {
+
+                    return false;
+
                 }
-                return true;
             }
         });
     }

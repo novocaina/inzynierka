@@ -81,17 +81,17 @@
     <string name="list_info">Naciśnij przycisk na dole, aby dodać produkty do listy</string>
     <string name="see_recipe">Zobacz przepis</string>
     <string name="change_recipe">Zmień jadłospis</string>
-    <string name="write_name">Wpisz nazwe posiłku</string>
-    <string name="write_ingredients">Wpisz składniki</string>
+    <string name="write_name">Wpisz nazwę posiłku</string>
+    <string name="write_ingredients">Wpisz składniki (oddzielając je przecinkiem)</string>
     <string name="write_recipe">Podaj przepis</string>
     <string name="select_type">Wybierz typ posiłku</string>
     <string name="select_preferences">Zaznacz rodzaj posiłku</string>
     <string name="write_values">Wpisz odpowiednie wartości:</string>
-    <string name="calories">Kalorie</string>
-    <string name="proteins">Białko</string>
-    <string name="fat">Tłuszcz</string>
+    <string name="calories">Kalorie: </string>
+    <string name="proteins">Białko: </string>
+    <string name="fat">Tłuszcz: </string>
     <string name="carbohydrates">Węglowodany</string>
-    <string name="portions">Ilość porcji</string>
+    <string name="portions">Ilość porcji: </string>
     <string name="edit_data">Edytuj dane</string>
     <string name="elimination">Zaznacz składniki, które chcesz wykluczyć z jadłospisu (opcjonalne)</string>
     <string name="milk">mleko</string>
@@ -102,13 +102,16 @@
     <string name="chocolate">czekolada</string>
     <string name="wheat">pszenica</string>
     <string name="soy">soja</string>
-    <string name="ingredients">Składniki</string>
-    <string name="recipe">Przepis</string>
+    <string name="ingredients">Składniki: </string>
+    <string name="recipe">Przepis: </string>
     <string name="day">Dzień</string>
     <string name="empty_database">Uzupełnij swoje dane, aby można ułożyć dietę</string>
     <string name="info">Informacja</string>
     <string name="open_activity">Otwórz aktywność</string>
-
+   <string name="none_type">Brak szczególnego typu</string>
+    <string name="write_url">Wpisz źródło</string>
+    <string name="add_success">Poprawnie dodano posiłek</string>
+    <string name="add_fail">Wystąpił problem z dodaniem posiłku</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -40,7 +42,8 @@ public class StatisticChartFragment extends Fragment {
     DatabaseHelper myHelper;
     SQLiteDatabase sqLiteDatabase;
     DatePickerDialog.OnDateSetListener datePicker;
-    SimpleDateFormat simpleDate = new SimpleDateFormat("dd-MM-yyyy");
+    SimpleDateFormat simpleDate = new SimpleDateFormat("dd-MM-yy");
+    SimpleDateFormat gridDate = new SimpleDateFormat("dd.MM");
     String date;
     @BindView(R.id.numX)
     EditText mX;
@@ -91,11 +94,19 @@ public class StatisticChartFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                long xValues = new Date().getTime();
-                double yValues = Double.parseDouble(mX.getText().toString());
-                XYValue xyValue=new XYValue(xValues,yValues);
-                myHelper.insertXYValues(xyValue);
-                xySeries.resetData(getDataPoint());
+                try {
+                    Date data = simpleDate.parse(date);
+                    long xValues = data.getTime();
+                    double yValues = Double.parseDouble(mX.getText().toString());
+                    XYValue xyValue=new XYValue(xValues,yValues);
+                    myHelper.insertXYValues(xyValue);
+                    if(getDataPoint()!=null) {
+                        xySeries.resetData(getDataPoint());
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
 
             }
         });
@@ -105,13 +116,13 @@ public class StatisticChartFragment extends Fragment {
         if(myHelper.getXYValuesCount()!=0) {
         DataPoint[] dataPoints = new DataPoint[myHelper.getXYValuesCount()];
 
-    for (int i = 0; i < myHelper.getXYValuesCount(); i++) {
+    for (int i = 1; i <= myHelper.getXYValuesCount(); i++) {
         myHelper.getXYValue(i);
-        dataPoints[i] = new DataPoint(myHelper.getXYValue(i).getX(), myHelper.getXYValue(i).getY());
+        dataPoints[i-1] = new DataPoint(myHelper.getXYValue(i).getX(), myHelper.getXYValue(i).getY());
     }
             return dataPoints;
 }
-       else return null;
+       else return new DataPoint[]{new DataPoint(0,0)};
     }
 
 
@@ -130,7 +141,7 @@ public class StatisticChartFragment extends Fragment {
             @Override
             public String formatLabel(double value, boolean isValue) {
                 if (isValue) {
-                    return simpleDate.format(new Date((long) value));
+                    return gridDate.format(new Date((long) value));
                 } else {
                     return super.formatLabel(value, isValue);
                 }
@@ -160,13 +171,17 @@ public class StatisticChartFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                date = day + "/" + month + "/" + year;
+                date = day + "-" + month + "-" + year;
 
             }
         };
 
-
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

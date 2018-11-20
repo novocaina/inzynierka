@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
     tools:context=".AddMealActivity">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F0F4C3"
+        android:orientation="vertical">
+
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -61,6 +67,32 @@
         android:textSize="15sp"
         android:textColor="@color/darkgrey"
         />
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RadioButton android:id="@+id/radio_none"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/none_type"
+                />
+            <RadioButton android:id="@+id/radio_vege"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/veget"
+                />
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/write_url"
+            android:textSize="15sp"
+            android:textColor="@color/darkgrey"
+            />
+        <EditText
+            android:id="@+id/url_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -154,4 +186,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+        <Button
+            android:id="@+id/add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="#008000"
+            android:ems="8"
+            android:text="@string/add_food"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 </LinearLayout>
+</ScrollView>

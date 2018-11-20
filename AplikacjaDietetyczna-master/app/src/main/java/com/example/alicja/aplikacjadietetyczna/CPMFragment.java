@@ -39,35 +39,20 @@ public class CPMFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     @BindView(R.id.weightcpm_txt)
-
     EditText weightCPM_txt;
-
     @BindView(R.id.heightcpm_txt)
-
     EditText heightCPM_txt;
-
     @BindView(R.id.age_txt)
-
     EditText age_txt;
-
     @BindView(R.id.cpm_txt)
-
     TextView cpm_txt;
-
     @BindView(R.id.your_cpm_txt)
-
     TextView your_cpm_txt;
-
     @BindView(R.id.sex_list)
-
     Spinner sex_list;
-
     @BindView(R.id.activity_list)
-
     Spinner activity_list;
-
     String sex;
-
     double pal;
 
 
@@ -75,37 +60,23 @@ public class CPMFragment extends Fragment {
     void OnClick() {
 
         String weightStr = weightCPM_txt.getText().toString();
-
         String heightStr = heightCPM_txt.getText().toString();
-
         String ageStr = age_txt.getText().toString();
 
 
         if (weightStr.isEmpty() || heightStr.isEmpty() || ageStr.isEmpty()) {
-
-
             Toast.makeText(getActivity(), this.getString(R.string.warning_data), Toast.LENGTH_LONG).show();
 
         } else if (Double.parseDouble(weightStr) <= 0 || Double.parseDouble(weightStr) <= 0 || Integer.parseInt(ageStr) <= 0) {
-
             Toast.makeText(getActivity(), this.getString(R.string.value_str), Toast.LENGTH_LONG).show();
-
         } else {
-
             double weight = Double.parseDouble(weightStr);
-
             double height = Double.parseDouble(heightStr);
-
             int age = Integer.parseInt(ageStr);
-
             your_cpm_txt.setVisibility(View.VISIBLE);
-
             CPM newCPM = new CPM();
-
             double cpm = newCPM.Count_CPM(weight, height, age, sex, pal);
-
             String cpmStr = String.format("%.2f", cpm);
-
             cpm_txt.setText(cpmStr);
 
         }
@@ -149,44 +120,26 @@ public class CPMFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cpm, container, false);
         ButterKnife.bind(this, view);
-
         String[] sex_table = {this.getString(R.string.woman), this.getString(R.string.man)};
-
         String[] act_table = {this.getString(R.string.activity_1), this.getString(R.string.activity_2),
-
                 this.getString(R.string.activity_3), this.getString(R.string.activity_4), this.getString(R.string.activity_5)};
-
         ArrayAdapter<String> adapter_sx = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, sex_table);
-
         sex_list.setAdapter(adapter_sx);
-
         ArrayAdapter<String> adapter_act = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, act_table);
-
         activity_list.setAdapter(adapter_act);
-
-
         sex_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-
             @Override
-
             public void onItemSelected(AdapterView<?> arg0, View arg1, int id, long position) {
 
-
                 switch ((int) position) {
-
                     case 0:
-
                         sex = "k";
-
                         break;
 
                     case 1:
-
                         sex = "m";
-
                         break;
-
 
                 }
 
@@ -196,7 +149,6 @@ public class CPMFragment extends Fragment {
             @Override
 
             public void onNothingSelected(AdapterView<?> adapterView) {
-
 
             }
 
@@ -212,35 +164,23 @@ public class CPMFragment extends Fragment {
 
 
                 switch ((int) position) {
-
                     case 0:
-
                         pal = 1.2;
-
                         break;
-
                     case 1:
-
                         pal = 1.375;
-
                         break;
 
                     case 2:
-
                         pal = 1.55;
-
                         break;
 
                     case 3:
-
                         pal = 1.725;
-
                         break;
 
                     case 4:
-
                         pal = 1.9;
-
                         break;
 
 

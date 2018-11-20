@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,7 @@ import butterknife.ButterKnife;
  * create an instance of this fragment.
  */
 public class StatisticListFragment extends Fragment {
-    ArrayAdapter<String> adapter;
+
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
@@ -71,6 +72,9 @@ public class StatisticListFragment extends Fragment {
         }
     }
 
+    private ArrayList<XYValue> list;
+    private XYValueAdapter xyRecyclerAdapter;
+    private DatabaseHelper db;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,20 +86,18 @@ public class StatisticListFragment extends Fragment {
     }
 
     private void loadItemList() {
-       /* ArrayList<String> itemList=getItemsList();
-        if(adapter==null){
-            adapter=new ArrayAdapter<String>(getContext(),R.layout.xyitem,itemList);
-           // listItemView.setAdapter(adapter);
+        list=new ArrayList<>();
+        db = new DatabaseHelper(getContext());
+        for(int i=1;i<=db.getXYValuesCount();i++){
+            list.add(db.getXYValue(i));
         }
-        else {
-            adapter.clear();
-            adapter.addAll(itemList);
-            adapter.notifyDataSetChanged();
-        }*/
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        xyRecyclerAdapter=new XYValueAdapter(list,getContext());
+        recyclerView.setAdapter(xyRecyclerAdapter);
+
     }
-/*private ArrayList<String> getItemsList(){
-return ArrayList<String>;
-}*/
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

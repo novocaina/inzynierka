@@ -62,8 +62,9 @@ public class DietPlanActivity extends AppCompatActivity implements MealFragment.
 
             }
         });
+
         try {
-            obj = new JSONObject(readJSONFromAsset());
+            obj = new JSONObject(JSONHelper.readJSONFromAsset(this));
             parseJson(obj);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -77,21 +78,7 @@ public class DietPlanActivity extends AppCompatActivity implements MealFragment.
 
     }
 
-    public String readJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is = getAssets().open("database.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
+
 
     public void parseJson(JSONObject jsonObject) throws JSONException {
         JSONArray meals = jsonObject.getJSONArray("Baza");
@@ -123,7 +110,14 @@ public class DietPlanActivity extends AppCompatActivity implements MealFragment.
             String elimination = user.getElimination();
             String prefer = user.getPrefer();
             ArrayList<DailyMeal> meals = updateList(elimination, prefer);
-            PlanDiet(meals, cpm, goal);
+            DailyMeal dailymeal=new DailyMeal();
+
+            for(int i=1;i<=7;i++){
+                ArrayList<DailyMeal> oneDayDiet =dailymeal.PlanDiet(meals, cpm, goal);
+                for(DailyMeal meal:oneDayDiet){
+                    db.insertMeal(meal);
+                }
+            }
         } else {
             AlertDialog dialog = new AlertDialog.Builder(this)
                     .setTitle(R.string.info)
@@ -141,77 +135,7 @@ public class DietPlanActivity extends AppCompatActivity implements MealFragment.
         }
     }
 
-    private void PlanDiet(ArrayList<DailyMeal> meals, double cpm, String goal) {
-        double cpm_daily;
-        if (goal.equals(getResources().getString(R.string.reduction))) {
-            cpm_daily = cpm - 200;
-        } else if (goal.equals(getResources().getString(R.string.mass))) {
-            cpm_daily = cpm + 200;
-        } else {
-            cpm_daily = cpm;
-        }
 
-
-        Random r = new Random();
-        double sum = 0;
-        double cpm1 = cpm_daily - 150;
-        double cpm2 = cpm_daily + 150;
-        int max = meals.size() - 1;
-        int a, b, c, d, e;
-        ArrayList<DailyMeal> breakfastList = new ArrayList<>();
-        ArrayList<DailyMeal> secondBreakfastList = new ArrayList<>();
-        ArrayList<DailyMeal> dinnerList = new ArrayList<>();
-        ArrayList<DailyMeal> supperList = new ArrayList<>();
-        ArrayList<DailyMeal> dessertList = new ArrayList<>();
-       DailyMeal breakfast;
-        DailyMeal secondbreakfast;
-        DailyMeal dinner;
-        DailyMeal dessert;
-        DailyMeal supper;
-
-        for (DailyMeal dailyMeal : mealList) {
-            if (dailyMeal.getType().equals("sn")) {
-                breakfastList.add(dailyMeal);
-            }
-            if (dailyMeal.getType().equals("ds")) {
-                secondBreakfastList.add(dailyMeal);
-            }
-            if (dailyMeal.getType().equals("ob")) {
-                dinnerList.add(dailyMeal);
-            }
-            if (dailyMeal.getType().equals("pd")) {
-                dessertList.add(dailyMeal);
-            }
-            if (dailyMeal.getType().equals("kl")) {
-                supperList.add(dailyMeal);
-            }
-        }
-        for (int i = 0; i < 7; i++) {
-
-            while (!((sum > cpm1) & (sum < cpm2))) {
-                a = r.nextInt((max - 1) + 1) + 1;
-                b = r.nextInt((max - 1) + 1) + 1;
-                c = r.nextInt((max - 1) + 1) + 1;
-                d = r.nextInt((max - 1) + 1) + 1;
-                e = r.nextInt((max - 1) + 1) + 1;
-
-                breakfast = breakfastList.get(a);
-                 secondbreakfast = secondBreakfastList.get(b);
-                 dinner = dinnerList.get(c);
-                 dessert = dessertList.get(d);
-                 supper = supperList.get(e);
-
-                sum = breakfast.getCalories() + secondbreakfast.getCalories() + dinner.getCalories() + dessert.getCalories() + supper.getCalories();
-
-            }
-
-          //  DailyMeal meal1 = new DailyMeal(breakfast.getName(), Double.parseDouble(food1.getCalories()));
-          //  db.insertMeal(meal1);
-
-
-
-        }
-    }
 
     private ArrayList<DailyMeal> updateList(String elimination, String prefer) {
         ArrayList<DailyMeal> newMealList = new ArrayList<>();
@@ -228,4 +152,8 @@ public class DietPlanActivity extends AppCompatActivity implements MealFragment.
         }
         return newMealList;
     }
+
+
 }
+
+

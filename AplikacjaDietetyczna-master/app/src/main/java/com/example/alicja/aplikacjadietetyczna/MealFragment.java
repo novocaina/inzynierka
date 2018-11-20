@@ -4,9 +4,16 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -18,12 +25,11 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class MealFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
 
@@ -33,15 +39,7 @@ public class MealFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MealFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static MealFragment newInstance(String param1, String param2) {
         MealFragment fragment = new MealFragment();
         Bundle args = new Bundle();
@@ -59,14 +57,32 @@ public class MealFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    @BindView(R.id.meal_list)
+    RecyclerView recyclerView;
+    private ArrayList<DailyMeal> listMeal;
+    private MealAdapter mealRecyclerAdapter;
+    private DatabaseHelper db;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_meal, container, false);
+        View view = inflater.inflate(R.layout.fragment_meal, container, false);
+        ButterKnife.bind(this, view);
+        initObjects();
+        return view;
     }
+    private void initObjects() {
+        listMeal=new ArrayList<>();
+        db = new DatabaseHelper(getContext());
+        for(int i=1;i<=db.getMealCount();i++){
+            listMeal.add(db.getMeal(i));
+        }
 
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        mealRecyclerAdapter=new MealAdapter(listMeal,getContext());
+        recyclerView.setAdapter(mealRecyclerAdapter);
+
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

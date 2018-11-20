@@ -1,5 +1,9 @@
 package com.example.alicja.aplikacjadietetyczna;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+
 class XYValue {
     public XYValue(){}
   private double y;
@@ -17,6 +21,20 @@ class XYValue {
     public void setY(double y) {
 
         this.y = y;
+    }
+public double returnOdds(ArrayList<XYValue> xyValues, int i){
+        if(i>0) {
+            return xyValues.get(i).getY() - xyValues.get(i - 1).getY();
+        }
+        else
+            return 0;
+}
+    public static String getDate(long milliSeconds, String dateFormat)
+    {
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(milliSeconds);
+        return formatter.format(calendar.getTime());
     }
 
     public long getX() {
