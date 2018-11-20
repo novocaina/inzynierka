@@ -79,7 +79,6 @@ public class DietPlanActivity extends AppCompatActivity implements MealFragment.
     }
 
 
-
     public void parseJson(JSONObject jsonObject) throws JSONException {
         JSONArray meals = jsonObject.getJSONArray("Baza");
         mealList = new ArrayList<>();
@@ -110,12 +109,13 @@ public class DietPlanActivity extends AppCompatActivity implements MealFragment.
             String elimination = user.getElimination();
             String prefer = user.getPrefer();
             ArrayList<DailyMeal> meals = updateList(elimination, prefer);
-            DailyMeal dailymeal=new DailyMeal();
-
-            for(int i=1;i<=7;i++){
-                ArrayList<DailyMeal> oneDayDiet =dailymeal.PlanDiet(meals, cpm, goal);
-                for(DailyMeal meal:oneDayDiet){
-                    db.insertMeal(meal);
+            DailyMeal dailymeal = new DailyMeal();
+            if (db.getMealCount() == 0) {
+                for (int i = 1; i <= 7; i++) {
+                    ArrayList<DailyMeal> oneDayDiet = dailymeal.PlanDiet(meals, cpm, goal);
+                    for (DailyMeal meal : oneDayDiet) {
+                        db.insertMeal(meal);
+                    }
                 }
             }
         } else {
@@ -134,7 +134,6 @@ public class DietPlanActivity extends AppCompatActivity implements MealFragment.
             dialog.show();
         }
     }
-
 
 
     private ArrayList<DailyMeal> updateList(String elimination, String prefer) {
