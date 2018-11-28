@@ -1,14 +1,14 @@
-package com.example.alicja.aplikacjadietetyczna;
+package com.example.alicja.aplikacjadietetyczna.Objects;
 
 /**
  * Created by Alicja on 2018-05-30.
  */
 
 public class User {
-    double cpm, weight, height, activity;
-    String goal;
-    String prefer;
-
+    private double cpm, weight, height, activity;
+    private String goal;
+    private String prefer;
+    private String elimination;
     public String getElimination() {
         return elimination;
     }
@@ -17,7 +17,7 @@ public class User {
         this.elimination = elimination;
     }
 
-    String elimination;
+
     public double getWeight() {
         return weight;
     }
@@ -59,9 +59,9 @@ public class User {
         this.age = age;
     }
 
-    String sex;
+    private String sex;
 
-    int age;
+    private int age;
 
     public User(double cpm, double weight, double height, String goal, String prefer, String sex, double activity, int age, String elimination) {
         this.cpm = cpm;
@@ -75,7 +75,7 @@ public class User {
         this.elimination=elimination;
     }
 
-    User() {
+    public User() {
     }
 
     public double getCpm() {

@@ -6,7 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import butterknife.BindView;
+import com.example.alicja.aplikacjadietetyczna.Adapter.PagerAdapter;
 
 public class ParametersActivity extends AppCompatActivity implements BMIFragment.OnFragmentInteractionListener,CPMFragment.OnFragmentInteractionListener {
 

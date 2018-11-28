@@ -1,10 +1,10 @@
-package com.example.alicja.aplikacjadietetyczna;
+package com.example.alicja.aplikacjadietetyczna.Objects;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-class XYValue {
+public class XYValue {
     public XYValue(){}
   private double y;
     private long x;

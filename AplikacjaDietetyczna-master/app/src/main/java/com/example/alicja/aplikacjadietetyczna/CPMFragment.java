@@ -14,6 +14,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alicja.aplikacjadietetyczna.Objects.CPM;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

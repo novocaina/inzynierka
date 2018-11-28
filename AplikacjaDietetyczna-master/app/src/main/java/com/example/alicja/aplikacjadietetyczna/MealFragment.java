@@ -1,19 +1,30 @@
 package com.example.alicja.aplikacjadietetyczna;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.alicja.aplikacjadietetyczna.Adapter.MealAdapter;
+import com.example.alicja.aplikacjadietetyczna.Objects.DailyMeal;
+import com.google.firebase.firestore.Transaction;
+
+import java.io.Serializable;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
@@ -27,11 +38,9 @@ import butterknife.ButterKnife;
 public class MealFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
 
-    private String mParam1;
-    private String mParam2;
+    private Serializable mParam1;
 
     private OnFragmentInteractionListener mListener;
 
@@ -40,11 +49,10 @@ public class MealFragment extends Fragment {
     }
 
 
-    public static MealFragment newInstance(String param1, String param2) {
+    public static MealFragment newInstance(ArrayList<DailyMeal> param1) {
         MealFragment fragment = new MealFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable(ARG_PARAM1, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,33 +61,28 @@ public class MealFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getSerializable(ARG_PARAM1);
         }
+
     }
     @BindView(R.id.meal_list)
     RecyclerView recyclerView;
-    private ArrayList<DailyMeal> listMeal;
-    private MealAdapter mealRecyclerAdapter;
-    private DatabaseHelper db;
-    @Override
+
+
+        @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meal, container, false);
         ButterKnife.bind(this, view);
-        initObjects();
+        setRecyclerToFragment();
+
         return view;
     }
-    private void initObjects() {
-        listMeal=new ArrayList<>();
-        db = new DatabaseHelper(getContext());
-        for(int i=1;i<=db.getMealCount();i++){
-            listMeal.add(db.getMeal(i));
-        }
 
+    private void setRecyclerToFragment(){
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        mealRecyclerAdapter=new MealAdapter(listMeal,getContext());
+        MealAdapter mealRecyclerAdapter=new MealAdapter((ArrayList<DailyMeal>) mParam1,getContext());
         recyclerView.setAdapter(mealRecyclerAdapter);
 
     }
@@ -107,18 +110,10 @@ public class MealFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }

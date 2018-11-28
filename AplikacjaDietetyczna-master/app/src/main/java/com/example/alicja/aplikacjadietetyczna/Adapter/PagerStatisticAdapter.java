@@ -1,8 +1,11 @@
-package com.example.alicja.aplikacjadietetyczna;
+package com.example.alicja.aplikacjadietetyczna.Adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.example.alicja.aplikacjadietetyczna.StatisticChartFragment;
+import com.example.alicja.aplikacjadietetyczna.StatisticListFragment;
 
 public class PagerStatisticAdapter extends FragmentStatePagerAdapter {
     int pageNumber;

@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alicja.aplikacjadietetyczna.Objects.BMI;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

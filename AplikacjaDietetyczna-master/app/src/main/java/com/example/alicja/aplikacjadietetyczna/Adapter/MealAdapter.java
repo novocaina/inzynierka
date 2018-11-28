@@ -1,4 +1,4 @@
-package com.example.alicja.aplikacjadietetyczna;
+package com.example.alicja.aplikacjadietetyczna.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.alicja.aplikacjadietetyczna.Objects.DailyMeal;
+import com.example.alicja.aplikacjadietetyczna.R;
 
 import java.util.ArrayList;
 
@@ -47,7 +50,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return listMeals.size();
+        return 5;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -68,7 +71,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
         @BindView(R.id.recipe_txt)
         TextView recipes_txt;
 
-        public ViewHolder(View itemView) {
+        private ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

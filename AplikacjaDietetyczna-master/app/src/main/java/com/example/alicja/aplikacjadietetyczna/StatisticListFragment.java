@@ -1,6 +1,5 @@
 package com.example.alicja.aplikacjadietetyczna;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,8 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+
+import com.example.alicja.aplikacjadietetyczna.Adapter.XYValueAdapter;
+import com.example.alicja.aplikacjadietetyczna.Objects.XYValue;
 
 import java.util.ArrayList;
 

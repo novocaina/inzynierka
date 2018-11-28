@@ -108,10 +108,13 @@
     <string name="empty_database">Uzupełnij swoje dane, aby można ułożyć dietę</string>
     <string name="info">Informacja</string>
     <string name="open_activity">Otwórz aktywność</string>
-   <string name="none_type">Brak szczególnego typu</string>
+    <string name="none_type">Brak szczególnego typu</string>
     <string name="write_url">Wpisz źródło</string>
     <string name="add_success">Poprawnie dodano posiłek</string>
     <string name="add_fail">Wystąpił problem z dodaniem posiłku</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="change_daily_meal">Zmień jadłospis dnia</string>
+    <string name="change_week_plan">Zmień jadłospis tygodnia</string>
+    <string name="change_week_plan_alert">W wyniku ułożenia nowego jadłospisu utracisz obecny tygodniowy jadłospis. Kontynuować?</string>
+    <string name="change_daily_alert">W wyniku ułożenia nowego jadłospisu utracisz obecny dzienny jadłospis. Kontynuować?</string>
+    <string name="yes">Tak</string>
 </resources>

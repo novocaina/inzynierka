@@ -1,4 +1,4 @@
-package com.example.alicja.aplikacjadietetyczna;
+package com.example.alicja.aplikacjadietetyczna.Objects;
 
 /**
  * Created by Alicja on 2018-04-18.
@@ -21,11 +21,10 @@ public class BMI {
         this.height = height;
     }
 
-    double weight;
-    double height;
+     private  double weight;
+    private  double height;
     public double BMI_Count(double weight, double height){
-        double BMI=weight/((height/100)*(height/100));
-        return BMI;
+        return weight/((height/100)*(height/100));
     }
 
 }

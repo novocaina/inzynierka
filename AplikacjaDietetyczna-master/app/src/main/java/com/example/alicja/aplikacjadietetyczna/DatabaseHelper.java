@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.alicja.aplikacjadietetyczna.Objects.DailyMeal;
+import com.example.alicja.aplikacjadietetyczna.Objects.User;
+import com.example.alicja.aplikacjadietetyczna.Objects.XYValue;
+
 import java.util.ArrayList;
 
 /**
