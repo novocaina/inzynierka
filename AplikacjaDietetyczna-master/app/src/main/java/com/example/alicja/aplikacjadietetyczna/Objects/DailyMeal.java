@@ -1,8 +1,7 @@
 package com.example.alicja.aplikacjadietetyczna.Objects;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Random;
+
 
 /**
  * Created by Alicja on 2018-06-12.

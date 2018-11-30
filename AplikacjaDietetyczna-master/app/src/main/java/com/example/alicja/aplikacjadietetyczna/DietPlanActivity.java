@@ -13,6 +13,7 @@ import com.example.alicja.aplikacjadietetyczna.Adapter.PagerMealAdapter;
 import com.example.alicja.aplikacjadietetyczna.Objects.DailyMeal;
 import com.example.alicja.aplikacjadietetyczna.Objects.MyDiet;
 import com.example.alicja.aplikacjadietetyczna.Objects.User;
+import com.google.firebase.FirebaseApp;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +37,8 @@ DatabaseHelper db;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diet_plan);
         ButterKnife.bind(this);
+        db = new DatabaseHelper(this);
+        if(db.getUserCount()!=0) {
         for (int i = 1; i <= 7; i++) {
             tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.day) + " " + String.valueOf(i)));
         }
@@ -68,8 +71,8 @@ DatabaseHelper db;
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        db = new DatabaseHelper(this);
-        if(db.getUserCount()!=0) {
+
+
             User user = db.getUser();
             ArrayList<DailyMeal> meals = myDiet.updateList(mealList,user.getElimination(), user.getPrefer());
             if (db.getMealCount() == 0) {

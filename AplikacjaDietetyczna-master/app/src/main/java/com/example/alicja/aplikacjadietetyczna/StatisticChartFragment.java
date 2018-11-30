@@ -103,7 +103,7 @@ public class StatisticChartFragment extends Fragment {
                     if(getDataPoint()!=null) {
                         xySeries.resetData(getDataPoint());
                     }
-                } catch (ParseException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -133,6 +133,12 @@ public class StatisticChartFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_statistic_chart, container, false);
         ButterKnife.bind(this, view);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         myHelper = new DatabaseHelper(getContext());
         sqLiteDatabase = myHelper.getWritableDatabase();
 
@@ -175,12 +181,6 @@ public class StatisticChartFragment extends Fragment {
 
             }
         };
-
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
     }
 

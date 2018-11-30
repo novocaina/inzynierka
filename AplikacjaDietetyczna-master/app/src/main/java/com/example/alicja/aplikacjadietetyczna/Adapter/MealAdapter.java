@@ -9,9 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.alicja.aplikacjadietetyczna.Objects.DailyMeal;
+import com.example.alicja.aplikacjadietetyczna.Objects.Upload;
 import com.example.alicja.aplikacjadietetyczna.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,10 +23,12 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
     private ArrayList<DailyMeal> listMeals;
     public ImageView image;
     private Context context;
+    private ArrayList<Upload> uploads;
 
-    public MealAdapter(ArrayList<DailyMeal> list, Context context) {
+    public MealAdapter(ArrayList<DailyMeal> list, Context context, ArrayList<Upload> uploadsList) {
         this.listMeals = list;
         this.context = context;
+        this.uploads = uploadsList;
     }
 
     @Override
@@ -35,6 +40,13 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        if (uploads.size() != 0) {
+            Picasso.with(context)
+                    .load(uploads.get(position).getImageUrl())
+                    .fit()
+                    .centerCrop()
+                    .into(holder.meal_image);
+        }
         holder.m_title.setText(listMeals.get(position).getName());
         holder.m_portion.setText(listMeals.get(position).getPortions());
         holder.cal_txt.setText(String.valueOf(listMeals.get(position).getCalories()));
@@ -70,6 +82,8 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
         TextView ingredient_txt;
         @BindView(R.id.recipe_txt)
         TextView recipes_txt;
+        @BindView(R.id.meal_img)
+        ImageView meal_image;
 
         private ViewHolder(View itemView) {
             super(itemView);

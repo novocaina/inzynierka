@@ -112,9 +112,13 @@
     <string name="write_url">Wpisz źródło</string>
     <string name="add_success">Poprawnie dodano posiłek</string>
     <string name="add_fail">Wystąpił problem z dodaniem posiłku</string>
-    <string name="change_daily_meal">Zmień jadłospis dnia</string>
-    <string name="change_week_plan">Zmień jadłospis tygodnia</string>
     <string name="change_week_plan_alert">W wyniku ułożenia nowego jadłospisu utracisz obecny tygodniowy jadłospis. Kontynuować?</string>
     <string name="change_daily_alert">W wyniku ułożenia nowego jadłospisu utracisz obecny dzienny jadłospis. Kontynuować?</string>
     <string name="yes">Tak</string>
+    <string name="settings">Ustawienia</string>
+    <string name="change">Zmień</string>
+    <string name="change_info">Aby zmienić tygodniowy jadłospis naciśnij przycisk poniżej.</string>
+    <string name="change_title">Zmień swój jadłospis</string>
+    <string name="change_daily">Aby zmienić dzienny jadłospis wybierz dzień z listy, nastepnie naciśnij przycisk poniżej</string>
+
 </resources>

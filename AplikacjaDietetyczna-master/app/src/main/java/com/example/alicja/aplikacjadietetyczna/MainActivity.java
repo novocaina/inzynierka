@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 
 
 import com.facebook.stetho.Stetho;
+import com.google.firebase.FirebaseApp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -80,6 +81,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         Intent intent = new Intent(MainActivity.this, StatisticsActivity.class);
                         startActivity(intent);
                     }
+                    if (finall == 7) {
+                        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                        startActivity(intent);
+                    }
                 }
             });
         }
@@ -123,6 +128,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return true;
             case R.id.nav_diet:
                 startActivity(new Intent(MainActivity.this, DietPlanActivity.class));
+                drawerLayout.closeDrawers();
+                return true;
+            case R.id.nav_settings:
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 drawerLayout.closeDrawers();
                 return true;
         }

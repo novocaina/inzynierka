@@ -2,10 +2,6 @@ package com.example.alicja.aplikacjadietetyczna.Objects;
 
 
 
-import android.widget.ArrayAdapter;
-
-import com.example.alicja.aplikacjadietetyczna.DatabaseHelper;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,12 +52,16 @@ public class MyDiet {
 
     public ArrayList<DailyMeal> PlanDiet(ArrayList<DailyMeal> meals, double cpm, String goal) {
         double cpm_daily;
-        if (goal.equals("Redukcja")) {
-            cpm_daily = cpm - 200;
-        } else if (goal.equals("Masa")) {
-            cpm_daily = cpm + 200;
-        } else {
-            cpm_daily = cpm;
+        switch (goal) {
+            case "Redukcja":
+                cpm_daily = cpm - 200;
+                break;
+            case "Masa":
+                cpm_daily = cpm + 200;
+                break;
+            default:
+                cpm_daily = cpm;
+                break;
         }
 
 

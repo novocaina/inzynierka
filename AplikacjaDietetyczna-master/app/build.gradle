@@ -23,6 +23,7 @@ repositories {
 }
 
 dependencies {
+
     implementation 'com.jjoe64:graphview:4.2.1'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
@@ -41,8 +42,8 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation 'com.google.firebase:firebase-firestore:11.8.0'
     implementation 'com.facebook.stetho:stetho:1.5.0'
     implementation 'com.facebook.stetho:stetho-urlconnection:1.5.0'
-    implementation 'com.google.firebase:firebase-firestore:11.8.0'
-
 }
+apply plugin: 'com.google.gms.google-services'

@@ -38,7 +38,7 @@ public class PagerMealAdapter extends FragmentStatePagerAdapter {
             case 4:
             case 5:
             case 6:
-                return MealFragment.newInstance(listMeal.get(position));
+                    return MealFragment.newInstance(listMeal.get(position));
 
             default:
                 return null;

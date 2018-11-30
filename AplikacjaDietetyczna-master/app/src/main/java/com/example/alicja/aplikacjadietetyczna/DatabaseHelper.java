@@ -192,6 +192,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return meal;
 
     }
+    public void updateMeal(DailyMeal meal, int id) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DailyMeal.NAME, meal.getName());
+        values.put(DailyMeal.CALORIES, meal.getCalories());
+        values.put(DailyMeal.PROTEINS, meal.getProteins());
+        values.put(DailyMeal.CARBOHYDRATES, meal.getCarbohydrates());
+        values.put(DailyMeal.FAT, meal.getFat());
+        values.put(DailyMeal.PREPARE, meal.getPrepare());
+        values.put(DailyMeal.INGREDIENTS, meal.getIngredients());
+        values.put(DailyMeal.PORTIONS, meal.getPortions());
+        values.put(DailyMeal.URL, meal.getUrl());
+        db.insert(DailyMeal.TABLE2, null, values);
+
+        db.update(DailyMeal.TABLE2, values, DailyMeal.ID + "=" + id,null);
+    }
+
     public void insertXYValues(XYValue xyValue) {
 
         SQLiteDatabase db = this.getWritableDatabase();

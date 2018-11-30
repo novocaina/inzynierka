@@ -45,7 +45,8 @@
         <activity android:name=".DietInfoActivity" />
         <activity android:name=".DietPlanActivity" />
         <activity android:name=".AddMealActivity" />
-        <activity android:name=".StatisticsActivity"></activity>
+        <activity android:name=".StatisticsActivity" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>
