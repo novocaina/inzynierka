@@ -10,6 +10,8 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.alicja.aplikacjadietetyczna.Objects.DailyMeal;
+
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -49,15 +51,11 @@ public class AddMealActivity extends AppCompatActivity {
 
     void OnClick() {
         String name=name_text.getText().toString();
-        String calories=calories_text.getText().toString();
         String ingredients=ingredients_text.getText().toString();
         String recipe=recipe_text.getText().toString();
         String url=url_text.getText().toString();
-        String proteins=proteins_text.getText().toString();
-        String carbo=carbohydrates_text.getText().toString();
-        String fat=fat_text.getText().toString();
         String portions=portions_text.getText().toString();
-        if(name.isEmpty()||calories.isEmpty()||ingredients.isEmpty()||recipe.isEmpty()||url.isEmpty()||proteins.isEmpty()||carbo.isEmpty()||fat.isEmpty()||portions.isEmpty())
+        if(name.isEmpty()||calories_text.getText().toString().isEmpty()||ingredients.isEmpty()||recipe.isEmpty()||url.isEmpty()||proteins_text.getText().toString().isEmpty()||carbohydrates_text.getText().toString().isEmpty()||fat_text.getText().toString().isEmpty()||portions.isEmpty())
         {
             Toast.makeText(AddMealActivity.this, this.getString(R.string.warning_data), Toast.LENGTH_LONG).show();
         }
@@ -68,13 +66,12 @@ public class AddMealActivity extends AppCompatActivity {
             if(r_vege.isChecked()){
                 kind="w";
             }
-            String json=JSONHelper.readJSONFromAsset(this);
-            try {
-                JSONHelper.addObjectToJSON(json,name,calories,meal,kind,ingredients,recipe,url,proteins,carbo,fat,portions);
-                Toast.makeText(AddMealActivity.this, this.getString(R.string.add_success), Toast.LENGTH_LONG).show();
-            } catch (Exception e){
-                Toast.makeText(AddMealActivity.this, this.getString(R.string.add_fail), Toast.LENGTH_LONG).show();
-            }
+            double calories=Double.parseDouble(calories_text.getText().toString());
+            double proteins=Double.parseDouble(proteins_text.getText().toString());
+            double carbo=Double.parseDouble(carbohydrates_text.getText().toString());
+            double fat=Double.parseDouble(fat_text.getText().toString());
+            DatabaseHelper db=new DatabaseHelper(this);
+            db.insertUserMeal(new DailyMeal( name,  ingredients,  meal,  kind,  portions,  recipe,  url,  calories,  proteins,  carbo,  fat, getResources().getString(R.string.url_image)));
         }
     }
 

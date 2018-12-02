@@ -2,10 +2,13 @@
     <string name="app_name">Aplikacja Dietetyczna</string>
     <string name="title_activity_catering">Map</string>
     <string name="show_map">Pokaż na mapie</string>
-    <string name="give_height">Podaj wzrost</string>
-    <string name="give_weight">Podaj wagę</string>
+    <string name="give_height">Podaj wzrost [cm]</string>
+    <string name="give_weight">Podaj wagę [kg]</string>
+    <string name="weight">Waga</string>
+    <string name="height">Wzrost</string>
     <string name="calc_bmi">Oblicz BMI</string>
-    <string name="give_age">Podaj wiek</string>
+    <string name="give_age">Podaj wiek w latach</string>
+    <string name="age">wiek</string>
     <string name="select_sex">Wybierz płeć</string>
     <string name="select_activity">Wybierz aktywność</string>
     <string name="calc_cpm">Oblicz CPM</string>
@@ -120,5 +123,6 @@
     <string name="change_info">Aby zmienić tygodniowy jadłospis naciśnij przycisk poniżej.</string>
     <string name="change_title">Zmień swój jadłospis</string>
     <string name="change_daily">Aby zmienić dzienny jadłospis wybierz dzień z listy, nastepnie naciśnij przycisk poniżej</string>
-
+<string name="url_image">https://upload.wikimedia.org/wikipedia/commons/4/4e/Italian_cuisine_background-1932466_1920.jpg
+</string>
 </resources>

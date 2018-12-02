@@ -3,6 +3,11 @@ package com.example.alicja.aplikacjadietetyczna.Objects;
 
 
 
+import android.content.Context;
+
+import com.example.alicja.aplikacjadietetyczna.DatabaseHelper;
+import com.example.alicja.aplikacjadietetyczna.JSONHelper;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +34,8 @@ public class MyDiet {
             double fat = Double.parseDouble(jsonObj.getString("Tłuszcze"));
             double carbohydrates = Double.parseDouble(jsonObj.getString("Weglowodany"));
             String portions = jsonObj.getString("Porcje");
-            mealList.add(new DailyMeal(name, ingredients, kind, type, portions, prepare, url, calories, proteins, carbohydrates, fat));
+            String imageUrl = jsonObj.getString("Url");
+            mealList.add(new DailyMeal(name, ingredients, kind, type, portions, prepare, url, calories, proteins, carbohydrates, fat,imageUrl));
 
         }
         return mealList;
@@ -47,7 +53,22 @@ public class MyDiet {
         } else {
             newMealList.addAll(mealList);
         }
-        return newMealList;
+        if(elimination.isEmpty()) {
+            return newMealList;
+        }
+        else{
+            ArrayList<DailyMeal> toRemove=new ArrayList<>();
+            String[] result=elimination.split(",");
+            for(int i=0;i<result.length;i++){
+                for(DailyMeal meal:newMealList){
+                    if(meal.getIngredients().contains(result[i])){
+                        toRemove.add(meal);
+                    }
+                }
+            }
+            newMealList.removeAll(toRemove);
+            return newMealList;
+        }
     }
 
     public ArrayList<DailyMeal> PlanDiet(ArrayList<DailyMeal> meals, double cpm, String goal) {
@@ -119,26 +140,56 @@ public class MyDiet {
         ArrayList<DailyMeal> planMeals = new ArrayList<>();
         DailyMeal meal1 = new DailyMeal(breakfast.getName(), breakfast.getIngredients(), breakfast.getType(),
                 breakfast.getKind(), breakfast.getPortions(), breakfast.getPrepare(), breakfast.getUrl(),
-                breakfast.getCalories(), breakfast.getProteins(), breakfast.getCarbohydrates(), breakfast.getFat());
+                breakfast.getCalories(), breakfast.getProteins(), breakfast.getCarbohydrates(), breakfast.getFat(),breakfast.getImageUrl());
         planMeals.add(meal1);
         DailyMeal meal2 = new DailyMeal(secondbreakfast.getName(), secondbreakfast.getIngredients(), secondbreakfast.getType(),
                 secondbreakfast.getKind(), secondbreakfast.getPortions(), secondbreakfast.getPrepare(), secondbreakfast.getUrl(),
-                secondbreakfast.getCalories(), secondbreakfast.getProteins(), secondbreakfast.getCarbohydrates(), secondbreakfast.getFat());
+                secondbreakfast.getCalories(), secondbreakfast.getProteins(), secondbreakfast.getCarbohydrates(), secondbreakfast.getFat(),secondbreakfast.getImageUrl());
         planMeals.add(meal2);
         DailyMeal meal3 = new DailyMeal(dinner.getName(), dinner.getIngredients(), dinner.getType(),
                 dinner.getKind(), dinner.getPortions(), dinner.getPrepare(), dinner.getUrl(),
-                dinner.getCalories(), dinner.getProteins(), dinner.getCarbohydrates(), dinner.getFat());
+                dinner.getCalories(), dinner.getProteins(), dinner.getCarbohydrates(), dinner.getFat(),dinner.getImageUrl());
         planMeals.add(meal3);
         DailyMeal meal4 = new DailyMeal(dessert.getName(), dessert.getIngredients(), dessert.getType(),
                 dessert.getKind(), dessert.getPortions(), dessert.getPrepare(), dessert.getUrl(),
-                dessert.getCalories(), dessert.getProteins(), dessert.getCarbohydrates(), dessert.getFat());
+                dessert.getCalories(), dessert.getProteins(), dessert.getCarbohydrates(), dessert.getFat(),dessert.getImageUrl());
         planMeals.add(meal4);
         DailyMeal meal5 = new DailyMeal(supper.getName(), supper.getIngredients(), supper.getType(),
                 supper.getKind(), supper.getPortions(), supper.getPrepare(), supper.getUrl(),
-                supper.getCalories(), supper.getProteins(), supper.getCarbohydrates(), supper.getFat());
+                supper.getCalories(), supper.getProteins(), supper.getCarbohydrates(), supper.getFat(),supper.getImageUrl());
         planMeals.add(meal5);
 
         return planMeals;
     }
-
+    public ArrayList<DailyMeal> initMealList(Context context) {
+        ArrayList<DailyMeal> mealList=new ArrayList<>();
+        try {
+            JSONObject obj = new JSONObject(JSONHelper.readJSONFromAsset(context));
+            mealList = parseJson(obj);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        DatabaseHelper db = new DatabaseHelper(context);
+        if (db.getUserMealCount() != 0) {
+            for (int i = 1; i <= db.getUserMealCount(); i++) {
+                mealList.add(db.getUserMeal(i));
+            }
+        }
+        for(DailyMeal mealIngredients:mealList){
+            mealIngredients.setIngredients(mealIngredients.getIngredients().replace(",","\n"));
+        }
+        User user = db.getUser();
+       return updateList(mealList, user.getElimination(), user.getPrefer());
+    }
+    public void SaveUserList(DatabaseHelper db,ArrayList<DailyMeal>meals){
+        User user=db.getUser();
+        int j = 1;
+        for (int x = 1; x <= 7; x++) {
+            ArrayList<DailyMeal>oneDayDiet = PlanDiet(meals, user.getCpm(), user.getGoal());
+            for (DailyMeal meal : oneDayDiet) {
+                db.updateMeal(meal, j);
+                j++;
+            }
+        }
+    }
 }

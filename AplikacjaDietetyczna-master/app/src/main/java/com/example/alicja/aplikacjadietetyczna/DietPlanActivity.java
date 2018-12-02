@@ -8,12 +8,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 
 import com.example.alicja.aplikacjadietetyczna.Adapter.PagerMealAdapter;
 import com.example.alicja.aplikacjadietetyczna.Objects.DailyMeal;
 import com.example.alicja.aplikacjadietetyczna.Objects.MyDiet;
 import com.example.alicja.aplikacjadietetyczna.Objects.User;
-import com.google.firebase.FirebaseApp;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +30,7 @@ public class DietPlanActivity extends AppCompatActivity implements MealFragment.
     ViewPager viewPager;
     JSONObject obj;
     ArrayList<DailyMeal> mealList;
-DatabaseHelper db;
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,52 +38,21 @@ DatabaseHelper db;
         setContentView(R.layout.activity_diet_plan);
         ButterKnife.bind(this);
         db = new DatabaseHelper(this);
-        if(db.getUserCount()!=0) {
-        for (int i = 1; i <= 7; i++) {
-            tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.day) + " " + String.valueOf(i)));
-        }
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        final PagerMealAdapter pagerAdapter = new PagerMealAdapter(getSupportFragmentManager(),this, tabLayout.getTabCount());
-        viewPager.setAdapter(pagerAdapter);
-        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        MyDiet myDiet=new MyDiet();
-        try {
-            obj = new JSONObject(JSONHelper.readJSONFromAsset(this));
-           mealList= myDiet.parseJson(obj);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-            User user = db.getUser();
-            ArrayList<DailyMeal> meals = myDiet.updateList(mealList,user.getElimination(), user.getPrefer());
+        if (db.getUserCount() != 0) {
+            setTabLayout();
             if (db.getMealCount() == 0) {
+               MyDiet myDiet=new MyDiet();
+                ArrayList<DailyMeal> meals=myDiet.initMealList(this);
+                User user = db.getUser();
                 for (int i = 1; i <= 7; i++) {
-                    ArrayList<DailyMeal> oneDayDiet = myDiet.PlanDiet(meals,user.getCpm(),user.getGoal());
+                    ArrayList<DailyMeal> oneDayDiet = myDiet.PlanDiet(meals, user.getCpm(), user.getGoal());
                     for (DailyMeal meal : oneDayDiet) {
                         db.insertMeal(meal);
+
                     }
                 }
             }
-        }
+            }
         else {
             AlertDialog dialog = new AlertDialog.Builder(this)
                     .setTitle(R.string.info)
@@ -107,9 +76,44 @@ DatabaseHelper db;
     }
 
 
+    public void setTabLayout() {
+        for (int i = 1; i <= 7; i++) {
+            tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.day) + " " + String.valueOf(i)));
+        }
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        final PagerMealAdapter pagerAdapter = new PagerMealAdapter(getSupportFragmentManager(), this, tabLayout.getTabCount());
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+    public void planDiet() {
+        MyDiet myDiet = new MyDiet();
+        try {
+            obj = new JSONObject(JSONHelper.readJSONFromAsset(this));
+            mealList = myDiet.parseJson(obj);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
-
+    }
 }
 
 

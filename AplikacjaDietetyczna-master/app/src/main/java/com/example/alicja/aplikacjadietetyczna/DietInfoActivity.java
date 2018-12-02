@@ -12,7 +12,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.alicja.aplikacjadietetyczna.Objects.CPM;
+import com.example.alicja.aplikacjadietetyczna.Objects.DailyMeal;
+import com.example.alicja.aplikacjadietetyczna.Objects.MyDiet;
 import com.example.alicja.aplikacjadietetyczna.Objects.User;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,6 +82,11 @@ public class DietInfoActivity extends AppCompatActivity {
             User user = new User(cpm, weight, height, target, preference, sex, pal, age,elimination);
             SaveDataInDataBase(user);
             Toast.makeText(DietInfoActivity.this, this.getString(R.string.success), Toast.LENGTH_LONG).show();
+        }
+        if(save_btn.getText().toString().equals((getResources().getString(R.string.edit_data)))){
+            MyDiet myDiet=new MyDiet();
+            ArrayList<DailyMeal> meals=myDiet.initMealList(this);
+            myDiet.SaveUserList(db,meals);
         }
 
 

@@ -20,9 +20,7 @@ public class DailyMeal implements Serializable {
         return kind;
     }
 
-    public void setKind(String kind) {
-        this.kind = kind;
-    }
+
 
     public String getType() {
         return type;
@@ -32,11 +30,20 @@ public class DailyMeal implements Serializable {
         this.type = type;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    private String imageUrl;
     private String kind;
     private String type;
     private double calories, proteins, carbohydrates, fat;
 
-    public DailyMeal(String name, String ingredients, String type, String kind, String portions, String prepare, String url, double calories, double proteins, double carbohydrates, double fat) {
+    public DailyMeal(String name, String ingredients, String type, String kind, String portions, String prepare, String url, double calories, double proteins, double carbohydrates, double fat,String imageUrl) {
         this.name = name;
         this.ingredients = ingredients;
         this.portions = portions;
@@ -48,6 +55,7 @@ public class DailyMeal implements Serializable {
         this.fat = fat;
         this.type = type;
         this.kind = kind;
+        this.imageUrl = imageUrl;
     }
 
 
@@ -138,6 +146,7 @@ public class DailyMeal implements Serializable {
     public static final String PREPARE = "prepare";
     public  static final String PORTIONS = "portions";
     public static final String URL = "url";
+    public static final String IMAGE = "imageurl";
     public static final String CREATE_TABLE =
             "CREATE TABLE IF NOT EXISTS " + TABLE2 + " ( " +
                     ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -149,8 +158,34 @@ public class DailyMeal implements Serializable {
                     INGREDIENTS + " TEXT, " +
                     PREPARE + " TEXT, " +
                     PORTIONS + " TEXT, " +
-                    URL + " TEXT " +
+                    URL + " TEXT, " +
+                    IMAGE + " TEXT " +
                     "); ";
-
+    public static final String TABLE4 = "userMeal";
+    public static final String MEAL_ID = "id";
+    public  static final String MEAL_NAME = "name";
+    public  static final String MEAL_CALORIES = "calories";
+    public static final String MEAL_PROTEINS = "proteins";
+    public static final String MEAL_CARBOHYDRATES = "carbohydrates";
+    public static final String MEAL_FAT = "fat";
+    public static final String MEAL_INGREDIENTS = "ingredients";
+    public static final String MEAL_PREPARE = "prepare";
+    public  static final String MEAL_PORTIONS = "portions";
+    public static final String MEAL_URL = "url";
+    public static final String MEAL_IMAGE = "imageurl";
+    public static final String CREATE_MEAL_TABLE =
+            "CREATE TABLE IF NOT EXISTS " + TABLE4 + " ( " +
+                    MEAL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    MEAL_NAME + " TEXT, " +
+                    MEAL_CALORIES + " NUMBER, " +
+                    MEAL_PROTEINS + " NUMBER, " +
+                    MEAL_CARBOHYDRATES + " NUMBER, " +
+                    MEAL_FAT + " NUMBER, " +
+                    MEAL_INGREDIENTS + " TEXT, " +
+                    MEAL_PREPARE + " TEXT, " +
+                    MEAL_PORTIONS + " TEXT, " +
+                    MEAL_URL + " TEXT, " +
+                    MEAL_IMAGE + " TEXT " +
+                    "); ";
 
 }

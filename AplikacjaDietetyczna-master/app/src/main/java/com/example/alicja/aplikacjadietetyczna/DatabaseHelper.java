@@ -32,6 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
         db.execSQL(User.CREATE_TABLE);
         db.execSQL(DailyMeal.CREATE_TABLE);
+        db.execSQL(DailyMeal.CREATE_MEAL_TABLE);
     db.execSQL(XYValue.CREATE_TABLE);
     }
 
@@ -41,6 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + XYValue.TABLE3);
         db.execSQL("DROP TABLE IF EXISTS " + User.TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + DailyMeal.TABLE2);
+        db.execSQL("DROP TABLE IF EXISTS " + DailyMeal.TABLE4);
         onCreate(db);
 
     }
@@ -158,6 +160,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(DailyMeal.INGREDIENTS, meal.getIngredients());
         values.put(DailyMeal.PORTIONS, meal.getPortions());
         values.put(DailyMeal.URL, meal.getUrl());
+        values.put(DailyMeal.IMAGE, meal.getImageUrl());
         db.insert(DailyMeal.TABLE2, null, values);
         db.close();
     }
@@ -186,6 +189,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         meal.setIngredients(cursor.getString(cursor.getColumnIndex(DailyMeal.INGREDIENTS)));
         meal.setPortions(cursor.getString(cursor.getColumnIndex(DailyMeal.PORTIONS)));
         meal.setUrl(cursor.getString(cursor.getColumnIndex(DailyMeal.URL)));
+        meal.setImageUrl(cursor.getString(cursor.getColumnIndex(DailyMeal.IMAGE)));
 
         cursor.close();
         db.close();
@@ -206,6 +210,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(DailyMeal.INGREDIENTS, meal.getIngredients());
         values.put(DailyMeal.PORTIONS, meal.getPortions());
         values.put(DailyMeal.URL, meal.getUrl());
+        values.put(DailyMeal.IMAGE, meal.getImageUrl());
         db.insert(DailyMeal.TABLE2, null, values);
 
         db.update(DailyMeal.TABLE2, values, DailyMeal.ID + "=" + id,null);
@@ -245,5 +250,55 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count = cursor.getCount();
         cursor.close();
         return count;
+    }
+    public void insertUserMeal(DailyMeal meal) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DailyMeal.MEAL_NAME, meal.getName());
+        values.put(DailyMeal.MEAL_CALORIES, meal.getCalories());
+        values.put(DailyMeal.MEAL_PROTEINS, meal.getProteins());
+        values.put(DailyMeal.MEAL_CARBOHYDRATES, meal.getCarbohydrates());
+        values.put(DailyMeal.MEAL_FAT, meal.getFat());
+        values.put(DailyMeal.MEAL_PREPARE, meal.getPrepare());
+        values.put(DailyMeal.MEAL_INGREDIENTS, meal.getIngredients());
+        values.put(DailyMeal.MEAL_PORTIONS, meal.getPortions());
+        values.put(DailyMeal.MEAL_URL, meal.getUrl());
+        values.put(DailyMeal.MEAL_IMAGE, meal.getImageUrl());
+        db.insert(DailyMeal.TABLE4, null, values);
+        db.close();
+    }
+    public int getUserMealCount() {
+        String countQuery = "SELECT  * FROM " + DailyMeal.TABLE4;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
+    public DailyMeal getUserMeal(int id) {
+        String Query = "SELECT * FROM " + DailyMeal.TABLE4 + " WHERE " + DailyMeal.MEAL_ID + " = " + id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(Query, null);
+        cursor.moveToFirst();
+
+        DailyMeal meal=new DailyMeal();
+        meal.setName(cursor.getString(cursor.getColumnIndex(DailyMeal.MEAL_NAME)));
+        meal.setCalories(cursor.getDouble(cursor.getColumnIndex(DailyMeal.MEAL_CALORIES)));
+        meal.setProteins(cursor.getDouble(cursor.getColumnIndex(DailyMeal.MEAL_PROTEINS)));
+        meal.setCarbohydrates(cursor.getDouble(cursor.getColumnIndex(DailyMeal.MEAL_CARBOHYDRATES)));
+        meal.setFat(cursor.getDouble(cursor.getColumnIndex(DailyMeal.MEAL_FAT)));
+        meal.setPrepare(cursor.getString(cursor.getColumnIndex(DailyMeal.MEAL_PREPARE)));
+        meal.setIngredients(cursor.getString(cursor.getColumnIndex(DailyMeal.MEAL_INGREDIENTS)));
+        meal.setPortions(cursor.getString(cursor.getColumnIndex(DailyMeal.MEAL_PORTIONS)));
+        meal.setUrl(cursor.getString(cursor.getColumnIndex(DailyMeal.MEAL_URL)));
+        meal.setImageUrl(cursor.getString(cursor.getColumnIndex(DailyMeal.MEAL_IMAGE)));
+
+        cursor.close();
+        db.close();
+        return meal;
+
     }
 }

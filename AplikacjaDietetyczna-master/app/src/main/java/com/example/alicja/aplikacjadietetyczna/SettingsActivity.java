@@ -55,8 +55,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     @OnClick({R.id.btn_change_week,R.id.btn_change_day})
     public void onClick(Button button) {
-
-        initMealList();
+myDiet=new MyDiet();
+        meals=myDiet.initMealList(this);
         switch (button.getId()) {
             case R.id.btn_change_week:
 
@@ -66,16 +66,8 @@ public class SettingsActivity extends AppCompatActivity {
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int i) {
-                                oneDayDiet=new ArrayList<>();
-                                int j = 1;
-                                for (int x = 1; x <= 7; x++) {
-                                    oneDayDiet = myDiet.PlanDiet(meals, user.getCpm(), user.getGoal());
-                                    for (DailyMeal meal : oneDayDiet) {
-                                        db.updateMeal(meal, j);
-                                        j++;
-                                    }
-                                }
-                                startActivity(new Intent(SettingsActivity.this, DietInfoActivity.class));
+                                myDiet.SaveUserList(db,meals);
+                                startActivity(new Intent(SettingsActivity.this, DietPlanActivity.class));
                             }
                         })
                         .setNegativeButton(R.string.cancel, null)
@@ -97,7 +89,7 @@ public class SettingsActivity extends AppCompatActivity {
                                         db.updateMeal(meal, j);
                                         j++;
                                 }
-                                startActivity(new Intent(SettingsActivity.this, DietInfoActivity.class));
+                                startActivity(new Intent(SettingsActivity.this, DietPlanActivity.class));
                             }
                         })
                         .setNegativeButton(R.string.cancel, null)
@@ -109,18 +101,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
-    private void initMealList() {
-        myDiet = new MyDiet();
-        try {
-            JSONObject obj = new JSONObject(JSONHelper.readJSONFromAsset(this));
-            mealList = myDiet.parseJson(obj);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        db = new DatabaseHelper(this);
-        user = db.getUser();
-        meals = myDiet.updateList(mealList, user.getElimination(), user.getPrefer());
-    }
+
 private void initSpinner(){
     String[] day_table = {"1","2","3","4","5","6","7"};
     ArrayAdapter<String> adapter_sx = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, day_table);
