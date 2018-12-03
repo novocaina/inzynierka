@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -29,8 +30,6 @@ public class DietInfoActivity extends AppCompatActivity {
     EditText height_txt;
     @BindView(R.id.age_txt)
     EditText age_txt;
-    @BindView(R.id.sex_list)
-    Spinner sex_list;
     @BindView(R.id.activity_list)
     Spinner activity_list;
     @BindView(R.id.target_list)
@@ -53,6 +52,10 @@ public class DietInfoActivity extends AppCompatActivity {
     CheckBox nuts_check;
     @BindView(R.id.chocolate_check)
     CheckBox chocolate_check;
+    @BindView(R.id.man)
+    RadioButton man_radio;
+    @BindView(R.id.woman)
+    RadioButton woman_radio;
     @BindView(R.id.save_btn)
     Button save_btn;
     DatabaseHelper db;
@@ -76,6 +79,12 @@ public class DietInfoActivity extends AppCompatActivity {
             weight = Double.parseDouble(weightStr);
             height = Double.parseDouble(heightStr);
             age = Integer.parseInt(ageStr);
+            if(woman_radio.isChecked()){
+                sex=getString(R.string.woman);
+            }
+            else{
+                sex=getString(R.string.man);
+            }
             CPM newCPM = new CPM();
             cpm = newCPM.Count_CPM(weight, height, age, sex, pal);
             elimination=eliminateIngredients();
@@ -137,13 +146,12 @@ public class DietInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diet_info);
         ButterKnife.bind(this);
-        String[] sex_table = {this.getString(R.string.woman), this.getString(R.string.man)};
+
         String[] act_table = {this.getString(R.string.activity_1), this.getString(R.string.activity_2),
                 this.getString(R.string.activity_3), this.getString(R.string.activity_4), this.getString(R.string.activity_5)};
         String[] target_table = {this.getString(R.string.reduction), this.getString(R.string.cons_weight), this.getString(R.string.mass)};
         String[] pref_table = {this.getString(R.string.none), this.getString(R.string.veget)};
-        ArrayAdapter<String> adapter_sx = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, sex_table);
-        sex_list.setAdapter(adapter_sx);
+
         ArrayAdapter<String> adapter_act = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, act_table);
         activity_list.setAdapter(adapter_act);
         ArrayAdapter<String> adapter_trg = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, target_table);
@@ -151,26 +159,9 @@ public class DietInfoActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter_pref = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, pref_table);
         pref_list.setAdapter(adapter_pref);
 
-        sex_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
 
-            @Override
 
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int id, long position) {
-                switch ((int) position) {
-                    case 0:
-                        sex = getString(R.string.woman);
-                        break;
-                    case 1:
-                        sex = getString(R.string.man);
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
         activity_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -246,12 +237,13 @@ public class DietInfoActivity extends AppCompatActivity {
         weight_txt.setText(String.valueOf(db.getUser().getWeight()));
         height_txt.setText(String.valueOf(db.getUser().getHeight()));
         age_txt.setText(String.valueOf(db.getUser().getAge()));
-        String[] sex_table = {getResources().getString(R.string.woman), getResources().getString(R.string.man)};
         String[] target_table = {getResources().getString(R.string.reduction),getResources().getString(R.string.cons_weight), getResources().getString(R.string.mass)};
         String[] pref_table = {getResources().getString(R.string.none), getResources().getString(R.string.veget)};
         User user=db.getUser();
         String dbSex=user.getSex();
-        setSpinner(sex_table,dbSex,sex_list);
+        if(dbSex.equals(R.string.man)){
+man_radio.setChecked(true);
+        }
         String dbTarget=db.getUser().getGoal();
         setSpinner(target_table,dbTarget,target_list);
         String dbPref=db.getUser().getPrefer();

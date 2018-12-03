@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,10 +51,13 @@ public class CPMFragment extends Fragment {
     TextView cpm_txt;
     @BindView(R.id.your_cpm_txt)
     TextView your_cpm_txt;
-    @BindView(R.id.sex_list)
-    Spinner sex_list;
     @BindView(R.id.activity_list)
     Spinner activity_list;
+    @BindView(R.id.man)
+    RadioButton man_radio;
+    @BindView(R.id.woman)
+    RadioButton woman_radio;
+
     String sex;
     double pal;
 
@@ -75,6 +79,12 @@ public class CPMFragment extends Fragment {
             double weight = Double.parseDouble(weightStr);
             double height = Double.parseDouble(heightStr);
             int age = Integer.parseInt(ageStr);
+            if(woman_radio.isChecked()){
+                sex="k";
+            }
+            else{
+                sex="m";
+            }
             your_cpm_txt.setVisibility(View.VISIBLE);
             CPM newCPM = new CPM();
             double cpm = newCPM.Count_CPM(weight, height, age, sex, pal);
@@ -122,40 +132,12 @@ public class CPMFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cpm, container, false);
         ButterKnife.bind(this, view);
-        String[] sex_table = {this.getString(R.string.woman), this.getString(R.string.man)};
+
         String[] act_table = {this.getString(R.string.activity_1), this.getString(R.string.activity_2),
                 this.getString(R.string.activity_3), this.getString(R.string.activity_4), this.getString(R.string.activity_5)};
-        ArrayAdapter<String> adapter_sx = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, sex_table);
-        sex_list.setAdapter(adapter_sx);
         ArrayAdapter<String> adapter_act = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, act_table);
         activity_list.setAdapter(adapter_act);
-        sex_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int id, long position) {
-
-                switch ((int) position) {
-                    case 0:
-                        sex = "k";
-                        break;
-
-                    case 1:
-                        sex = "m";
-                        break;
-
-                }
-
-            }
-
-
-            @Override
-
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-
-
-        });
 
         activity_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 

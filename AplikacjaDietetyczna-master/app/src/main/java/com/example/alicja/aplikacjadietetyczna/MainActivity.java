@@ -14,8 +14,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 
-import com.facebook.stetho.Stetho;
-import com.google.firebase.FirebaseApp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        Stetho.initializeWithDefaults(this);
+
         navigationView.setNavigationItemSelectedListener(this);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close);
         drawerLayout.addDrawerListener(toggle);
