@@ -34,8 +34,8 @@ public class XYValueAdapter extends RecyclerView.Adapter<XYValueAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.date_txt.setText(String .valueOf(XYValue.getDate(xyValues.get(position).getX(),"dd-MM-yyyy")));
-        holder.weight_txt.setText(String.valueOf(xyValues.get(position).getY()));
-        holder.progress_txt.setText(String .valueOf(xyValue.returnOdds(xyValues,position)));
+        holder.weight_txt.setText(String.format("%s kg", String.valueOf(xyValues.get(position).getY())));
+        holder.progress_txt.setText(String.format("%s kg", String.valueOf(xyValue.returnOdds(xyValues, position))));
     }
 
 

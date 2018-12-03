@@ -8,18 +8,24 @@ import android.os.Bundle;
 
 import com.example.alicja.aplikacjadietetyczna.Adapter.PagerAdapter;
 
-public class ParametersActivity extends AppCompatActivity implements BMIFragment.OnFragmentInteractionListener,CPMFragment.OnFragmentInteractionListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
+public class ParametersActivity extends AppCompatActivity implements BMIFragment.OnFragmentInteractionListener,CPMFragment.OnFragmentInteractionListener,FatLevelFragment.OnFragmentInteractionListener {
+@BindView(R.id.tab_layout)
+TabLayout tabLayout;
+@BindView(R.id.pager)
+    ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parameters);
-        TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
+        ButterKnife.bind(this);
         tabLayout.addTab(tabLayout.newTab().setText("BMI"));
         tabLayout.addTab(tabLayout.newTab().setText("CPM"));
-
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.fat_level)));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        final ViewPager viewPager=(ViewPager)findViewById(R.id.pager);
+
         final PagerAdapter pagerAdapter=new PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));

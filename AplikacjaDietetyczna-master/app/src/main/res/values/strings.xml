@@ -125,8 +125,9 @@
     <string name="change_info">Aby zmienić tygodniowy jadłospis naciśnij przycisk poniżej.</string>
     <string name="change_title">Zmień swój jadłospis</string>
     <string name="change_daily">Aby zmienić dzienny jadłospis wybierz dzień z listy, nastepnie naciśnij przycisk poniżej</string>
-<string name="url_image">https://upload.wikimedia.org/wikipedia/commons/4/4e/Italian_cuisine_background-1932466_1920.jpg
+    <string name="url_image">https://upload.wikimedia.org/wikipedia/commons/4/4e/Italian_cuisine_background-1932466_1920.jpg
 </string>
+    <string name="fat_level">Poziom tkanki tłuszczowej </string>
     <string name="calories_add">Kalorie </string>
     <string name="proteins_add">Białko </string>
     <string name="fat_add">Tłuszcz </string>
@@ -138,4 +139,7 @@
     <string name="carbohydrates_write">Podaj ilość węglowodanów [g]</string>
     <string name="portions_add">Ilość porcji </string>
     <string name="add_point">Dodaj punkt </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0F4C3">
+    android:background="#F0F4C3"
+    android:layout_marginEnd="10dp">
 
-<TextView
-    android:id="@+id/item_date"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentStart="true"
-    android:textSize="20sp"
-    android:layout_marginRight="15dp"/>
+    <TextView
+        android:id="@+id/item_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="35dp"
+        android:drawableStart="@drawable/ic_date_range_black_24dp"
+        android:textSize="20sp" />
+
     <TextView
         android:id="@+id/item_weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableStart="@drawable/icons8_scale_24"
         android:layout_toEndOf="@+id/item_date"
         android:textSize="20sp" />
-<TextView
-android:id="@+id/text_progress"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_alignParentEnd="true"
-android:textSize="24sp"
-    tools:ignore="RelativeOverlap" />
-    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:textSize="20sp"
+        tools:ignore="RelativeOverlap" />
+</RelativeLayout>

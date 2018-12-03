@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.alicja.aplikacjadietetyczna.BMIFragment;
 import com.example.alicja.aplikacjadietetyczna.CPMFragment;
+import com.example.alicja.aplikacjadietetyczna.FatLevelFragment;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int pageNumber;
@@ -19,11 +20,11 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                BMIFragment bmiFragment = new BMIFragment();
-                return bmiFragment;
+                return new BMIFragment();
             case 1:
-                CPMFragment cpmFragment = new CPMFragment();
-                return cpmFragment;
+                return new CPMFragment();
+            case 2:
+                return new FatLevelFragment();
             default:
                 return null;
         }

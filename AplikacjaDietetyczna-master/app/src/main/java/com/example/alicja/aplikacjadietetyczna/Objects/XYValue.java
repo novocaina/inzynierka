@@ -1,5 +1,8 @@
 package com.example.alicja.aplikacjadietetyczna.Objects;
 
+import android.graphics.Color;
+import android.widget.TextView;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,6 +27,7 @@ public class XYValue {
     }
 public double returnOdds(ArrayList<XYValue> xyValues, int i){
         if(i>0) {
+
             return xyValues.get(i).getY() - xyValues.get(i - 1).getY();
         }
         else
