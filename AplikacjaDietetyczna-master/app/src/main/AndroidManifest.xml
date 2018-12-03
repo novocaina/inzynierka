@@ -43,12 +43,24 @@
             android:name=".CateringActivity"
             android:label="@string/title_activity_catering" />
         <activity android:name=".ViewPlace" />
-        <activity android:name=".ParametersActivity" />
-        <activity android:name=".DietInfoActivity" />
-        <activity android:name=".DietPlanActivity" />
-        <activity android:name=".AddMealActivity" />
-        <activity android:name=".StatisticsActivity" />
-        <activity android:name=".SettingsActivity"/>
+        <activity
+            android:name=".ParametersActivity"
+            android:label="@string/parameters_label" />
+        <activity
+            android:name=".DietInfoActivity"
+            android:label="@string/data" />
+        <activity
+            android:name=".DietPlanActivity"
+            android:label="@string/diet" />
+        <activity
+            android:name=".AddMealActivity"
+            android:label="@string/add_food" />
+        <activity
+            android:name=".StatisticsActivity"
+            android:label="@string/stat" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settings" />
     </application>
 
 </manifest>

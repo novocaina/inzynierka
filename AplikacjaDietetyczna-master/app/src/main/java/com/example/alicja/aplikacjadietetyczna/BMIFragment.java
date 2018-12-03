@@ -4,14 +4,21 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daasuu.bl.ArrowDirection;
+import com.daasuu.bl.BubbleLayout;
+import com.daasuu.bl.BubblePopupHelper;
 import com.example.alicja.aplikacjadietetyczna.Objects.BMI;
+
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,6 +77,15 @@ public class BMIFragment extends Fragment {
     TextView your_bmi_txt;
     @BindView(R.id.bmi_info_txt)
     TextView bmi_info_txt;
+PopupWindow popupWindow;
+    BubbleLayout bubbleLayout;
+    @OnClick(R.id.info_draw)
+    void onDrawableClick(View view){
+        int[] location = new int[2];
+        view.getLocationInWindow(location);
+        popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, location[0], view.getHeight() + location[1]);
+    }
+
 
     @OnClick(R.id.bmi_btn)
     void OnClick() {
@@ -132,6 +148,9 @@ public class BMIFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_bmi, container, false);
         ButterKnife.bind(this, view);
+        bubbleLayout = (BubbleLayout) LayoutInflater.from(getContext()).inflate(R.layout.sample_popup_layout, null);
+        popupWindow = BubblePopupHelper.create(getContext(), bubbleLayout);
+
         return view;
     }
 

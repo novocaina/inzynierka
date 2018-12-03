@@ -11,13 +11,17 @@
         android:background="#F0F4C3"
         android:padding="15dp"
         android:orientation="vertical">
-
+        <TextView
+            android:id="@+id/info_draw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_info_black_24dp"
+            />
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:gravity="center_horizontal"
             android:text="@string/height"
             android:textAllCaps="true"
