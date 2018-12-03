@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#F0F4C3"
+        android:padding="15dp"
         android:orientation="vertical">
 
     <com.jjoe64.graphview.GraphView
@@ -19,40 +20,55 @@
         android:layout_width="match_parent"
         android:layout_height="350dp" />
 
-    <Button
-        android:id="@+id/btnAddPt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:text="Add Point" />
+        <Button
+            android:id="@+id/btnDatePick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="#008000"
+            android:ems="8"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:text="@string/date_picker" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:text="@string/weight"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
 
     <EditText
         android:id="@+id/numX"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:background="@android:drawable/editbox_background"
-        android:ems="10"
-        android:hint="y"
-        android:inputType="numberSigned"
-        android:textAlignment="center" />
-    <EditText
-        android:id="@+id/numY"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:background="@android:drawable/editbox_background"
-        android:ems="10"
-        android:hint="y"
-        android:inputType="numberSigned"
-        android:textAlignment="center" />
-
-    <Button
-        android:id="@+id/btnDatePick"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/date_picker" />
+        android:background="@android:drawable/editbox_background"
+        android:drawableStart="@drawable/icons8_scale_24"
+        android:ems="10"
+        android:hint="@string/give_weight"
+        android:inputType="number|numberDecimal"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp" />
 
+
+        <Button
+            android:id="@+id/btnAddPt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="#008000"
+            android:ems="8"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:text="@string/add_point" />
     </LinearLayout>
 </ScrollView>

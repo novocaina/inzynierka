@@ -10,183 +10,298 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#F0F4C3"
+        android:padding="15dp"
         android:orientation="vertical">
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/write_name"
-    android:textSize="15sp"
-    android:textColor="@color/darkgrey"
-    />
-    <EditText
-        android:id="@+id/name_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/write_ingredients"
-        android:textSize="15sp"
-        android:textColor="@color/darkgrey"
-        />
-    <EditText
-        android:id="@+id/ingredients_edit"
-        android:minLines="3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/write_recipe"
-    android:textSize="15sp"
-    android:textColor="@color/darkgrey"
-    />
-    <EditText
-        android:minLines="3"
-        android:id="@+id/recipe_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/select_type"
-    android:textSize="15sp"
-    android:textColor="@color/darkgrey"
-    />
-    <Spinner
-        android:id="@+id/type_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/darkgrey"
-         />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/select_preferences"
-        android:textSize="15sp"
-        android:textColor="@color/darkgrey"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textAllCaps="true"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/name_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/editbox_background"
+            android:drawableStart="@drawable/ic_create_black_24dp"
+            android:ems="10"
+            android:hint="@string/write_name"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ingredients_add"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textAllCaps="true"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/ingredients_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/editbox_background"
+            android:drawableStart="@drawable/ic_create_black_24dp"
+            android:ems="10"
+            android:hint="@string/write_ingredients"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp"
+            android:minLines="3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_add"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/recipe_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/editbox_background"
+            android:drawableStart="@drawable/ic_create_black_24dp"
+            android:ems="10"
+            android:hint="@string/write_recipe"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp"
+            android:minLines="3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_type"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_gravity="center"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/type_list"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:drawable/editbox_background"
+                android:gravity="center"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_drop_down_black_24dp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_preferences"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center"/>
+
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <RadioButton android:id="@+id/radio_none"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_none"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/none_type"
                 android:checked="true"
-                />
-            <RadioButton android:id="@+id/radio_vege"
+                android:text="@string/none_type" />
+
+            <RadioButton
+                android:id="@+id/radio_vege"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/veget"
-                />
+                android:text="@string/veget" />
         </RadioGroup>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/write_url"
-            android:textSize="15sp"
-            android:textColor="@color/darkgrey"
-            />
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_gravity="center"/>
+
         <EditText
             android:id="@+id/url_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/write_values"
-        android:textSize="15sp"
-        android:textColor="@color/darkgrey"
-        />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/editbox_background"
+            android:drawableStart="@drawable/ic_create_black_24dp"
+            android:ems="10"
+            android:hint="@string/write_url"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp"/>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/calories"
-        android:textSize="15sp"
-        android:textColor="@color/darkgrey"
-        />
-        <EditText
-            android:id="@+id/calories_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/proteins"
-        android:textSize="15sp"
-        android:textColor="@color/darkgrey"
-        />
-        <EditText
-            android:id="@+id/proteins_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/calories_add"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/carbohydrates"
-        android:textSize="15sp"
-        android:textColor="@color/darkgrey"
-        />
-        <EditText
-            android:id="@+id/carbohydrates_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            <EditText
+                android:id="@+id/calories_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@android:drawable/editbox_background"
+                android:drawableStart="@drawable/icons8_kitchen_scales_24"
+                android:ems="10"
+                android:hint="@string/calories_write"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fat"
-        android:textSize="15sp"
-        android:textColor="@color/darkgrey"
-        />
-        <EditText
-            android:id="@+id/fat_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/portions"
-        android:textSize="15sp"
-        android:textColor="@color/darkgrey"
-        />
-        <EditText
-            android:id="@+id/portions_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/proteins_add"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/proteins_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@android:drawable/editbox_background"
+                android:drawableStart="@drawable/icons8_kitchen_scales_24"
+                android:ems="10"
+                android:hint="@string/proteins_write"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/carbohydrates"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/carbohydrates_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@android:drawable/editbox_background"
+                android:drawableStart="@drawable/icons8_kitchen_scales_24"
+                android:ems="10"
+                android:hint="@string/carbohydrates_write"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fat_add"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/fat_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@android:drawable/editbox_background"
+                android:drawableStart="@drawable/icons8_kitchen_scales_24"
+                android:ems="10"
+                android:hint="@string/fat_write"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/portions_add"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/portions_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@android:drawable/editbox_background"
+                android:drawableStart="@drawable/icons8_kitchen_scales_24"
+                android:ems="10"
+                android:hint="@string/portions_write"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp" />
+
+
         <Button
             android:id="@+id/add_btn"
             android:layout_width="wrap_content"
@@ -198,5 +313,5 @@
             android:text="@string/add_food"
             android:textSize="25sp"
             android:textStyle="bold" />
-</LinearLayout>
+    </LinearLayout>
 </ScrollView>

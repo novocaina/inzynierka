@@ -47,8 +47,6 @@ public class StatisticChartFragment extends Fragment {
     String date;
     @BindView(R.id.numX)
     EditText mX;
-    @BindView(R.id.numY)
-    EditText mY;
     @BindView(R.id.btnAddPt)
     Button btnAdd;
     @BindView(R.id.btnDatePick)

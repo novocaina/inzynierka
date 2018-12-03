@@ -48,6 +48,7 @@
     <string name="add_food_item">Dodaj do listy</string>
     <string name="add_new_title">Dodaj kolejne produkty </string>
     <string name="give_name">Wpisz nazwę</string>
+    <string name="name">nazwa</string>
     <string name="add">Dodaj</string>
     <string name="cancel">Anuluj</string>
     <string name="add_new">Co jeszcze musisz kupić?</string>
@@ -85,11 +86,12 @@
     <string name="see_recipe">Zobacz przepis</string>
     <string name="change_recipe">Zmień jadłospis</string>
     <string name="write_name">Wpisz nazwę posiłku</string>
+    <string name="ingredients_add">Składniki</string>
     <string name="write_ingredients">Wpisz składniki (oddzielając je przecinkiem)</string>
     <string name="write_recipe">Podaj przepis</string>
-    <string name="select_type">Wybierz typ posiłku</string>
-    <string name="select_preferences">Zaznacz rodzaj posiłku</string>
-    <string name="write_values">Wpisz odpowiednie wartości:</string>
+    <string name="recipe_add">przepis</string>
+    <string name="select_type">typ posiłku</string>
+    <string name="select_preferences">rodzaj posiłku</string>
     <string name="calories">Kalorie: </string>
     <string name="proteins">Białko: </string>
     <string name="fat">Tłuszcz: </string>
@@ -125,4 +127,15 @@
     <string name="change_daily">Aby zmienić dzienny jadłospis wybierz dzień z listy, nastepnie naciśnij przycisk poniżej</string>
 <string name="url_image">https://upload.wikimedia.org/wikipedia/commons/4/4e/Italian_cuisine_background-1932466_1920.jpg
 </string>
+    <string name="calories_add">Kalorie </string>
+    <string name="proteins_add">Białko </string>
+    <string name="fat_add">Tłuszcz </string>
+    <string name="carbohydrates_add">Węglowodany</string>
+    <string name="portions_write">Podaj ilość porcji z przepisu </string>
+    <string name="calories_write">Podaj ilość kalorii [kcal] </string>
+    <string name="proteins_write">Podaj ilość białka [g] </string>
+    <string name="fat_write">Podaj ilość tłuszczu [g] </string>
+    <string name="carbohydrates_write">Podaj ilość węglowodanów [g]</string>
+    <string name="portions_add">Ilość porcji </string>
+    <string name="add_point">Dodaj punkt </string>
 </resources>
