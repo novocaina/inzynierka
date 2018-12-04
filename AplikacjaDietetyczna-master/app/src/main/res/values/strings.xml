@@ -140,4 +140,5 @@
     <string name="portions_add">Ilość porcji </string>
     <string name="add_point">Dodaj punkt </string>
     <string name="parameters_label">Twoje parametry</string>
+    <string name="add_point_success">Dodano punkt do wykresu</string>
 </resources>
