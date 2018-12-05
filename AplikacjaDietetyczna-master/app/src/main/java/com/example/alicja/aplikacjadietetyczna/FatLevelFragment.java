@@ -4,9 +4,17 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupWindow;
+
+import com.daasuu.bl.BubbleLayout;
+import com.daasuu.bl.BubblePopupHelper;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
@@ -33,15 +41,14 @@ public class FatLevelFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FatLevelFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+    PopupWindow popupWindow;
+    BubbleLayout bubbleLayout;
+    @OnClick(R.id.info_draw)
+    void onDrawableClick(View view){
+        int[] location = new int[2];
+        view.getLocationInWindow(location);
+        popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, location[0], view.getHeight() + location[1]);
+    }
     public static FatLevelFragment newInstance(String param1, String param2) {
         FatLevelFragment fragment = new FatLevelFragment();
         Bundle args = new Bundle();
@@ -63,8 +70,12 @@ public class FatLevelFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fat_level, container, false);
+        View view = inflater.inflate(R.layout.fragment_bmi, container, false);
+        ButterKnife.bind(this, view);
+        bubbleLayout = (BubbleLayout) LayoutInflater.from(getContext()).inflate(R.layout.sample_popup_layout, null);
+        popupWindow = BubblePopupHelper.create(getContext(), bubbleLayout);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

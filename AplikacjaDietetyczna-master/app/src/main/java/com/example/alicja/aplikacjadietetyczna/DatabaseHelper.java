@@ -9,8 +9,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.alicja.aplikacjadietetyczna.Objects.DailyMeal;
 import com.example.alicja.aplikacjadietetyczna.Objects.User;
 import com.example.alicja.aplikacjadietetyczna.Objects.XYValue;
+import com.google.android.gms.games.leaderboard.LeaderboardVariant;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 /**
  * Created by Alicja on 2018-06-10.
@@ -21,6 +25,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private final static int DB_VER = 1;
     private final static String DB_TABLE1 = "ShopList";
     private final static String DB_COLUMN_ITEM = "ItemName";
+
+
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VER);
     }
@@ -33,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(User.CREATE_TABLE);
         db.execSQL(DailyMeal.CREATE_TABLE);
         db.execSQL(DailyMeal.CREATE_MEAL_TABLE);
-    db.execSQL(XYValue.CREATE_TABLE);
+        db.execSQL(XYValue.CREATE_TABLE);
     }
 
     @Override
@@ -164,6 +170,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(DailyMeal.TABLE2, null, values);
         db.close();
     }
+
     public int getMealCount() {
         String countQuery = "SELECT  * FROM " + DailyMeal.TABLE2;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -179,7 +186,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
         cursor.moveToFirst();
 
-        DailyMeal meal=new DailyMeal();
+        DailyMeal meal = new DailyMeal();
         meal.setName(cursor.getString(cursor.getColumnIndex(DailyMeal.NAME)));
         meal.setCalories(cursor.getDouble(cursor.getColumnIndex(DailyMeal.CALORIES)));
         meal.setProteins(cursor.getDouble(cursor.getColumnIndex(DailyMeal.PROTEINS)));
@@ -196,6 +203,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return meal;
 
     }
+
     public void updateMeal(DailyMeal meal, int id) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -213,7 +221,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(DailyMeal.IMAGE, meal.getImageUrl());
         db.insert(DailyMeal.TABLE2, null, values);
 
-        db.update(DailyMeal.TABLE2, values, DailyMeal.ID + "=" + id,null);
+        db.update(DailyMeal.TABLE2, values, DailyMeal.ID + "=" + id, null);
     }
 
     public void insertXYValues(XYValue xyValue) {
@@ -228,14 +236,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-
     public XYValue getXYValue(int id) {
         String Query = "SELECT * FROM " + XYValue.TABLE3 + " WHERE " + XYValue.ID + " = " + id;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
         cursor.moveToFirst();
 
-        XYValue xyValue=new XYValue();
+        XYValue xyValue = new XYValue();
         xyValue.setX(cursor.getLong(cursor.getColumnIndex(XYValue.XNAME)));
         xyValue.setY(cursor.getDouble(cursor.getColumnIndex(XYValue.YNAME)));
         cursor.close();
@@ -243,6 +250,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return xyValue;
 
     }
+
     public int getXYValuesCount() {
         String countQuery = "SELECT  * FROM " + XYValue.TABLE3;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -251,6 +259,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return count;
     }
+
     public void insertUserMeal(DailyMeal meal) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -269,6 +278,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(DailyMeal.TABLE4, null, values);
         db.close();
     }
+
     public int getUserMealCount() {
         String countQuery = "SELECT  * FROM " + DailyMeal.TABLE4;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -284,7 +294,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
         cursor.moveToFirst();
 
-        DailyMeal meal=new DailyMeal();
+        DailyMeal meal = new DailyMeal();
         meal.setName(cursor.getString(cursor.getColumnIndex(DailyMeal.MEAL_NAME)));
         meal.setCalories(cursor.getDouble(cursor.getColumnIndex(DailyMeal.MEAL_CALORIES)));
         meal.setProteins(cursor.getDouble(cursor.getColumnIndex(DailyMeal.MEAL_PROTEINS)));
@@ -301,4 +311,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return meal;
 
     }
+
+
 }

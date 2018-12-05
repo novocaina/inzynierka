@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.alicja.aplikacjadietetyczna.Objects.XYValue;
 import com.jjoe64.graphview.DefaultLabelFormatter;
@@ -26,6 +27,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -101,6 +103,7 @@ public class StatisticChartFragment extends Fragment {
                     if(getDataPoint()!=null) {
                         xySeries.resetData(getDataPoint());
                     }
+                    Toast.makeText(getActivity(), getString(R.string.add_point_success), Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -166,7 +169,7 @@ public class StatisticChartFragment extends Fragment {
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         datePicker,
                         year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
 
             }

@@ -4,17 +4,21 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daasuu.bl.BubbleLayout;
+import com.daasuu.bl.BubblePopupHelper;
 import com.example.alicja.aplikacjadietetyczna.Objects.CPM;
 
 import butterknife.BindView;
@@ -61,7 +65,14 @@ public class CPMFragment extends Fragment {
     String sex;
     double pal;
 
-
+    PopupWindow popupWindow;
+    BubbleLayout bubbleLayout;
+    @OnClick(R.id.info_draw)
+    void onDrawableClick(View view){
+        int[] location = new int[2];
+        view.getLocationInWindow(location);
+        popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, location[0], view.getHeight() + location[1]);
+    }
     @OnClick(R.id.cpm_btn)
     void OnClick() {
 
@@ -132,58 +143,12 @@ public class CPMFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cpm, container, false);
         ButterKnife.bind(this, view);
-
-        String[] act_table = {this.getString(R.string.activity_1), this.getString(R.string.activity_2),
-                this.getString(R.string.activity_3), this.getString(R.string.activity_4), this.getString(R.string.activity_5)};
-        ArrayAdapter<String> adapter_act = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, act_table);
-        activity_list.setAdapter(adapter_act);
-
-
-        activity_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-
-            @Override
-
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int id, long position) {
-
-
-                switch ((int) position) {
-                    case 0:
-                        pal = 1.2;
-                        break;
-                    case 1:
-                        pal = 1.375;
-                        break;
-
-                    case 2:
-                        pal = 1.55;
-                        break;
-
-                    case 3:
-                        pal = 1.725;
-                        break;
-
-                    case 4:
-                        pal = 1.9;
-                        break;
-
-
-                }
-
-            }
-
-
-            @Override
-
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-
-            }
-
-
-        });
+        initSpinner();
+        bubbleLayout = (BubbleLayout) LayoutInflater.from(getContext()).inflate(R.layout.sample_popup_layout, null);
+        popupWindow = BubblePopupHelper.create(getContext(), bubbleLayout);
 
         return view;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -203,7 +168,57 @@ public class CPMFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+public void initSpinner(){
+    String[] act_table = {this.getString(R.string.activity_1), this.getString(R.string.activity_2),
+            this.getString(R.string.activity_3), this.getString(R.string.activity_4), this.getString(R.string.activity_5)};
+    ArrayAdapter<String> adapter_act = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, act_table);
+    activity_list.setAdapter(adapter_act);
 
+
+    activity_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
+        @Override
+
+        public void onItemSelected(AdapterView<?> arg0, View arg1, int id, long position) {
+
+
+            switch ((int) position) {
+                case 0:
+                    pal = 1.2;
+                    break;
+                case 1:
+                    pal = 1.375;
+                    break;
+
+                case 2:
+                    pal = 1.55;
+                    break;
+
+                case 3:
+                    pal = 1.725;
+                    break;
+
+                case 4:
+                    pal = 1.9;
+                    break;
+
+
+            }
+
+        }
+
+
+        @Override
+
+        public void onNothingSelected(AdapterView<?> adapterView) {
+
+
+        }
+
+
+    });
+}
     @Override
     public void onDetach() {
         super.onDetach();
