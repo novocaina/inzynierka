@@ -9,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.daasuu.bl.BubbleLayout;
 import com.daasuu.bl.BubblePopupHelper;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -43,6 +46,21 @@ public class FatLevelFragment extends Fragment {
 
     PopupWindow popupWindow;
     BubbleLayout bubbleLayout;
+    @BindView(R.id.man)
+    RadioButton man_btn;
+    @BindView(R.id.woman)
+    RadioButton woman_btn;
+    @BindView(R.id.your_whr_txt)
+    TextView whrTitle;
+    @BindView(R.id.whr_txt)
+    TextView whrTxt;
+    @BindView(R.id.type_txt)
+    TextView whrType;
+    @BindView(R.id.your_bf_txt)
+    TextView bfTitle;
+    @BindView(R.id.bf_txt)
+    TextView bfTxt;
+
     @OnClick(R.id.info_draw)
     void onDrawableClick(View view){
         int[] location = new int[2];
@@ -70,11 +88,12 @@ public class FatLevelFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_bmi, container, false);
+        View view = inflater.inflate(R.layout.fragment_fat_level, container, false);
         ButterKnife.bind(this, view);
         bubbleLayout = (BubbleLayout) LayoutInflater.from(getContext()).inflate(R.layout.sample_popup_layout, null);
         popupWindow = BubblePopupHelper.create(getContext(), bubbleLayout);
-
+        TextView popupTxt=bubbleLayout.findViewById(R.id.popupText);
+popupTxt.setText(getString(R.string.fat_popup));
         return view;
     }
 
@@ -107,5 +126,15 @@ public class FatLevelFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+    public double calcWHR(double waist, double hips){
+        double WHR=waist/hips;
+        if((woman_btn.isChecked() && WHR>0.88)||(man_btn.isChecked()&&WHR>1)){
+whrType.setText(R.string.androidal);
+        }
+        else{
+            whrType.setText(R.string.gynoidal);
+        }
+        return WHR;
     }
 }

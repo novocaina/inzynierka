@@ -141,4 +141,23 @@
     <string name="add_point">Dodaj punkt </string>
     <string name="parameters_label">Twoje parametry</string>
     <string name="add_point_success">Dodano punkt do wykresu</string>
+    <string name="fat_popup">WHR (Waist to Hip Ratio) - wskaźnik umożliwiający określenie typu otyłości i rozmieszczenia tkanki tłuszczowej, oznaczający stosunek obwodu talii do obwodu bioder. Wartość WHR powyżej 0,88 u kobiet i 1 u mężczyzn oznacza androidalny lub brzuszny typ otyłości. Poniżej określa gynoidalny typ.
+    Procentowa zawartość tkanki tłuszczowej obliczona jest na podstawie pomiarow fałdów skórnych tłuszczowych w różnych okolicach ciała. Najlepszy do tego celu jest fałdomierz, można wykorzystać też linijkę.</string>
+<string name="waist_measure">Obwód talii</string>
+    <string name="waist_add">Podaj obwód talii [cm]</string>
+    <string name="hips_measure">Obwód bioder</string>
+    <string name="hips_add">Podaj obwód bioder [cm]</string>
+    <string name="chest_add">Pomiar fałdu na klatce [mm]</string>
+    <string name="navel_add">Pomiar fałdu w okolicach pępka [mm]</string>
+    <string name="thigh_add">Pomiar fałdu na udzie [mm]</string>
+    <string name="triceps_add">Pomiar fałdu na tricepsie [mm]</string>
+    <string name="hip_add">Pomiar fałdu na biodrze [mm]</string>
+    <string name="fat_measure">Inne pomiary</string>
+    <string name="fat_calc">Procentowa zawartość tkanki tłuszczowej</string>
+    <string name="WHR">WHR</string>
+    <string name="androidal">Typ androidalny</string>
+    <string name="gynoidal">Typ gynoidalny</string>
+    <string name="calc">Obliczy</string>
+
+
 </resources>

@@ -15,92 +15,8 @@
             android:id="@+id/info_draw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_info_black_24dp"
+            android:drawableStart="@drawable/ic_info_black_24dp"
             />
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/height"
-            android:textAllCaps="true"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-
-        <EditText
-            android:id="@+id/heightcpm_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@android:drawable/editbox_background"
-            android:drawableStart="@drawable/icons8_length_24"
-            android:ems="10"
-            android:hint="@string/give_height"
-            android:inputType="number|numberDecimal"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_dark"
-            android:textSize="20sp" />
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center_horizontal"
-            android:text="@string/weight"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textAllCaps="true"/>
-
-        <EditText
-            android:id="@+id/weightcpm_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@android:drawable/editbox_background"
-            android:drawableStart="@drawable/icons8_scale_24"
-            android:ems="10"
-            android:hint="@string/give_weight"
-            android:inputType="number|numberDecimal"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_dark"
-            android:textSize="20sp" />
-
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30sp"
-            android:text="@string/age"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textAllCaps="true"
-            android:gravity="center"/>
-
-
-        <EditText
-            android:id="@+id/age_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@android:drawable/editbox_background"
-            android:drawableStart="@drawable/icons8_user"
-            android:ems="10"
-            android:hint="@string/give_age"
-            android:inputType="number|numberDecimal"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_dark"
-            android:textSize="20sp" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,7 +27,6 @@
             android:textStyle="bold"
             android:textAllCaps="true"
             android:gravity="center"/>
-
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -140,60 +55,168 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30sp"
-            android:text="@string/select_activity"
+            android:gravity="center_horizontal"
+            android:text="@string/waist_measure"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/waist_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/editbox_background"
+            android:drawableStart="@drawable/icons8_length_24"
+            android:ems="10"
+            android:hint="@string/waist_add"
+            android:inputType="number|numberDecimal"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:text="@string/hips_measure"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textAllCaps="true"
-            android:gravity="center"/>
+            android:textAllCaps="true"/>
 
-
-        <RelativeLayout
+        <EditText
+            android:id="@+id/hip_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/editbox_background"
+            android:drawableStart="@drawable/icons8_length_24"
+            android:ems="10"
+            android:hint="@string/hips_add"
+            android:inputType="number|numberDecimal"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
 
-            <Spinner
-                android:id="@+id/activity_list"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:background="@android:drawable/editbox_background"
-                android:gravity="center"
-                android:spinnerMode="dropdown" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_arrow_drop_down_black_24dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:text="@string/fat_measure"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
 
-        </RelativeLayout>
+        <EditText
+            android:id="@+id/measure1_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/editbox_background"
+            android:drawableStart="@drawable/icons8_length_24"
+            android:ems="10"
+            android:hint="@string/triceps_add"
+            android:inputType="number|numberDecimal"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
+
+
+        <EditText
+            android:id="@+id/measure2_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/editbox_background"
+            android:drawableStart="@drawable/icons8_length_24"
+            android:ems="10"
+            android:hint="@string/thigh_add"
+            android:inputType="number|numberDecimal"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/measure3_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/editbox_background"
+            android:drawableStart="@drawable/icons8_length_24"
+            android:ems="10"
+            android:hint="@string/hip_add"
+            android:inputType="number|numberDecimal"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
+
+
+
 
 
         <Button
-            android:id="@+id/cpm_btn"
+            android:id="@+id/fat_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:backgroundTint="@color/colorPrimaryDark"
             android:ems="8"
-            android:text="@string/calc_cpm"
+            android:text="@string/calc"
             android:textSize="25sp"
             android:textStyle="bold"
             android:layout_gravity="center"/>
 
 
         <TextView
-            android:id="@+id/your_cpm_txt"
+        android:id="@+id/your_whr_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30sp"
+        android:text="@string/WHR"
+        android:textAlignment="center"
+        android:textColor="#37474F"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+
+        <TextView
+            android:id="@+id/whr_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20sp"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/type_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20sp"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/your_bf_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"
-            android:text="@string/day_cal"
+            android:text="@string/fat_calc"
             android:textAlignment="center"
             android:textColor="#37474F"
             android:textSize="25sp"
@@ -202,7 +225,7 @@
 
 
         <TextView
-            android:id="@+id/cpm_txt"
+            android:id="@+id/bf_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -210,7 +233,6 @@
             android:textColor="@android:color/black"
             android:textSize="30sp"
             android:textStyle="bold" />
-
 
     </LinearLayout>
 </ScrollView>
