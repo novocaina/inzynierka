@@ -95,7 +95,7 @@
     <string name="calories">Kalorie: </string>
     <string name="proteins">Białko: </string>
     <string name="fat">Tłuszcz: </string>
-    <string name="carbohydrates">Węglowodany</string>
+    <string name="carbohydrates">Węglowodany:</string>
     <string name="portions">Ilość porcji: </string>
     <string name="edit_data">Edytuj dane</string>
     <string name="elimination">Zaznacz składniki, które chcesz wykluczyć z jadłospisu (opcjonalne)</string>
@@ -148,7 +148,7 @@
     <string name="hips_measure">Obwód bioder</string>
     <string name="hips_add">Podaj obwód bioder [cm]</string>
     <string name="chest_add">Pomiar fałdu na klatce [mm]</string>
-    <string name="navel_add">Pomiar fałdu w okolicach pępka [mm]</string>
+    <string name="navel_add">Pomiar fałdu przy pępku [mm]</string>
     <string name="thigh_add">Pomiar fałdu na udzie [mm]</string>
     <string name="triceps_add">Pomiar fałdu na tricepsie [mm]</string>
     <string name="hip_add">Pomiar fałdu na biodrze [mm]</string>
@@ -157,7 +157,8 @@
     <string name="WHR">WHR</string>
     <string name="androidal">Typ androidalny</string>
     <string name="gynoidal">Typ gynoidalny</string>
-    <string name="calc">Obliczy</string>
-
-
+    <string name="calc">Oblicz</string>
+<string name="bmi_popup">Body Mass Index (BMI)- wskażnik masy ciała. obliczany jako stosunek masy ciała do kwadratu wysokości. Jest wskazany przez WHO do oceny stanu odżywienia energetyczno-białkowego.</string>
+    <string name="cpm_popup">Całkowita przemiana materii (CPM)- całodniowe wydatki energetyczne człowieka, związane  z jego normalnym funkcjonowaniem i pracą zawodową. Uwzględnia podstawową przemianę materii, czyli ilośc energii niezbędnej do zachowania podstawowych funkcji życiowych oraz współczynnik aktywności fizycznej.</string>
+<string name="warning_data_fat">Upewnij się, że podałaś/podałeś wszystkie dane potrzebne do obliczenia parametrów!</string>
 </resources>

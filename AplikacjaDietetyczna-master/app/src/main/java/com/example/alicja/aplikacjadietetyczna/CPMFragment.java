@@ -1,5 +1,6 @@
 package com.example.alicja.aplikacjadietetyczna;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 import com.daasuu.bl.BubbleLayout;
 import com.daasuu.bl.BubblePopupHelper;
 import com.example.alicja.aplikacjadietetyczna.Objects.CPM;
+
+import java.text.DecimalFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,9 +64,21 @@ public class CPMFragment extends Fragment {
     RadioButton man_radio;
     @BindView(R.id.woman)
     RadioButton woman_radio;
-
+    @BindView(R.id.proteins_txt)
+    TextView proteins_txt;
+    @BindView(R.id.your_proteins_txt)
+    TextView your_proteins_txt;
+    @BindView(R.id.fat_txt)
+    TextView fat_txt;
+    @BindView(R.id.your_fat_txt)
+    TextView your_fat_txt;
+    @BindView(R.id.carbohydrates_txt)
+    TextView carbohydrates_txt;
+    @BindView(R.id.your_carbohydrates_txt)
+    TextView your_carbohydrates_txt;
     String sex;
-    double pal;
+    double pal,weight,height;
+    int age;
 
     PopupWindow popupWindow;
     BubbleLayout bubbleLayout;
@@ -87,39 +102,47 @@ public class CPMFragment extends Fragment {
         } else if (Double.parseDouble(weightStr) <= 0 || Double.parseDouble(weightStr) <= 0 || Integer.parseInt(ageStr) <= 0) {
             Toast.makeText(getActivity(), this.getString(R.string.value_str), Toast.LENGTH_LONG).show();
         } else {
-            double weight = Double.parseDouble(weightStr);
-            double height = Double.parseDouble(heightStr);
-            int age = Integer.parseInt(ageStr);
-            if(woman_radio.isChecked()){
-                sex="k";
-            }
-            else{
-                sex="m";
-            }
-            your_cpm_txt.setVisibility(View.VISIBLE);
-            CPM newCPM = new CPM();
-            double cpm = newCPM.Count_CPM(weight, height, age, sex, pal);
-            String cpmStr = String.format("%.2f", cpm);
-            cpm_txt.setText(cpmStr);
-
+             weight = Double.parseDouble(weightStr);
+           height = Double.parseDouble(heightStr);
+             age = Integer.parseInt(ageStr);
+setValues();
         }
 
 
     }
 
+
+    private void setValues(){
+
+    if(woman_radio.isChecked()){
+        sex="k";
+    }
+    else{
+        sex="m";
+    }
+    your_cpm_txt.setVisibility(View.VISIBLE);
+    your_carbohydrates_txt.setVisibility(View.VISIBLE);
+    your_fat_txt.setVisibility(View.VISIBLE);
+    your_proteins_txt.setVisibility(View.VISIBLE);
+    CPM newCPM = new CPM();
+    double cpm = newCPM.Count_CPM(weight, height, age, sex, pal);
+    @SuppressLint("DefaultLocale") String cpmStr = String.format("%.2f", cpm);
+    double proteinsMin = Math.round(CPM.ProteinsMinCalculate(cpm));
+    double proteinsMax = Math.round(CPM.ProteinsMaxCalculate(cpm));
+    double fatsMin = Math.round(CPM.FatsMinCalculate(cpm));
+    double fatsMax = Math.round(CPM.FatsMaxCalculate(cpm));
+    double carbohydratesMin =Math.round( CPM.CarbohydratesMinCalculate(cpm));
+    double carbohydratesMax = Math.round(CPM.CarbohydratesMaxCalculate(cpm));
+    cpm_txt.setText(cpmStr);
+    proteins_txt.setText(String.format("%s-%sg", proteinsMin, proteinsMax));
+    fat_txt.setText(String.format("%s-%sg", fatsMin, fatsMax));
+    carbohydrates_txt.setText(String.format("%s-%sg", carbohydratesMin, carbohydratesMax));
+}
     public CPMFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CPMFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static CPMFragment newInstance(String param1, String param2) {
         CPMFragment fragment = new CPMFragment();
         Bundle args = new Bundle();
@@ -146,8 +169,10 @@ public class CPMFragment extends Fragment {
         initSpinner();
         bubbleLayout = (BubbleLayout) LayoutInflater.from(getContext()).inflate(R.layout.sample_popup_layout, null);
         popupWindow = BubblePopupHelper.create(getContext(), bubbleLayout);
-
+        TextView popupTxt=bubbleLayout.findViewById(R.id.popupText);
+        popupTxt.setText(getString(R.string.cpm_popup));
         return view;
+
 
     }
 

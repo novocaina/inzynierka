@@ -66,4 +66,23 @@ public class CPM {
         return CPM;
     }
 
+    public static double ProteinsMinCalculate(double cpm) {
+        return (cpm * 0.1) / 4;
+    }
+    public static double ProteinsMaxCalculate(double cpm) {
+        return (cpm * 0.2) / 4;
+    }
+    public static double FatsMinCalculate(double cpm) {
+        return (cpm * 0.2) / 9;
+    }
+    public static double FatsMaxCalculate(double cpm) {
+        return (cpm * 0.35) / 9;
+    }
+    public static double CarbohydratesMinCalculate(double cpm) {
+        return (cpm * 0.45) / 4;
+    }
+    public static double CarbohydratesMaxCalculate(double cpm) {
+        return (cpm * 0.65) / 4;
+    }
+
 }

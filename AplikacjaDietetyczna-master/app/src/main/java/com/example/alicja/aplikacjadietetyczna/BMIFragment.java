@@ -150,6 +150,8 @@ PopupWindow popupWindow;
         ButterKnife.bind(this, view);
         bubbleLayout = (BubbleLayout) LayoutInflater.from(getContext()).inflate(R.layout.sample_popup_layout, null);
         popupWindow = BubblePopupHelper.create(getContext(), bubbleLayout);
+        TextView popupTxt=bubbleLayout.findViewById(R.id.popupText);
+        popupTxt.setText(getString(R.string.bmi_popup));
 
         return view;
     }

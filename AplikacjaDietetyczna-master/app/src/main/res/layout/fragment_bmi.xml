@@ -91,7 +91,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:text="Twoje BMI"
-            android:textColor="#37474F"
+            android:textColor="@android:color/black"
             android:textSize="25sp"
             android:textStyle="bold"
             android:visibility="invisible" />
