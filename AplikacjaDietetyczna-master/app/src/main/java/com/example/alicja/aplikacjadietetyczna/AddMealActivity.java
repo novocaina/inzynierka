@@ -1,7 +1,12 @@
 package com.example.alicja.aplikacjadietetyczna;
 
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
@@ -21,7 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AddMealActivity extends AppCompatActivity {
-
+    private ActionBarDrawerToggle toggle;
     @BindView(R.id.name_edit)
     EditText name_text;
     @BindView(R.id.ingredients_edit)
@@ -46,32 +51,34 @@ public class AddMealActivity extends AppCompatActivity {
     RadioButton r_none;
     @BindView(R.id.radio_vege)
     RadioButton r_vege;
-    String meal,kind;
-    @OnClick(R.id.add_btn)
+    @BindView(R.id.drawer_main)
+    DrawerLayout drawerLayout;
+    @BindView(R.id.navigationView)
+    NavigationView navigationView;
+    String meal, kind;
 
+    @OnClick(R.id.add_btn)
     void OnClick() {
-        String name=name_text.getText().toString();
-        String ingredients=ingredients_text.getText().toString();
-        String recipe=recipe_text.getText().toString();
-        String url=url_text.getText().toString();
-        String portions=portions_text.getText().toString();
-        if(name.isEmpty()||calories_text.getText().toString().isEmpty()||ingredients.isEmpty()||recipe.isEmpty()||url.isEmpty()||proteins_text.getText().toString().isEmpty()||carbohydrates_text.getText().toString().isEmpty()||fat_text.getText().toString().isEmpty()||portions.isEmpty())
-        {
+        String name = name_text.getText().toString();
+        String ingredients = ingredients_text.getText().toString();
+        String recipe = recipe_text.getText().toString();
+        String url = url_text.getText().toString();
+        String portions = portions_text.getText().toString();
+        if (name.isEmpty() || calories_text.getText().toString().isEmpty() || ingredients.isEmpty() || recipe.isEmpty() || url.isEmpty() || proteins_text.getText().toString().isEmpty() || carbohydrates_text.getText().toString().isEmpty() || fat_text.getText().toString().isEmpty() || portions.isEmpty()) {
             Toast.makeText(AddMealActivity.this, this.getString(R.string.warning_data), Toast.LENGTH_LONG).show();
-        }
-        else{
-            if(r_none.isChecked()){
-                kind="n";
+        } else {
+            if (r_none.isChecked()) {
+                kind = "n";
             }
-            if(r_vege.isChecked()){
-                kind="w";
+            if (r_vege.isChecked()) {
+                kind = "w";
             }
-            double calories=Double.parseDouble(calories_text.getText().toString());
-            double proteins=Double.parseDouble(proteins_text.getText().toString());
-            double carbo=Double.parseDouble(carbohydrates_text.getText().toString());
-            double fat=Double.parseDouble(fat_text.getText().toString());
-            DatabaseHelper db=new DatabaseHelper(this);
-            db.insertUserMeal(new DailyMeal( name,  ingredients,  meal,  kind,  portions,  recipe,  url,  calories,  proteins,  carbo,  fat, getResources().getString(R.string.url_image)));
+            double calories = Double.parseDouble(calories_text.getText().toString());
+            double proteins = Double.parseDouble(proteins_text.getText().toString());
+            double carbo = Double.parseDouble(carbohydrates_text.getText().toString());
+            double fat = Double.parseDouble(fat_text.getText().toString());
+            DatabaseHelper db = new DatabaseHelper(this);
+            db.insertUserMeal(new DailyMeal(name, ingredients, meal, kind, portions, recipe, url, calories, proteins, carbo, fat, getResources().getString(R.string.url_image)));
         }
     }
 
@@ -80,6 +87,11 @@ public class AddMealActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meal);
         ButterKnife.bind(this);
+        setSpinner();
+        setDrawerMenu();
+    }
+
+    private void setSpinner() {
         String[] type_table = {this.getString(R.string.breakfast), this.getString(R.string.second_breakfast),
                 this.getString(R.string.dinner), this.getString(R.string.dessert), this.getString(R.string.supper)};
         ArrayAdapter<String> adapter_type = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, type_table);
@@ -113,6 +125,33 @@ public class AddMealActivity extends AppCompatActivity {
 
             }
 
+        });
+    }
+
+    private void setDrawerMenu() {
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setDrawerContent(navigationView);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void setDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                DrawerMenu.selectedItemDrawer(item, AddMealActivity.this, drawerLayout);
+                return true;
+            }
         });
     }
 }

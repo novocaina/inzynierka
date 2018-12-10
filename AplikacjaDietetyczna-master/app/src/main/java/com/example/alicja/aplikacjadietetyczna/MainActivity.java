@@ -14,11 +14,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle toggle;
     @BindView(R.id.drawer_main)
     DrawerLayout drawerLayout;
@@ -33,13 +32,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        navigationView.setNavigationItemSelectedListener(this);
-        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setDrawerMenu();
         setSingleEvent(linearLayout);
-
 
     }
 
@@ -88,6 +82,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    private void setDrawerMenu() {
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setDrawerContent(navigationView);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (toggle.onOptionsItemSelected(item)) {
@@ -96,43 +99,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.nav_stat:
-                startActivity(new Intent(MainActivity.this, StatisticsActivity.class));
-                drawerLayout.closeDrawers();
+    private void setDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                DrawerMenu.selectedItemDrawer(item, MainActivity.this, drawerLayout);
                 return true;
-            case R.id.nav_param:
-                startActivity(new Intent(MainActivity.this, ParametersActivity.class));
-                drawerLayout.closeDrawers();
-                return true;
-            case R.id.nav_list:
-                startActivity(new Intent(MainActivity.this, FoodListActivity.class));
-                drawerLayout.closeDrawers();
-                return true;
-            case R.id.nav_map:
-                startActivity(new Intent(MainActivity.this, CateringActivity.class));
-                drawerLayout.closeDrawers();
-                return true;
-            case R.id.nav_add:
-                startActivity(new Intent(MainActivity.this, AddMealActivity.class));
-                drawerLayout.closeDrawers();
-                return true;
-            case R.id.nav_data:
-                startActivity(new Intent(MainActivity.this, DietInfoActivity.class));
-                drawerLayout.closeDrawers();
-                return true;
-            case R.id.nav_diet:
-                startActivity(new Intent(MainActivity.this, DietPlanActivity.class));
-                drawerLayout.closeDrawers();
-                return true;
-            case R.id.nav_settings:
-                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-                drawerLayout.closeDrawers();
-                return true;
-        }
-        return false;
+            }
+        });
     }
 }

@@ -40,11 +40,11 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-            PicassoTrustAll.getInstance(context)
-                    .load(listMeals.get(position).getImageUrl())
-                    .fit()
-                    .centerCrop()
-                    .into(holder.meal_image);
+        PicassoTrustAll.getInstance(context)
+                .load(listMeals.get(position).getImageUrl())
+                .fit()
+                .centerCrop()
+                .into(holder.meal_image);
 
         holder.m_title.setText(listMeals.get(position).getName());
         holder.m_portion.setText(listMeals.get(position).getPortions());
@@ -54,7 +54,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
         holder.fat_text.setText(String.valueOf(listMeals.get(position).getFat()));
         holder.ingredient_txt.setText(listMeals.get(position).getIngredients());
         holder.recipes_txt.setText(listMeals.get(position).getPrepare());
-
+        holder.url_txt.setText(listMeals.get(position).getUrl());
 
     }
 
@@ -83,6 +83,8 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
         TextView recipes_txt;
         @BindView(R.id.meal_img)
         ImageView meal_image;
+        @BindView(R.id.url_txt)
+        TextView url_txt;
 
         private ViewHolder(View itemView) {
             super(itemView);

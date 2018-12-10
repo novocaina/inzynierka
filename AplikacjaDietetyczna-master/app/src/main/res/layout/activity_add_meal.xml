@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_main"
+    android:background="#F0F4C3"
+    android:orientation="vertical"
+    android:weightSum="10"
     tools:context=".AddMealActivity">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -154,7 +162,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/write_url"
+            android:text="@string/url"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -230,7 +238,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/carbohydrates"
+                android:text="@string/carbohydrates_add"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -314,4 +322,16 @@
             android:textSize="25sp"
             android:textStyle="bold" />
     </LinearLayout>
+
 </ScrollView>
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/grey"
+        app:itemTextColor="@color/darkgrey"
+        app:itemIconTint="@color/darkgrey"
+        app:menu="@menu/drawer_view"
+        android:layout_gravity="start"
+        />
+</android.support.v4.widget.DrawerLayout>
