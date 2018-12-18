@@ -266,6 +266,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(DailyMeal.MEAL_NAME, meal.getName());
+        values.put(DailyMeal.MEAL_KIND, meal.getKind());
+        values.put(DailyMeal.MEAL_TYPE, meal.getType());
         values.put(DailyMeal.MEAL_CALORIES, meal.getCalories());
         values.put(DailyMeal.MEAL_PROTEINS, meal.getProteins());
         values.put(DailyMeal.MEAL_CARBOHYDRATES, meal.getCarbohydrates());
