@@ -79,6 +79,7 @@ public class AddMealActivity extends AppCompatActivity {
             double fat = Double.parseDouble(fat_text.getText().toString());
             DatabaseHelper db = new DatabaseHelper(this);
             db.insertUserMeal(new DailyMeal(name, ingredients, meal, kind, portions, recipe, url, calories, proteins, carbo, fat, getResources().getString(R.string.url_image)));
+            Toast.makeText(this, this.getString(R.string.success), Toast.LENGTH_LONG).show();
         }
     }
 
