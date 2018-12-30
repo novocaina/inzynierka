@@ -54,14 +54,30 @@
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
-    <Spinner
-        android:id="@+id/day_list"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80sp"
-        android:layout_marginRight="80sp"
-        android:backgroundTint="@android:color/black"
-        android:textAlignment="center" />
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/day_list"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:background="@android:drawable/editbox_background"
+            android:gravity="center"
+            android:spinnerMode="dropdown" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_arrow_drop_down_black_24dp" />
+
+    </RelativeLayout>
     <Button
         android:id="@+id/btn_change_day"
         android:layout_width="wrap_content"

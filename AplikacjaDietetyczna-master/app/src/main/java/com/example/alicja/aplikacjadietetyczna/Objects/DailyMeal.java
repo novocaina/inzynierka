@@ -164,6 +164,8 @@ public class DailyMeal implements Serializable {
     public static final String TABLE4 = "userMeal";
     public static final String MEAL_ID = "id";
     public  static final String MEAL_NAME = "name";
+    public  static final String MEAL_KIND = "kind";
+    public  static final String MEAL_TYPE = "type";
     public  static final String MEAL_CALORIES = "calories";
     public static final String MEAL_PROTEINS = "proteins";
     public static final String MEAL_CARBOHYDRATES = "carbohydrates";
@@ -177,6 +179,8 @@ public class DailyMeal implements Serializable {
             "CREATE TABLE IF NOT EXISTS " + TABLE4 + " ( " +
                     MEAL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     MEAL_NAME + " TEXT, " +
+                    MEAL_KIND + " TEXT, " +
+                    MEAL_TYPE + " TEXT, " +
                     MEAL_CALORIES + " NUMBER, " +
                     MEAL_PROTEINS + " NUMBER, " +
                     MEAL_CARBOHYDRATES + " NUMBER, " +

@@ -15,7 +15,7 @@
     <string name="day_cal">Dzienne spożycie kalorii wynosi</string>
     <string name="diet_details">Plan diety</string>
     <string name="shop_list">Lista zakupów</string>
-    <string name="catering">Catering</string>
+    <string name="caterings">Catering</string>
     <string name="warning_data">Podaj wszystkie dane!</string>
     <string name="value_str">Wartość musi byc większa od 0!</string>
     <string name="starvation">wygłodzenie</string>
@@ -76,12 +76,12 @@
     <string name="list">Lista zakupów</string>
     <string name="add_food">Dodaj posiłek</string>
     <string name="maps">Mapa</string>
-    <string name="stat">Dziennik postepów</string>
+    <string name="stat">Dziennik postępów</string>
     <string name="drawer_open">Otwórz</string>
     <string name="drawer_close">Zamknij</string>
     <string name="parameters_title">Oblicz swoje parametry</string>
     <string name="date_picker">Wybierz datę</string>
-    <string name="maps_alert">Wykorzystano limit użycia darmowego API - spróbuj ponownie jutro!</string>
+    <string name="maps_alert">Wykorzystano limit użycia darmowego API - spróbuj ponownie jutro! Aby załadować znaczniki na mapie możesz także odczekać kilkanaście sekund.</string>
     <string name="list_info">Naciśnij przycisk na dole, aby dodać produkty do listy</string>
     <string name="see_recipe">Zobacz przepis</string>
     <string name="change_recipe">Zmień jadłospis</string>
@@ -174,4 +174,6 @@ Jeżeli nie spełniasz któregoś z kryteriów, bardzo proszę o skonsultowanie 
     <string name="close_window">Zamknij</string>
     <string name="app_requirements">Ograniczenia aplikacji</string>
     <string name="reduction_alert">Twoje BMI wskazuje poniżej 17. Sugerowany cel diety to przybranie na wadze (masa).</string>
+    <string name="restaurant">Restauracja</string>
+    <string name="supermarket">Supermarket</string>
 </resources>
