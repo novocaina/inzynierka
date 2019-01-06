@@ -9,16 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.alicja.aplikacjadietetyczna.Objects.DailyMeal;
 import com.example.alicja.aplikacjadietetyczna.Objects.User;
 import com.example.alicja.aplikacjadietetyczna.Objects.XYValue;
-import com.google.android.gms.games.leaderboard.LeaderboardVariant;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 
-/**
- * Created by Alicja on 2018-06-10.
- */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private final static String DB_NAME = "DataList";

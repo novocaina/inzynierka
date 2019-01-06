@@ -5,7 +5,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +18,6 @@ import android.widget.Toast;
 
 import com.daasuu.bl.BubbleLayout;
 import com.daasuu.bl.BubblePopupHelper;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,8 +48,8 @@ public class FatLevelFragment extends Fragment {
         // Required empty public constructor
     }
 
-    PopupWindow popupWindow;
-    BubbleLayout bubbleLayout;
+    private PopupWindow popupWindow;
+    private BubbleLayout bubbleLayout;
     @BindView(R.id.radioGroup)
     RadioGroup radioGroup;
     @BindView(R.id.man)
@@ -87,17 +84,22 @@ public class FatLevelFragment extends Fragment {
     void onClick() {
         whrTitle.setVisibility(View.VISIBLE);
         bfTitle.setVisibility(View.VISIBLE);
-        whrTxt.setText("0");
-        bfTxt.setText("0");
-        if (ageTxt.getText().toString().isEmpty() || waistTxt.getText().toString().isEmpty() || hipTxt.getText().toString().isEmpty() || measure1Txt.getText().toString().isEmpty() || measure2Txt.getText().toString().isEmpty() || measure3Txt.getText().toString().isEmpty()) {
-            Toast.makeText(getActivity(), this.getString(R.string.warning_data_fat), Toast.LENGTH_LONG).show();
-        } else {
-            double age = Double.parseDouble(ageTxt.getText().toString());
-            double waist = Double.parseDouble(waistTxt.getText().toString());
-            double hips = Double.parseDouble(hipTxt.getText().toString());
-            double sum = Double.parseDouble(measure1Txt.getText().toString()) + Double.parseDouble(measure2Txt.getText().toString()) + Double.parseDouble(measure3Txt.getText().toString());
-            whrTxt.setText(String.valueOf( String.format("%.2f",CalculateWHR(waist,hips))));
-            bfTxt.setText(String.valueOf(CalculateBF(sum,age)));
+         if(ageTxt.getText().toString().isEmpty()  & measure1Txt.getText().toString().isEmpty() & measure2Txt.getText().toString().isEmpty() & measure3Txt.getText().toString().isEmpty()){
+             bfTxt.setText("0");
+             whrTxt.setText("0");
+             Toast.makeText(getActivity(), this.getString(R.string.warning_data_fat), Toast.LENGTH_LONG).show();
+        }
+        if (!(ageTxt.getText().toString().isEmpty())  & !(measure1Txt.getText().toString().isEmpty()) & !(measure2Txt.getText().toString().isEmpty()) & !(measure3Txt.getText().toString().isEmpty())) {
+
+             whrTxt.setText("0");
+             double age = Double.parseDouble(ageTxt.getText().toString());
+             double sum = Double.parseDouble(measure1Txt.getText().toString()) + Double.parseDouble(measure2Txt.getText().toString()) + Double.parseDouble(measure3Txt.getText().toString());
+             bfTxt.setText(String.valueOf(CalculateBF(sum,age)));
+        }  if( !(waistTxt.getText().toString().isEmpty()) & !(hipTxt.getText().toString().isEmpty())){
+             bfTxt.setText("0");
+             double waist = Double.parseDouble(waistTxt.getText().toString());
+             double hips = Double.parseDouble(hipTxt.getText().toString());
+             whrTxt.setText(String.valueOf( String.format("%.2f",CalculateWHR(waist,hips))));
         }
     }
 
@@ -159,7 +161,7 @@ private void setPopup(){
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction();
         }
     }
 
@@ -183,7 +185,7 @@ private void setPopup(){
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction();
     }
 
     private double CalculateWHR(double waist, double hips) {

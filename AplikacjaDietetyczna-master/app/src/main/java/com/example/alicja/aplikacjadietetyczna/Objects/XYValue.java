@@ -1,8 +1,5 @@
 package com.example.alicja.aplikacjadietetyczna.Objects;
 
-import android.graphics.Color;
-import android.widget.TextView;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;

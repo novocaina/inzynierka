@@ -16,9 +16,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class XYValueAdapter extends RecyclerView.Adapter<XYValueAdapter.ViewHolder> {
-    ArrayList<XYValue> xyValues;
-    Context context;
-    XYValue xyValue=new XYValue();
+    private ArrayList<XYValue> xyValues;
+    private Context context;
+    private XYValue xyValue=new XYValue();
     public XYValueAdapter(ArrayList<XYValue> list, Context context) {
         this.xyValues = list;
         this.context = context;
@@ -52,7 +52,7 @@ public class XYValueAdapter extends RecyclerView.Adapter<XYValueAdapter.ViewHold
         @BindView(R.id.text_progress)
         TextView progress_txt;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

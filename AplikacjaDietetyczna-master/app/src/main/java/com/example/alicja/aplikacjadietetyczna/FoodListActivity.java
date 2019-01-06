@@ -28,8 +28,8 @@ public class FoodListActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     @BindView(R.id.navigationView)
     NavigationView navigationView;
-    DatabaseHelper listHelper;
-    ArrayAdapter<String> adapter;
+    private DatabaseHelper listHelper;
+    private ArrayAdapter<String> adapter;
     @BindView(R.id.shop_list)
     ListView listItemView;
     @BindView(R.id.floating_action_button)

@@ -1,6 +1,5 @@
 package com.example.alicja.aplikacjadietetyczna;
 
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -92,7 +91,7 @@ public class ParametersActivity extends AppCompatActivity implements BMIFragment
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onFragmentInteraction() {
 
     }
 }

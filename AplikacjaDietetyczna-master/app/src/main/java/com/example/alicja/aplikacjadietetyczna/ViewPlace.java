@@ -11,21 +11,19 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.alicja.aplikacjadietetyczna.Model.Photos;
 import com.example.alicja.aplikacjadietetyczna.Model.PlaceDetails;
 import com.example.alicja.aplikacjadietetyczna.Remote.IGoogleAPIService;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ViewPlace extends AppCompatActivity {
-    IGoogleAPIService mService;
-    PlaceDetails myPlace;
+    private IGoogleAPIService mService;
+    private PlaceDetails myPlace;
     @BindView(R.id.ratingBar)
     RatingBar ratingBar;
     @BindView(R.id.place_open)
@@ -34,7 +32,7 @@ public class ViewPlace extends AppCompatActivity {
     TextView place_address;
     @BindView(R.id.place_name)
     TextView place_name;
-    Button showOnMap;
+    private Button showOnMap;
     @BindView(R.id.photo)
     ImageView photo;
 
@@ -45,7 +43,7 @@ public class ViewPlace extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mService = Common.getGoogleAPIService();
-        showOnMap = (Button) findViewById(R.id.btn_show_map);
+        showOnMap = findViewById(R.id.btn_show_map);
         place_address.setText("");
         place_name.setText("");
         opening_hours.setText("");
@@ -104,17 +102,14 @@ public class ViewPlace extends AppCompatActivity {
     }
 
     private String getPlaceDetailUrl(String place_id) {
-        StringBuilder url = new StringBuilder("https://maps.googleapis.com/maps/api/place/details/json");
-        url.append("?placeid=" + place_id);
-        url.append("&key=" + getResources().getString(R.string.browser_key));
-        return url.toString();
+        return "https://maps.googleapis.com/maps/api/place/details/json" + "?placeid=" + place_id +
+                "&key=" + getResources().getString(R.string.browser_key);
     }
 
     private String getPhotoOfPlace(String photo_reference, int maxWidth) {
-        StringBuilder url = new StringBuilder("https://maps.googleapis.com/maps/api/place/photo");
-        url.append("?maxwidth=" + maxWidth);
-        url.append("&photoreference=" + photo_reference);
-        url.append("&key=" + getResources().getString(R.string.browser_key));
-        return url.toString();
+        String url = "https://maps.googleapis.com/maps/api/place/photo" + "?maxwidth=" + maxWidth +
+                "&photoreference=" + photo_reference +
+                "&key=" + getResources().getString(R.string.browser_key);
+        return url;
     }
 }

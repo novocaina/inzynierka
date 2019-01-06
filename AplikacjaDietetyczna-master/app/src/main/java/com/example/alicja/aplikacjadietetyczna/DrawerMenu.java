@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
-public class DrawerMenu {
+class DrawerMenu {
 
     static void selectedItemDrawer(MenuItem menuItem, Context context, DrawerLayout drawerLayout) {
         Intent select;

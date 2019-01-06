@@ -19,9 +19,6 @@ import com.example.alicja.aplikacjadietetyczna.Objects.DailyMeal;
 import com.example.alicja.aplikacjadietetyczna.Objects.MyDiet;
 import com.example.alicja.aplikacjadietetyczna.Objects.User;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -29,10 +26,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SettingsActivity extends AppCompatActivity {
-    DatabaseHelper db;
-    ArrayList<DailyMeal> meals, oneDayDiet;
-    MyDiet myDiet;
-    User user;
+    private DatabaseHelper db;
+    private ArrayList<DailyMeal> meals;
+    private ArrayList<DailyMeal> oneDayDiet;
+    private MyDiet myDiet;
+    private User user;
     private ActionBarDrawerToggle toggle;
     @BindView(R.id.drawer_main)
     DrawerLayout drawerLayout;

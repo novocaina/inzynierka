@@ -17,10 +17,6 @@ import android.widget.Toast;
 
 import com.example.alicja.aplikacjadietetyczna.Objects.DailyMeal;
 
-import org.json.JSONException;
-
-import java.io.IOException;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -55,7 +51,8 @@ public class AddMealActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     @BindView(R.id.navigationView)
     NavigationView navigationView;
-    String meal, kind;
+    private String meal;
+    private String kind;
 
     @OnClick(R.id.add_btn)
     void OnClick() {
@@ -78,7 +75,7 @@ public class AddMealActivity extends AppCompatActivity {
             double carbo = Double.parseDouble(carbohydrates_text.getText().toString());
             double fat = Double.parseDouble(fat_text.getText().toString());
             DatabaseHelper db = new DatabaseHelper(this);
-            db.insertUserMeal(new DailyMeal(name, ingredients, meal, kind, portions, recipe, url, calories, proteins, carbo, fat, getResources().getString(R.string.url_image)));
+            db.insertUserMeal(new DailyMeal(name, ingredients, meal, kind, portions, recipe, url, calories, proteins, carbo, fat, "https://firebasestorage.googleapis.com/v0/b/hallowed-ray-197220.appspot.com/o/images%2F800px-Good_Food_In_Dishes_-_NCI_Visuals_Online.jpg?alt=media&token=48fa6ca1-7973-4bff-9fde-f480ab760ad6"));
         }
     }
 

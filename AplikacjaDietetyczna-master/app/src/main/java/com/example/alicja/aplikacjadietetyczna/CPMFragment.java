@@ -22,8 +22,6 @@ import com.daasuu.bl.BubbleLayout;
 import com.daasuu.bl.BubblePopupHelper;
 import com.example.alicja.aplikacjadietetyczna.Objects.CPM;
 
-import java.text.DecimalFormat;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -48,9 +46,9 @@ public class CPMFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    @BindView(R.id.weightcpm_txt)
+    @BindView(R.id.weightCPM_txt)
     EditText weightCPM_txt;
-    @BindView(R.id.heightcpm_txt)
+    @BindView(R.id.heightCPM_txt)
     EditText heightCPM_txt;
     @BindView(R.id.age_txt)
     EditText age_txt;
@@ -76,12 +74,14 @@ public class CPMFragment extends Fragment {
     TextView carbohydrates_txt;
     @BindView(R.id.your_carbohydrates_txt)
     TextView your_carbohydrates_txt;
-    String sex;
-    double pal,weight,height;
-    int age;
+    private String sex;
+    private double pal;
+    private double weight;
+    private double height;
+    private int age;
 
-    PopupWindow popupWindow;
-    BubbleLayout bubbleLayout;
+    private PopupWindow popupWindow;
+    private BubbleLayout bubbleLayout;
     @OnClick(R.id.info_draw)
     void onDrawableClick(View view){
         int[] location = new int[2];
@@ -179,7 +179,7 @@ setValues();
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction();
         }
     }
 
@@ -193,7 +193,7 @@ setValues();
                     + " must implement OnFragmentInteractionListener");
         }
     }
-public void initSpinner(){
+private void initSpinner(){
     String[] act_table = {this.getString(R.string.activity_1), this.getString(R.string.activity_2),
             this.getString(R.string.activity_3), this.getString(R.string.activity_4), this.getString(R.string.activity_5)};
     ArrayAdapter<String> adapter_act = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, act_table);
@@ -213,19 +213,19 @@ public void initSpinner(){
                     pal = 1.2;
                     break;
                 case 1:
-                    pal = 1.375;
+                    pal = 1.4;
                     break;
 
                 case 2:
-                    pal = 1.55;
+                    pal = 1.6;
                     break;
 
                 case 3:
-                    pal = 1.725;
+                    pal = 1.8;
                     break;
 
                 case 4:
-                    pal = 1.9;
+                    pal = 2;
                     break;
 
 
@@ -253,6 +253,6 @@ public void initSpinner(){
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction();
     }
 }
