@@ -13,12 +13,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.daasuu.bl.ArrowDirection;
 import com.daasuu.bl.BubbleLayout;
 import com.daasuu.bl.BubblePopupHelper;
 import com.example.alicja.aplikacjadietetyczna.Objects.BMI;
-
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,7 +75,7 @@ public class BMIFragment extends Fragment {
     @BindView(R.id.bmi_info_txt)
     TextView bmi_info_txt;
 PopupWindow popupWindow;
-    BubbleLayout bubbleLayout;
+    private BubbleLayout bubbleLayout;
     @OnClick(R.id.info_draw)
     void onDrawableClick(View view){
         int[] location = new int[2];
@@ -114,11 +111,7 @@ PopupWindow popupWindow;
 
     public String BMI_text(double bmi) {
 
-        if (bmi < 16) {
-            return this.getString(R.string.starvation);
-        } else if (bmi >= 16 && bmi <= 16.99) {
-            return this.getString(R.string.emaciaton);
-        } else if (bmi >= 17 && bmi <= 18.49) {
+       if (bmi < 18.5) {
             return this.getString(R.string.low_weight);
         } else if (bmi >= 18.5 && bmi <= 24.99) {
             return this.getString(R.string.normal_weight);
@@ -159,7 +152,7 @@ PopupWindow popupWindow;
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction();
         }
     }
 
@@ -180,18 +173,7 @@ PopupWindow popupWindow;
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction();
     }
 }

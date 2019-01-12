@@ -1,9 +1,5 @@
 package com.example.alicja.aplikacjadietetyczna.Model;
 
-/**
- * Created by Alicja on 2018-03-06.
- */
-
 public class Geometry {
     private Viewport viewport;
 

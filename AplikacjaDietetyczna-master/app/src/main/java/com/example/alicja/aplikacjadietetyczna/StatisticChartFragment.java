@@ -1,5 +1,6 @@
 package com.example.alicja.aplikacjadietetyczna;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -23,7 +24,6 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -40,13 +40,17 @@ public class StatisticChartFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    LineGraphSeries<DataPoint> xySeries = new LineGraphSeries<>(new DataPoint[0]);
-    DatabaseHelper myHelper;
-    SQLiteDatabase sqLiteDatabase;
-    DatePickerDialog.OnDateSetListener datePicker;
+    private LineGraphSeries<DataPoint> xySeries = new LineGraphSeries<>(new DataPoint[0]);
+    private DatabaseHelper myHelper;
+    private SQLiteDatabase sqLiteDatabase;
+    private DatePickerDialog.OnDateSetListener datePicker;
+    @SuppressLint("SimpleDateFormat")
+    private
     SimpleDateFormat simpleDate = new SimpleDateFormat("dd-MM-yy");
+    @SuppressLint("SimpleDateFormat")
+    private
     SimpleDateFormat gridDate = new SimpleDateFormat("dd.MM");
-    String date;
+    private String date;
     @BindView(R.id.numX)
     EditText mX;
     @BindView(R.id.btnAddPt)
@@ -62,15 +66,6 @@ public class StatisticChartFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment StatisticChartFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static StatisticChartFragment newInstance(String param1, String param2) {
         StatisticChartFragment fragment = new StatisticChartFragment();
         Bundle args = new Bundle();
@@ -99,12 +94,17 @@ public class StatisticChartFragment extends Fragment {
                     long xValues = data.getTime();
                     double yValues = Double.parseDouble(mX.getText().toString());
                     XYValue xyValue=new XYValue(xValues,yValues);
-                    myHelper.insertXYValues(xyValue);
-                    if(getDataPoint()!=null) {
-                        xySeries.resetData(getDataPoint());
+                    if(myHelper.getXYValuesCount()==0 || myHelper.getXYValue(myHelper.getXYValuesCount()).getX()<xyValue.getX()) {
+                        myHelper.insertXYValues(xyValue);
+                        if (getDataPoint() != null) {
+                            xySeries.resetData(getDataPoint());
+                        }
+                        Toast.makeText(getActivity(), getString(R.string.add_point_success), Toast.LENGTH_LONG).show();
                     }
-                    Toast.makeText(getActivity(), getString(R.string.add_point_success), Toast.LENGTH_LONG).show();
-                } catch (Exception e) {
+                    else{
+                        Toast.makeText(getActivity(), getString(R.string.data_alert), Toast.LENGTH_LONG).show();
+                    }
+                    } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -154,8 +154,9 @@ public class StatisticChartFragment extends Fragment {
                 }
             }
         });
-        xySeries.resetData(getDataPoint());
-        xyInsert();
+            xySeries.resetData(getDataPoint());
+            xyInsert();
+
         btnDate.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -188,7 +189,7 @@ public class StatisticChartFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction();
         }
     }
 
@@ -221,6 +222,6 @@ public class StatisticChartFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction();
     }
 }

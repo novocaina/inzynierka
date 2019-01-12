@@ -8,7 +8,7 @@ import com.example.alicja.aplikacjadietetyczna.StatisticChartFragment;
 import com.example.alicja.aplikacjadietetyczna.StatisticListFragment;
 
 public class PagerStatisticAdapter extends FragmentStatePagerAdapter {
-    int pageNumber;
+    private int pageNumber;
 
     public PagerStatisticAdapter(FragmentManager fm, int number) {
         super(fm);
@@ -19,8 +19,7 @@ public class PagerStatisticAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                StatisticChartFragment statisticChartFragment = new StatisticChartFragment();
-                return statisticChartFragment;
+                return new StatisticChartFragment();
             case 1:
                StatisticListFragment statisticListFragment = new StatisticListFragment();
                 return statisticListFragment;

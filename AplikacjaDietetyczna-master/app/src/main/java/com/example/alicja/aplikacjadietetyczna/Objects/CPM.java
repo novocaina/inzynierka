@@ -1,13 +1,10 @@
 package com.example.alicja.aplikacjadietetyczna.Objects;
 
-/**
- * Created by Alicja on 2018-04-18.
- */
 
 public class CPM {
-    double weight;
-    double height;
-    int age;
+    private double weight;
+    private double height;
+    private int age;
 
     public double getWeight() {
         return weight;
@@ -49,8 +46,8 @@ public class CPM {
         this.pal = pal;
     }
 
-    String sex;
-    double pal;
+    private String sex;
+    private double pal;
 
     public double Count_CPM(double weight, double height, int age, String sex, double pal) {
         double CPM;

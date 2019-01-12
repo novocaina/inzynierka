@@ -39,7 +39,7 @@ public class MyDiet {
     }
 
 
-    public ArrayList<DailyMeal> updateList(ArrayList<DailyMeal> mealList, String elimination, String prefer) {
+    private ArrayList<DailyMeal> updateList(ArrayList<DailyMeal> mealList, String elimination, String prefer) {
         ArrayList<DailyMeal> newMealList = new ArrayList<>();
         if (prefer.equals("Wegetariańska")) {
             for (DailyMeal dailyMeal : mealList) {
@@ -55,9 +55,9 @@ public class MyDiet {
         } else {
             ArrayList<DailyMeal> toRemove = new ArrayList<>();
             String[] result = elimination.split(",");
-            for (int i = 0; i < result.length; i++) {
+            for (String aResult : result) {
                 for (DailyMeal meal : newMealList) {
-                    if (meal.getIngredients().contains(result[i])) {
+                    if (meal.getIngredients().contains(aResult)) {
                         toRemove.add(meal);
                     }
                 }
@@ -144,32 +144,32 @@ public class MyDiet {
             sumProteins = breakfast.getProteins() + secondbreakfast.getProteins() + dinner.getProteins() + dessert.getProteins() + supper.getProteins();
             sumFats = breakfast.getFat() + secondbreakfast.getFat() + dinner.getFat() + dessert.getFat() + supper.getFat();
             sumCarbohydrates = breakfast.getCarbohydrates() + secondbreakfast.getCarbohydrates() + dinner.getCarbohydrates() + dessert.getCarbohydrates() + supper.getCarbohydrates();
+
+        }
+            ArrayList<DailyMeal> planMeals = new ArrayList<>();
+            DailyMeal meal1 = new DailyMeal(breakfast.getName(), breakfast.getIngredients(), breakfast.getType(),
+                    breakfast.getKind(), breakfast.getPortions(), breakfast.getPrepare(), breakfast.getUrl(),
+                    breakfast.getCalories(), breakfast.getProteins(), breakfast.getCarbohydrates(), breakfast.getFat(), breakfast.getImageUrl());
+            planMeals.add(meal1);
+            DailyMeal meal2 = new DailyMeal(secondbreakfast.getName(), secondbreakfast.getIngredients(), secondbreakfast.getType(),
+                    secondbreakfast.getKind(), secondbreakfast.getPortions(), secondbreakfast.getPrepare(), secondbreakfast.getUrl(),
+                    secondbreakfast.getCalories(), secondbreakfast.getProteins(), secondbreakfast.getCarbohydrates(), secondbreakfast.getFat(), secondbreakfast.getImageUrl());
+            planMeals.add(meal2);
+            DailyMeal meal3 = new DailyMeal(dinner.getName(), dinner.getIngredients(), dinner.getType(),
+                    dinner.getKind(), dinner.getPortions(), dinner.getPrepare(), dinner.getUrl(),
+                    dinner.getCalories(), dinner.getProteins(), dinner.getCarbohydrates(), dinner.getFat(), dinner.getImageUrl());
+            planMeals.add(meal3);
+            DailyMeal meal4 = new DailyMeal(dessert.getName(), dessert.getIngredients(), dessert.getType(),
+                    dessert.getKind(), dessert.getPortions(), dessert.getPrepare(), dessert.getUrl(),
+                    dessert.getCalories(), dessert.getProteins(), dessert.getCarbohydrates(), dessert.getFat(), dessert.getImageUrl());
+            planMeals.add(meal4);
+            DailyMeal meal5 = new DailyMeal(supper.getName(), supper.getIngredients(), supper.getType(),
+                    supper.getKind(), supper.getPortions(), supper.getPrepare(), supper.getUrl(),
+                    supper.getCalories(), supper.getProteins(), supper.getCarbohydrates(), supper.getFat(), supper.getImageUrl());
+            planMeals.add(meal5);
+            return planMeals;
         }
 
-        ArrayList<DailyMeal> planMeals = new ArrayList<>();
-        DailyMeal meal1 = new DailyMeal(breakfast.getName(), breakfast.getIngredients(), breakfast.getType(),
-                breakfast.getKind(), breakfast.getPortions(), breakfast.getPrepare(), breakfast.getUrl(),
-                breakfast.getCalories(), breakfast.getProteins(), breakfast.getCarbohydrates(), breakfast.getFat(), breakfast.getImageUrl());
-        planMeals.add(meal1);
-        DailyMeal meal2 = new DailyMeal(secondbreakfast.getName(), secondbreakfast.getIngredients(), secondbreakfast.getType(),
-                secondbreakfast.getKind(), secondbreakfast.getPortions(), secondbreakfast.getPrepare(), secondbreakfast.getUrl(),
-                secondbreakfast.getCalories(), secondbreakfast.getProteins(), secondbreakfast.getCarbohydrates(), secondbreakfast.getFat(), secondbreakfast.getImageUrl());
-        planMeals.add(meal2);
-        DailyMeal meal3 = new DailyMeal(dinner.getName(), dinner.getIngredients(), dinner.getType(),
-                dinner.getKind(), dinner.getPortions(), dinner.getPrepare(), dinner.getUrl(),
-                dinner.getCalories(), dinner.getProteins(), dinner.getCarbohydrates(), dinner.getFat(), dinner.getImageUrl());
-        planMeals.add(meal3);
-        DailyMeal meal4 = new DailyMeal(dessert.getName(), dessert.getIngredients(), dessert.getType(),
-                dessert.getKind(), dessert.getPortions(), dessert.getPrepare(), dessert.getUrl(),
-                dessert.getCalories(), dessert.getProteins(), dessert.getCarbohydrates(), dessert.getFat(), dessert.getImageUrl());
-        planMeals.add(meal4);
-        DailyMeal meal5 = new DailyMeal(supper.getName(), supper.getIngredients(), supper.getType(),
-                supper.getKind(), supper.getPortions(), supper.getPrepare(), supper.getUrl(),
-                supper.getCalories(), supper.getProteins(), supper.getCarbohydrates(), supper.getFat(), supper.getImageUrl());
-        planMeals.add(meal5);
-
-        return planMeals;
-    }
 
     public ArrayList<DailyMeal> initMealList(Context context) {
         ArrayList<DailyMeal> mealList = new ArrayList<>();

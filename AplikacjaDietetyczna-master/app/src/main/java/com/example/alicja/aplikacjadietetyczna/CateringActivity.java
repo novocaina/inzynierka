@@ -7,7 +7,6 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Looper;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -20,11 +19,8 @@ import android.widget.Toast;
 import com.example.alicja.aplikacjadietetyczna.Model.MyPlaces;
 import com.example.alicja.aplikacjadietetyczna.Model.Results;
 import com.example.alicja.aplikacjadietetyczna.Remote.IGoogleAPIService;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
@@ -52,10 +48,10 @@ public class CateringActivity extends FragmentActivity implements OnMapReadyCall
     private Marker mMarker;
     private LocationRequest mLocationRequest;
 
-    MyPlaces currentPlace;
-    IGoogleAPIService mService;
-FusedLocationProviderClient fusedLocationProviderClient;
-LocationCallback locationCallback;
+    private MyPlaces currentPlace;
+    private IGoogleAPIService mService;
+private FusedLocationProviderClient fusedLocationProviderClient;
+private LocationCallback locationCallback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,13 +59,13 @@ LocationCallback locationCallback;
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
+        Toast.makeText(this, this.getString(R.string.map_alert), Toast.LENGTH_LONG).show();
         mService = Common.getGoogleAPIService();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -155,14 +151,20 @@ LocationCallback locationCallback;
                                 LatLng latLng = new LatLng(lat, lng);
                                 markerOptions.position(latLng);
                                 markerOptions.title(placeName);
-                                if (placeType.equals("supermarket"))
-                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_grocery));
-                                else if (placeType.equals("restaurant"))
-                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_rest));
-                                else if (placeType.equals("meal_delivery"))
-                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_name));
-                                else
-                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                                switch (placeType) {
+                                    case "supermarket":
+                                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_grocery));
+                                        break;
+                                    case "restaurant":
+                                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_rest));
+                                        break;
+                                    case "meal_delivery":
+                                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_name));
+                                        break;
+                                    default:
+                                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                                        break;
+                                }
 
                                 markerOptions.snippet(String.valueOf(i));
 
@@ -183,7 +185,7 @@ LocationCallback locationCallback;
 
     private String getUrl(double latitude, double longitude, String placeType) {
         StringBuilder googlePlacesUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-        googlePlacesUrl.append("location=" + latitude + "," + longitude);
+        googlePlacesUrl.append("location=").append(latitude).append(",").append(longitude);
         googlePlacesUrl.append("&radius=" + 10000);
         googlePlacesUrl.append("&type=" + placeType);
         googlePlacesUrl.append("&sensor=true");

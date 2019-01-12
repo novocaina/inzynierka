@@ -32,7 +32,7 @@
 
 
         <EditText
-            android:id="@+id/heightcpm_txt"
+            android:id="@+id/heightCPM_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -59,7 +59,7 @@
             android:textAllCaps="true"/>
 
         <EditText
-            android:id="@+id/weightcpm_txt"
+            android:id="@+id/weightCPM_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

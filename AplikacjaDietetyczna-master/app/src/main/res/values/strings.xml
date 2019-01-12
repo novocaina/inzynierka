@@ -6,6 +6,7 @@
     <string name="give_weight">Podaj wagę [kg]</string>
     <string name="weight">Waga</string>
     <string name="height">Wzrost</string>
+    <string name="yourBMI">Twoje BMI</string>
     <string name="calc_bmi">Oblicz BMI</string>
     <string name="give_age">Podaj wiek w latach</string>
     <string name="age">wiek</string>
@@ -18,13 +19,11 @@
     <string name="caterings">Catering</string>
     <string name="warning_data">Podaj wszystkie dane!</string>
     <string name="value_str">Wartość musi byc większa od 0!</string>
-    <string name="starvation">wygłodzenie</string>
-    <string name="emaciaton">wychudzenie</string>
     <string name="low_weight">niedowaga</string>
     <string name="normal_weight">waga prawidłowa</string>
-    <string name="obeseI">I stopień otyłości</string>
-    <string name="obeseII">II stopień otyłości</string>
-    <string name="obeseIII">III stopień otyłości</string>
+    <string name="obeseI">nadwaga</string>
+    <string name="obeseII">otyłość</string>
+    <string name="obeseIII">otyłość dużego stopnia</string>
     <string name="woman">Kobieta</string>
     <string name="man">Mężczyzna</string>
     <string name="activity_1">Nieaktywny (brak ćwiczeń)</string>
@@ -125,8 +124,6 @@
     <string name="change_info">Aby zmienić tygodniowy jadłospis naciśnij przycisk poniżej.</string>
     <string name="change_title">Zmień swój jadłospis</string>
     <string name="change_daily">Aby zmienić dzienny jadłospis wybierz dzień z listy, nastepnie naciśnij przycisk poniżej</string>
-    <string name="url_image">https://upload.wikimedia.org/wikipedia/commons/4/4e/Italian_cuisine_background-1932466_1920.jpg
-</string>
     <string name="fat_level">Poziom tkanki tłuszczowej </string>
     <string name="calories_add">Kalorie </string>
     <string name="proteins_add">Białko </string>
@@ -176,4 +173,7 @@ Jeżeli nie spełniasz któregoś z kryteriów, bardzo proszę o skonsultowanie 
     <string name="reduction_alert">Twoje BMI wskazuje poniżej 17. Sugerowany cel diety to przybranie na wadze (masa).</string>
     <string name="restaurant">Restauracja</string>
     <string name="supermarket">Supermarket</string>
+    <string name="data_alert">Daty muszą występować w kolejności chronologicznej! Sprawdź ostatnią datę i wybierz późniejszą.</string>
+    <string name="map_alert">Sprawdż, czy masz włączony dostęp do danych lokalizacyjnych w urządzeniu!</string>
+    <string name="diet_alert">Przy tych danych ułożenie diety może być niemożliwe ze względu na zbyt małą ilość odpowiadających przepisów. Jeżeli przy korzystaniu z aktywności "Twój jadłospis" aplikacja przestanie odpowiadać, oznacza to, że ułożenie jadłospisu nie było możliwe. Zmień swoje dane lub dodaj własne przepisy. </string>
 </resources>

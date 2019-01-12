@@ -32,6 +32,9 @@ public class MealFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
 
 
+    @BindView(R.id.meal_list)
+    RecyclerView recyclerView;
+
     private Serializable mParam1;
 
     private OnFragmentInteractionListener mListener;
@@ -58,9 +61,6 @@ public class MealFragment extends Fragment {
 
     }
 
-    @BindView(R.id.meal_list)
-    RecyclerView recyclerView;
-
 
 
     @Override
@@ -85,7 +85,7 @@ public class MealFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction();
         }
     }
 
@@ -109,7 +109,7 @@ public class MealFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction();
     }
 
 }

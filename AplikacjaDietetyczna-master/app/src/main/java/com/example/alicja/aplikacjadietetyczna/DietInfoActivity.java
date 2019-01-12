@@ -1,7 +1,5 @@
 package com.example.alicja.aplikacjadietetyczna;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -72,11 +70,16 @@ public class DietInfoActivity extends AppCompatActivity {
     RadioButton woman_radio;
     @BindView(R.id.save_btn)
     Button save_btn;
-    DatabaseHelper db;
-    String[] target_table;
-    String sex, target, preference, elimination;
-    double weight, height, cpm, pal;
-    int age;
+    private DatabaseHelper db;
+    private String sex;
+    private String target;
+    private String preference;
+    private String elimination;
+    private double weight;
+    private double height;
+    private double cpm;
+    private double pal;
+    private int age;
 
 
     @OnClick(R.id.save_btn)
@@ -85,19 +88,19 @@ public class DietInfoActivity extends AppCompatActivity {
         String heightStr = height_txt.getText().toString();
         String ageStr = age_txt.getText().toString();
         BMI bmi = new BMI();
-        if (bmi.BMI_Count(Double.parseDouble(weightStr), Double.parseDouble(heightStr)) < 17) {
-            AlertDialog dialog = new AlertDialog.Builder(this)
-                    .setTitle(R.string.app_requirements)
-                    .setMessage(R.string.reduction_alert)
-                    .setNegativeButton(R.string.close_window, null)
-                    .create();
-            dialog.show();
-        } else if (weightStr.isEmpty() || heightStr.isEmpty() || ageStr.isEmpty()) {
+        if (weightStr.isEmpty() || heightStr.isEmpty() || ageStr.isEmpty()) {
             Toast.makeText(DietInfoActivity.this, this.getString(R.string.warning_data), Toast.LENGTH_LONG).show();
         } else if (Double.parseDouble(weightStr) <= 40 || Double.parseDouble(weightStr) >= 120 || Double.parseDouble(heightStr) <= 0 || Double.parseDouble(heightStr) >= 210 || Integer.parseInt(ageStr) <= 10) {
             AlertDialog dialog = new AlertDialog.Builder(this)
                     .setTitle(R.string.app_requirements)
                     .setMessage(R.string.diet_warning)
+                    .setNegativeButton(R.string.close_window, null)
+                    .create();
+            dialog.show();
+        } else if (bmi.BMI_Count(Double.parseDouble(weightStr), Double.parseDouble(heightStr)) < 17) {
+            AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setTitle(R.string.app_requirements)
+                    .setMessage(R.string.reduction_alert)
                     .setNegativeButton(R.string.close_window, null)
                     .create();
             dialog.show();
@@ -113,6 +116,14 @@ public class DietInfoActivity extends AppCompatActivity {
             CPM newCPM = new CPM();
             cpm = newCPM.Count_CPM(weight, height, age, sex, pal);
             elimination = eliminateIngredients();
+            if(cpm>3000 || elimination.length()!=0 || preference==getString(R.string.veget)){
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle(R.string.info)
+                        .setMessage(R.string.diet_alert)
+                        .setNegativeButton(R.string.close_window, null)
+                        .create();
+                dialog.show();
+            }
             User user = new User(cpm, weight, height, target, preference, sex, pal, age, elimination);
             SaveDataInDataBase(user);
             Toast.makeText(DietInfoActivity.this, this.getString(R.string.success), Toast.LENGTH_LONG).show();
@@ -121,6 +132,7 @@ public class DietInfoActivity extends AppCompatActivity {
             MyDiet myDiet = new MyDiet();
             ArrayList<DailyMeal> meals = myDiet.initMealList(this);
             myDiet.SaveUserList(db, meals);
+            Toast.makeText(DietInfoActivity.this, this.getString(R.string.success), Toast.LENGTH_LONG).show();
         }
 
 
@@ -156,7 +168,7 @@ public class DietInfoActivity extends AppCompatActivity {
     }
 
 
-    public void SaveDataInDataBase(User user) {
+    private void SaveDataInDataBase(User user) {
         if (db.getUserCount() == 0) {
             db.insertUser(user);
 

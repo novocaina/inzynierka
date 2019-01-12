@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#008000</color>
     <color name="colorAccent">#a6a6a6</color>
     <color name="grey">#F2F2F2</color>
-    <color name="darkgrey">#1A1A1A</color>
+    <color name="DarkGrey">#1A1A1A</color>
     <color name="popupBackground">#ffb366</color>
 </resources>

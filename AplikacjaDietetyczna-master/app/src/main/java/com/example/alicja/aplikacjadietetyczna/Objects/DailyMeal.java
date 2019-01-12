@@ -3,9 +3,7 @@ package com.example.alicja.aplikacjadietetyczna.Objects;
 import java.io.Serializable;
 
 
-/**
- * Created by Alicja on 2018-06-12.
- */
+
 
 public class DailyMeal implements Serializable {
     private String name;

@@ -9,7 +9,7 @@ import com.example.alicja.aplikacjadietetyczna.CPMFragment;
 import com.example.alicja.aplikacjadietetyczna.FatLevelFragment;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
-    int pageNumber;
+    private int pageNumber;
 
     public PagerAdapter(FragmentManager fm, int number) {
         super(fm);

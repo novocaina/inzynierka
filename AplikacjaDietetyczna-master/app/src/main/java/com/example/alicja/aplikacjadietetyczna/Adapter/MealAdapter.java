@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.alicja.aplikacjadietetyczna.Objects.DailyMeal;
 import com.example.alicja.aplikacjadietetyczna.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -54,7 +53,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
         holder.fat_text.setText(String.valueOf(listMeals.get(position).getFat()));
         holder.ingredient_txt.setText(listMeals.get(position).getIngredients());
         holder.recipes_txt.setText(listMeals.get(position).getPrepare());
-        holder.url_txt.setText(listMeals.get(position).getUrl());
+        holder.url_text.setText(listMeals.get(position).getUrl());
 
     }
 
@@ -84,7 +83,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
         @BindView(R.id.meal_img)
         ImageView meal_image;
         @BindView(R.id.url_txt)
-        TextView url_txt;
+        TextView url_text;
 
         private ViewHolder(View itemView) {
             super(itemView);

@@ -1,8 +1,5 @@
 package com.example.alicja.aplikacjadietetyczna.Model;
 
-/**
- * Created by Alicja on 2018-05-30.
- */
 
 public class Close {
     private String time;
