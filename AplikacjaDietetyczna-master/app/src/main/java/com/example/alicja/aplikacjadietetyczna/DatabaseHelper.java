@@ -229,8 +229,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(XYValue.XNAME, xyValue.getX());
-        values.put(XYValue.YNAME, xyValue.getY());
+        values.put(XYValue.DATES, xyValue.getX());
+        values.put(XYValue.WEIGHT, xyValue.getY());
         db.insert(XYValue.TABLE3, null, values);
         db.close();
     }
@@ -243,8 +243,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.moveToFirst();
 
         XYValue xyValue = new XYValue();
-        xyValue.setX(cursor.getLong(cursor.getColumnIndex(XYValue.XNAME)));
-        xyValue.setY(cursor.getDouble(cursor.getColumnIndex(XYValue.YNAME)));
+        xyValue.setX(cursor.getLong(cursor.getColumnIndex(XYValue.DATES)));
+        xyValue.setY(cursor.getDouble(cursor.getColumnIndex(XYValue.WEIGHT)));
         cursor.close();
         db.close();
         return xyValue;

@@ -51,12 +51,12 @@ public double returnOdds(ArrayList<XYValue> xyValues, int i){
 
     public static final String TABLE3 = "series";
     public static final String ID = "id";
-    public static final String XNAME = "xName";
-    public static final String YNAME = "yName";
+    public static final String DATES = "dates";
+    public static final String WEIGHT = "weight";
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE3 + " ( " +
                     ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    XNAME + " NUMBER, " +
-                    YNAME + " NUMBER " +
+                    DATES + " NUMBER, " +
+                    WEIGHT + " NUMBER " +
                     "); ";
 }
